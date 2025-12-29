@@ -1,0 +1,82 @@
+{
+  "holy": {
+    "traditional": "holy",
+    "modernized": "exclusive"
+  },
+  "faith": {
+    "traditional": "faith",
+    "modernized": "trust"
+  },
+  "belief": {
+    "traditional": "belief",
+    "modernized": "trust"
+  },
+  "right": {
+    "traditional": "right",
+    "modernized": "just"
+  },
+  "righteous": {
+    "traditional": "righteous",
+    "modernized": "just"
+  },
+  "good": {
+    "traditional": "good",
+    "modernized": "harmony"
+  },
+  "evil": {
+    "traditional": "evil",
+    "modernized": "disharmony"
+  },
+  "clean": {
+    "traditional": "clean",
+    "modernized": "fit"
+  },
+  "unclean": {
+    "traditional": "unclean",
+    "modernized": "unfit"
+  },
+  "altar": {
+    "traditional": "altar",
+    "modernized": "slaughter-place"
+  },
+  "congregation": {
+    "traditional": "congregation",
+    "modernized": "assembly"
+  },
+  "covenant": {
+    "traditional": "covenant",
+    "modernized": "contract"
+  },
+  "gentile": {
+    "traditional": "gentile",
+    "modernized": "nations"
+  },
+  "law": {
+    "traditional": "law",
+    "modernized": "instruction"
+  },
+  "torah": {
+    "traditional": "torah",
+    "modernized": "instruction"
+  },
+  "prophet": {
+    "traditional": "prophet",
+    "modernized": "spokesperson"
+  },
+  "sacrifice": {
+    "traditional": "sacrifice",
+    "modernized": "offering"
+  },
+  "tabernacle": {
+    "traditional": "tabernacle",
+    "modernized": "dwelling place"
+  },
+  "sin": {
+    "traditional": "sin",
+    "modernized": "injustice"
+  },
+  "grace": {
+    "traditional": "grace",
+    "modernized": "empowerment"
+  }
+}

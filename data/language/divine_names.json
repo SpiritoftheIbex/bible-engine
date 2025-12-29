@@ -1,0 +1,42 @@
+{
+  "YHVH": {
+    "native": "יהוה",
+    "transliterated": "YeHoVaH"
+  },
+  "the LORD": {
+    "native": "יהוה",
+    "transliterated": "YeHoVaH"
+  },
+  "יהוה": {
+    "native": "יהוה",
+    "transliterated": "YeHoVaH"
+  },
+  "Yeshua": {
+    "native": "ישוע",
+    "transliterated": "Yeshua"
+  },
+  "ישוע": {
+    "native": "ישוע",
+    "transliterated": "Yeshua"
+  },
+  "Elohim": {
+    "native": "אֱלֹהִים",
+    "transliterated": "Elohim"
+  },
+  "Adonai": {
+    "native": "אֲדֹנָי",
+    "transliterated": "Adonai"
+  },
+  "El-Shaddai": {
+    "native": "אֵל שַׁדַּי",
+    "transliterated": "El Shaddai"
+  },
+  "the Holy Spirit": {
+    "native": "רוּחַ הַקֹּדֶשׁ",
+    "transliterated": "Ruach HaKodesh"
+  },
+  "Ruach-HaKodesh": {
+    "native": "רוּחַ הַקֹּדֶשׁ",
+    "transliterated": "Ruach HaKodesh"
+  }
+}

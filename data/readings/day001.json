@@ -1,0 +1,40 @@
+{
+  "dayid": "1",
+  "plan": "Genesis 1:1–2:3",
+  "readings": [
+    {
+      "book": "1",
+      "chapter": "1",
+      "section": "THE BEGINNING",
+      "subsection": "The Creation of the Universe",
+      "title": "Day One",
+      "subtitle": "The Generation of Light",
+      "chronological": "1st Day of the 1st Month, 1 FC",
+      "references": "Genesis 1:1-5",
+      "text": "[Genesis 1] <h7225>In <i>the</i> beginning</h7225> <h430><dn>Elohim</dn></h430> <h1254>created</h1254> the <h8064>heavens</h8064> and the <h776>earth</h776>. {1.1} [2] Now the earth was formless and empty, and darkness was on the face of the deep. <img:0001.jpg> And the Spirit of <h430><dn>Elohim</dn></h430> was moving on the face of the waters. <img:0002.jpg> [3] And <h430><dn>Elohim</dn></h430> said, <dq>“Let light come to be,”</dq> and light came to be. [4] And <h430><dn>Elohim</dn></h430> saw the light, that it was <kw>good</kw>. And <h430><dn>Elohim</dn></h430> separated the light from the darkness. [5] And <h430><dn>Elohim</dn></h430> called the light <dq>‘day’</dq> and the darkness He called <dq>‘night.’</dq> And there came to be evening and there came to be morning, the first day.",
+      "footnotes": {
+        "1.1": "The term <dn>Elohim</dn> here is the plural of <pn>Eloah</pn>, yet it is used with the singular verb <h1254>bara</h1254> (created), signifying the unity of the Almighty Creator."
+      }
+    },
+    {
+      "book": "1",
+      "chapter": "1",
+      "title": "Day Two",
+      "subtitle": "The Expansion of the Heavens",
+      "chronological": "2nd Day of the 1st Month, 1 FC",
+      "references": "Genesis 1:6-8",
+      "text": "[6] And <h430><dn>Elohim</dn></h430> said, <dq>“Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.”</dq> [7] And <h430><dn>Elohim</dn></h430> made the expanse, and separated the waters which were under the expanse from the waters which were above the expanse. And it came to be so. [8] And <h430><dn>Elohim</dn></h430> called the expanse <h8064>‘heavens.’</h8064> And there came to be evening and there came to be morning, the second day.",
+      "footnotes": {}
+    },
+    {
+      "book": "1",
+      "chapter": "1",
+      "title": "Day Three",
+      "subtitle": "The Dry Land and Vegetation",
+      "chronological": "3rd Day of the 1st Month, 1 FC",
+      "references": "Genesis 1:9-13",
+      "text": "[9] And <h430><dn>Elohim</dn></h430> said, <dq>“Let the waters under the heavens be gathered together into one place, and let the dry land appear.”</dq> And it came to be so. [10] And <h430><dn>Elohim</dn></h430> called the dry land <h776>‘earth,’</h776> and the gathering together of the waters He called ‘seas.’ And <h430><dn>Elohim</dn></h430> saw that it was <kw>good</kw>. [11] And <h430><dn>Elohim</dn></h430> said, <dq>“Let the earth bring forth grass, the herb that yields seed, and the fruit tree that yields fruit according to its kind, whose seed is in itself, on the earth.”</dq> And it came to be so. [12] And the earth brought forth grass, the herb that yields seed according to its kind, and the tree that yields fruit, whose seed is in itself according to its kind. And <h430><dn>Elohim</dn></h430> saw that it was <kw>good</kw>. [13] And there came to be evening and there came to be morning, the third day.",
+      "footnotes": {}
+    }
+  ]
+}

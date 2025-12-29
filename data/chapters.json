@@ -1,0 +1,47 @@
+[
+  {
+    "bookId": "1",
+    "chapterNum": "1",
+    "dayIds": ["1"]
+  },
+  {
+    "bookId": "1",
+    "chapterNum": "2",
+    "dayIds": ["1", "2"]
+  },
+  {
+    "bookId": "1",
+    "chapterNum": "3",
+    "dayIds": ["2"]
+  },
+  {
+    "bookId": "1",
+    "chapterNum": "4",
+    "dayIds": ["3"]
+  },
+  {
+    "bookId": "1",
+    "chapterNum": "5",
+    "dayIds": ["3"]
+  },
+  {
+    "bookId": "2",
+    "chapterNum": "1",
+    "dayIds": ["30"]
+  },
+  {
+    "bookId": "2",
+    "chapterNum": "2",
+    "dayIds": ["30", "31"]
+  },
+  {
+    "bookId": "40",
+    "chapterNum": "1",
+    "dayIds": ["275"]
+  },
+  {
+    "bookId": "43",
+    "chapterNum": "1",
+    "dayIds": ["270"]
+  }
+]
