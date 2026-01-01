@@ -1,42 +1,97 @@
 {
-  "YHVH": {
+  "dn1": {
     "native": "יהוה",
-    "transliterated": "YeHoVaH"
+    "transliterated": "YeHoVaH",
+    "anglicized": "Jehovah"
   },
-  "the LORD": {
-    "native": "יהוה",
-    "transliterated": "YeHoVaH"
-  },
-  "יהוה": {
-    "native": "יהוה",
-    "transliterated": "YeHoVaH"
-  },
-  "Yeshua": {
-    "native": "ישוע",
-    "transliterated": "Yeshua"
-  },
-  "ישוע": {
-    "native": "ישוע",
-    "transliterated": "Yeshua"
-  },
-  "Elohim": {
+  "dn2": {
     "native": "אֱלֹהִים",
-    "transliterated": "Elohim"
+    "transliterated": "Elohim",
+    "anglicized": "God"
   },
-  "Adonai": {
+  "dn3": {
     "native": "אֲדֹנָי",
-    "transliterated": "Adonai"
+    "transliterated": "Adonai",
+    "anglicized": "Master"
   },
-  "El-Shaddai": {
+  "dn4": {
+    "native": "ישוע",
+    "transliterated": "Yeshua",
+    "anglicized": "Jesus"
+  },
+  "dn5": {
     "native": "אֵל שַׁדַּי",
-    "transliterated": "El Shaddai"
+    "transliterated": "El Shaddai",
+    "anglicized": "God Almighty"
   },
-  "the Holy Spirit": {
+  "dn6": {
     "native": "רוּחַ הַקֹּדֶשׁ",
-    "transliterated": "Ruach HaKodesh"
+    "transliterated": "Ruach HaKodesh",
+    "anglicized": "Holy Spirit"
   },
-  "Ruach-HaKodesh": {
-    "native": "רוּחַ הַקֹּדֶשׁ",
-    "transliterated": "Ruach HaKodesh"
+  "dn7": {
+    "native": "את",
+    "transliterated": "את",
+	"anglicized": "את"
+  },
+  "dn8": {
+    "native": "Explanation",
+    "transliterated": "Explanation",
+	"anglicized": "Word"
+  },
+  "dn9": {
+    "native": "He",
+    "transliterated": "He",
+	"anglicized": "He"
+  },
+  "dn10": {
+    "native": "Him",
+    "transliterated": "Him",
+	"anglicized": "Him"
+  },
+  "dn11": {
+    "native": "His",
+    "transliterated": "His",
+	"anglicized": "His"
+  },
+  "dn12": {
+    "native": "You",
+    "transliterated": "You",
+	"anglicized": "You"
+  },
+  "dn13": {
+    "native": "Your",
+    "transliterated": "Your",
+	"anglicized": "Your"
+  },
+  "dn14": {
+    "native": "Yours",
+    "transliterated": "Yours",
+	"anglicized": "Yours"
+  },
+  "dn15": {
+    "native": "the voice",
+    "transliterated": "the voice",
+	"anglicized": "the voice"
+  },
+  "dn16": {
+    "native": "Your Voice",
+    "transliterated": "Your Voice",
+	"anglicized": "Your Voice"
+  },
+  "dn17": {
+    "native": "I",
+    "transliterated": "I",
+	"anglicized": "I"
+  },
+  "dn18": {
+    "native": "My",
+    "transliterated": "My",
+	"anglicized": "My"
+  },
+  "dn19": {
+    "native": "her Seed",
+    "transliterated": "her Seed",
+	"anglicized": "her Seed"
   }
 }

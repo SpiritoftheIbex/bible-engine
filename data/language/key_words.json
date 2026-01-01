@@ -1,82 +1,190 @@
 {
-  "holy": {
-    "traditional": "holy",
-    "modernized": "exclusive"
-  },
-  "faith": {
-    "traditional": "faith",
-    "modernized": "trust"
-  },
-  "belief": {
-    "traditional": "belief",
-    "modernized": "trust"
-  },
-  "right": {
-    "traditional": "right",
-    "modernized": "just"
-  },
-  "righteous": {
-    "traditional": "righteous",
-    "modernized": "just"
-  },
-  "good": {
+  "kw1": {
     "traditional": "good",
-    "modernized": "harmony"
+    "modernized": "harmonious"
   },
-  "evil": {
-    "traditional": "evil",
-    "modernized": "disharmony"
+  "kw2": {
+    "traditional": "day",
+    "modernized": "cycle"
   },
-  "clean": {
-    "traditional": "clean",
-    "modernized": "fit"
+  "kw3": {
+    "traditional": "one day",
+    "modernized": "a cycle of unity"
   },
-  "unclean": {
-    "traditional": "unclean",
-    "modernized": "unfit"
+  "kw4": {
+    "traditional": "one place",
+    "modernized": "a place of unity"
   },
-  "altar": {
+  "kw5": {
+    "traditional": "very good",
+    "modernized": "maximally harmonious"
+  },
+  "kw6": {
+    "traditional": "array",
+    "modernized": "ordered arrangements"
+  },
+  "kw7": {
+    "traditional": "set it apart",
+    "modernized": "made it exclusive"
+  },
+  "kw8": {
+    "traditional": "rested",
+    "modernized": "ceased"
+  },
+  "kw9": {
+    "traditional": "man",
+    "modernized": "adam"
+  },
+  "kw10": {
+    "traditional": "breath of lives",
+    "modernized": "a breath of great-life"
+  },
+  "kw11": {
+    "traditional": "the tree of life",
+    "modernized": "the tree of great-life"
+  },
+  "kw12": {
+    "traditional": "the tree of the knowledge of good and evil",
+    "modernized": "the tree of the experience of harmony and disharmony"
+  },
+  "kw13": {
+    "traditional": "Eat",
+    "modernized": "Eating you shall eat"
+  },
+  "kw14": {
+    "traditional": "you shall certainly die",
+    "modernized": "dying you shall die"
+  },
+  "kw15": {
+    "traditional": "ribs",
+    "modernized": "ribbed structures"
+  },
+  "kw16": {
+    "traditional": "rib",
+    "modernized": "ribbed structure"
+  },
+  "kw17": {
+    "traditional": "bone",
+    "modernized": "structure"
+  },
+  "kw18": {
+    "traditional": "bones",
+    "modernized": "structures"
+  },
+  "kw19": {
+    "traditional": "one flesh",
+    "modernized": "a flesh of unity"
+  },
+  "kw20": {
+    "traditional": "knowing good and evil",
+    "modernized": "experiencing harmony and disharmony"
+  },
+  "kw21": {
+    "traditional": "husband",
+    "modernized": "man"
+  },
+  "kw22": {
+    "traditional": "loin coverings",
+    "modernized": "armours"
+  },
+  "kw23": {
+    "traditional": "every beast",
+    "modernized": "all living ones"
+  },
+  "kw24": {
+    "traditional": "the man",
+    "modernized": "Adam"
+  },
+  "kw25": {
+    "traditional": "wife",
+    "modernized": "woman"
+  },
+  "kw26": {
+    "traditional": "keruḇim",
+    "modernized": "guardians"
+  },
+  "kw27": {
+    "traditional": "know good and evil",
+    "modernized": "experience harmony and disharmony"
+  },
+  "kw28": {
+    "traditional": "cursed",
+    "modernized": "lacking blessing"
+  },
+  "kw29": {
     "traditional": "altar",
     "modernized": "slaughter-place"
   },
-  "congregation": {
+  "kw31": {
     "traditional": "congregation",
     "modernized": "assembly"
   },
-  "covenant": {
+  "kw32": {
     "traditional": "covenant",
     "modernized": "contract"
   },
-  "gentile": {
+  "kw33": {
     "traditional": "gentile",
     "modernized": "nations"
   },
-  "law": {
+  "kw34": {
     "traditional": "law",
     "modernized": "instruction"
   },
-  "torah": {
+  "kw35": {
     "traditional": "torah",
     "modernized": "instruction"
   },
-  "prophet": {
+  "kw36": {
     "traditional": "prophet",
     "modernized": "spokesperson"
   },
-  "sacrifice": {
+  "kw37": {
     "traditional": "sacrifice",
     "modernized": "offering"
   },
-  "tabernacle": {
+  "kw38": {
     "traditional": "tabernacle",
     "modernized": "dwelling place"
   },
-  "sin": {
+  "kw39": {
     "traditional": "sin",
     "modernized": "injustice"
   },
-  "grace": {
+  "kw40": {
     "traditional": "grace",
     "modernized": "empowerment"
+  },
+  "kw41": {
+    "traditional": "holy",
+    "modernized": "exclusive"
+  },
+  "kw42": {
+    "traditional": "faith",
+    "modernized": "trust"
+  },
+  "kw43": {
+    "traditional": "belief",
+    "modernized": "trust"
+  },
+  "kw44": {
+    "traditional": "right",
+    "modernized": "just"
+  },
+  "kw45": {
+    "traditional": "righteous",
+    "modernized": "just"
+  },
+  "kw46": {
+    "traditional": "evil",
+    "modernized": "disharmony"
+  },
+  "kw47": {
+    "traditional": "clean",
+    "modernized": "fit"
+  },
+  "kw48": {
+    "traditional": "unclean",
+    "modernized": "unfit"
   }
 }

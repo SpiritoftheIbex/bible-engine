@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chronological Bible Engine v4.8</title>
+    <title>Chronological Bible Engine v4.9</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -42,9 +42,15 @@
         .verse-marker { color: #7e22ce; font-weight: 800; vertical-align: super; font-size: 0.65em; margin-right: 4px; }
         .footnote-marker { color: #94a3b8; vertical-align: sub; font-size: 0.65em; font-weight: bold; cursor: pointer; padding: 0 2px; opacity: 0.6; }
 
-        .verse-wrapper { display: inline; padding: 2px 4px; margin: 0 -4px; border-radius: 6px; transition: background 0.3s; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+        .verse-wrapper { display: inline; padding: 2px 4px; margin: 0 -4px; border-radius: 6px; transition: background 0.3s, box-shadow 0.3s; -webkit-box-decoration-break: clone; box-decoration-break: clone; position: relative; }
         .verse-highlight-active:hover { background: rgba(59, 130, 246, 0.12); }
         .dark-mode .verse-highlight-active:hover { background: rgba(56, 189, 248, 0.2); }
+        
+        /* Selection Mode Styles */
+        .verse-selected { background: rgba(234, 179, 8, 0.2); box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.5); z-index: 10; }
+        .dark-mode .verse-selected { background: rgba(234, 179, 8, 0.3); }
+        .selection-mode-active .verse-wrapper { cursor: pointer; }
+        .selection-mode-active .verse-wrapper:hover { background: rgba(234, 179, 8, 0.1); }
 
         .lexical-token { transition: all 0.2s; cursor: pointer; border-bottom: 2px solid transparent; }
         .lexical-active { border-bottom-color: #3b82f6; text-decoration: underline; text-underline-offset: 4px; }
@@ -60,22 +66,46 @@
         
         .divine-name-styled { font-weight: 800; color: #926D1E; animation: divineGlow 6s infinite ease-in-out; display: inline-block; }
         .dark-mode .divine-name-styled { color: #ffffff; animation: starlightGlow 6s infinite ease-in-out; }
-        .divine-quote-styled { color: #be123c; font-weight: 600; }
-        .dark-mode .divine-quote-styled { color: #fda4af; }
+        .divine-quote-styled { color: #be123c; font-weight: 600; animation: divineGlow 6s infinite ease-in-out; }
+        .dark-mode .divine-quote-styled { color: #fda4af; animation: starlightGlow 6s infinite ease-in-out; }
 
         .glass-header { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
         .dark-mode .glass-header { background: rgba(24, 24, 27, 0.8); border-color: rgba(255,255,255,0.05); }
         .glass-footer { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.2); }
         .dark-mode .glass-footer { background: rgba(15, 15, 15, 0.9); border-color: rgba(255,255,255,0.1); }
         
-        .lexicon-panel { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); box-shadow: -10px 0 30px rgba(0,0,0,0.1); z-index: 190; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-left: 1px solid rgba(0,0,0,0.05); }
-        @media (min-width: 768px) { .lexicon-panel { max-width: 24rem; } }
-        .dark-mode .lexicon-panel { background: rgba(24, 24, 27, 0.95); border-color: rgba(255,255,255,0.05); color: #f8fafc; }
-        .lexicon-content { height: 100%; overflow-y: auto; padding: 2rem; }
+        /* Details Panel (Unified) */
+        .details-panel { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); box-shadow: -10px 0 30px rgba(0,0,0,0.1); z-index: 190; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-left: 1px solid rgba(0,0,0,0.05); }
+        @media (min-width: 768px) { .details-panel { max-width: 28rem; } }
+        .dark-mode .details-panel { background: rgba(24, 24, 27, 0.95); border-color: rgba(255,255,255,0.05); color: #f8fafc; }
+        .details-content { height: 100%; overflow-y: auto; padding: 2rem; }
+
+        /* Rich HTML Styles for Details Panel - Specificity Overrides */
+        .rich-content { color: #0f172a !important; } 
+        .dark-mode .rich-content { color: #e2e8f0 !important; }
+        
+        .rich-content :is(p, li, span, td, th) { color: inherit; }
+
+        .rich-content h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; color: #1e3a8a !important; }
+        .dark-mode .rich-content h3 { color: #60a5fa !important; }
+        
+        .rich-content ul { list-style-type: disc !important; padding-left: 1.5rem !important; margin-bottom: 1rem; }
+        .rich-content li { margin-bottom: 0.25rem; display: list-item !important; }
+        
+        .rich-content table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.9rem; }
+        .rich-content th, .rich-content td { border: 1px solid #cbd5e1; padding: 0.5rem; text-align: left; }
+        .dark-mode .rich-content th, .dark-mode .rich-content td { border-color: #3f3f46; }
+        
+        .rich-content th { background-color: #f1f5f9; font-weight: 700; color: #0f172a !important; }
+        .dark-mode .rich-content th { background-color: #27272a; color: #f8fafc !important; }
+        
+        .rich-content blockquote { border-left: 4px solid #3b82f6; padding-left: 1rem; font-style: italic; color: #475569 !important; margin: 1rem 0; background: #f8fafc; padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; }
+        .dark-mode .rich-content blockquote { border-color: #60a5fa; color: #94a3b8 !important; background: #27272a; }
 
         .atlas-modal { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 20px; }
         .image-viewer { position: fixed; inset: 0; z-index: 210; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; }
-        
+        .video-viewer { position: fixed; inset: 0; z-index: 210; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; padding: 20px; }
+
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
@@ -111,13 +141,23 @@
                 return days;
             })(),
             "data/language/divine_names.json": {
-                "YHVH": { "native": "יהוה", "transliterated": "YeHoVaH" }, "Elohim": { "native": "אֱלֹהִים", "transliterated": "Elohim" }, "Adonai": { "native": "אֲדֹנָי", "transliterated": "Adonai" }, "Yeshua": { "native": "ישוע", "transliterated": "Yeshua" }
+                "dn1": { "native": "יהוה", "transliterated": "YeHoVaH", "anglicized": "Jehovah" }, 
+                "dn2": { "native": "אֱלֹהִים", "transliterated": "Elohim", "anglicized": "God" }, 
+                "dn3": { "native": "אֲדֹנָי", "transliterated": "Adonai", "anglicized": "Master" }, 
+                "dn4": { "native": "ישוע", "transliterated": "Yeshua", "anglicized": "Jesus" },
+                "dn5": { "native": "אֵל שַׁדַּי", "transliterated": "El Shaddai", "anglicized": "God Almighty" }, 
+                "dn6": { "native": "רוּחַ הַקֹּדֶשׁ", "transliterated": "Ruach HaKodesh", "anglicized": "Holy Spirit" }
             },
             "data/language/proper_names.json": {
-                "Mosheh": { "transliterated": "Mosheh", "anglicized": "Moses" }, "Miryam": { "transliterated": "Miryam", "anglicized": "Mary" }, "Aharon": { "transliterated": "Aharon", "anglicized": "Aaron" }
+                "pn1": { "transliterated": "Mosheh", "anglicized": "Moses" }, 
+                "pn2": { "transliterated": "Miryam", "anglicized": "Mary" }, 
+                "pn3": { "transliterated": "Aharon", "anglicized": "Aaron" },
+                "pn4": { "transliterated": "Eloah", "anglicized": "Eloah" }
             },
             "data/language/key_words.json": {
-                "holy": { "traditional": "holy", "modernized": "exclusive" }, "faith": { "traditional": "faith", "modernized": "trust" }, "good": { "traditional": "good", "modernized": "harmony" }
+                "kw1": { "traditional": "good", "modernized": "harmonious" },
+                "kw2": { "traditional": "holy", "modernized": "exclusive" },
+                "kw3": { "traditional": "faith", "modernized": "trust" }
             },
             "data/readings/day001.json": {
                 "dayid": "1",
@@ -132,23 +172,28 @@
                         "subtitle": "The Generation of Light",
                         "chronological": "1st Day of the 1st Month, 1 FC",
                         "references": "Genesis 1:1-5",
-                        "text": "[1] <h7225>In <i>the</i> beginning</h7225> <h430><dn>Elohim</dn></h430> <h1254>created</h1254> the <h8064>heavens</h8064> and the <h776>earth</h776>. {1.1} [2] Now the earth was formless and empty, and darkness was on the face of the deep. <img:0001.jpg> And the Spirit of <h430><dn>Elohim</dn></h430> was moving on the face of the waters. <img:0002.jpg> [3] And <h430><dn>Elohim</dn></h430> said, <dq>“Let light come to be,”</dq> and light came to be. [4] And <h430><dn>Elohim</dn></h430> saw the light, that it was <kw>good</kw>. And <h430><dn>Elohim</dn></h430> separated the light from the darkness. [5] And <h430><dn>Elohim</dn></h430> called the light <dq>‘day’</dq> and the darkness He called <dq>‘night.’</dq> And there came to be evening and there came to be morning, the first day. <i>(added for clarity)</i>",
-                        "footnotes": { "1.1": "The term <dn>Elohim</dn> here is the plural of <pn>Eloah</pn>, yet it is used with the singular verb <h1254>bara</h1254> (created), signifying the unity of the Almighty Creator." }
+                        "text": "[1] <h7225>In <i>the</i> beginning</h7225> <h430><dn2>Elohim</dn2></h430> <h1254><b>created</b></h1254> the <h8064><u>heavens</u></h8064> and the <h776>earth</h776>. {1.1} <vid:2wYtJwDkKIk?start=300> [2] Now the earth was formless and empty, and darkness was on the face of the deep. <img:0001.jpg> And the Spirit of <h430><dn2>Elohim</dn2></h430> was moving on the face of the waters. <img:0002.jpg> [3] And <h430><dn2>Elohim</dn2></h430> said, <dq>“Let light come to be,”</dq> and light came to be. [4] And <h430><dn2>Elohim</dn2></h430> saw the light, that it was <kw1>good</kw1>. And <h430><dn2>Elohim</dn2></h430> separated the light from the darkness. [5] And <h430><dn2>Elohim</dn2></h430> called the light <dq>‘day’</dq> and the darkness He called <dq>‘night.’</dq> And there came to be evening and there came to be morning, the first day. <i>(added for clarity)</i>",
+                        "footnotes": { "1.1": "<h3>The Nature of Elohim</h3><p>The term <b style='color:#1e40af'>Elohim</b> here is the plural of <pn4>Eloah</pn4>, yet it is used with the singular verb <span style='font-variant:small-caps'>Bara</span> (created). This grammatical construct signifies:</p><ul><li><b>The Unity:</b> One singular entity acting.</li><li><b>The Majesty:</b> Plural form denotes supreme authority and fullness.</li><li><b>The Complexity:</b> Hints at the multi-faceted nature of the Creator.</li></ul><br/><table><thead><tr><th>Hebrew</th><th>Type</th><th>Meaning</th></tr></thead><tbody><tr><td>Elohim</td><td>Plural</td><td>Supreme Power</td></tr><tr><td>Eloah</td><td>Singular</td><td>God / Deity</td></tr></tbody></table><blockquote>“The mystery of the Creator is hidden in the grammar of His name.” – Ancient Commentary</blockquote>" }
                     },
                     {
-                        "book": "1", "chapter": "1", "title": "Day Two", "subtitle": "The Expansion of the Heavens", "chronological": "2nd Day of the 1st Month, 1 FC", "references": "Genesis 1:6-8",
-                        "text": "[6] And <h430><dn>Elohim</dn></h430> said, <dq>“Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.”</dq> [7] And <h430><dn>Elohim</dn></h430> made the expanse, and separated the waters which were under the expanse from the waters which were above the expanse. And it came to be so. [8] And <h430><dn>Elohim</dn></h430> called the expanse <h8064>‘heavens.’</h8064> And there came to be evening and there came to be morning, the second day.",
+                        "book": "1", "chapter": "1", "title": "Day Two", "subtitle": "The Expansion of the Heavens",
+                        "chronological": "2nd Day of the 1st Month, 1 FC",
+                        "references": "Genesis 1:6-8",
+                        "text": "[6] And <h430><dn2>Elohim</dn2></h430> said, <dq>“Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.”</dq> [7] And <h430><dn2>Elohim</dn2></h430> made the expanse, and separated the waters which were under the expanse from the waters which were above the expanse. And it came to be so. [8] And <h430><dn2>Elohim</dn2></h430> called the expanse <h8064>‘heavens.’</h8064> And there came to be evening and there came to be morning, the second day.",
                         "footnotes": {}
                     },
                     {
-                        "book": "1", "chapter": "1", "title": "Day Three", "subtitle": "The Dry Land and Vegetation", "chronological": "3rd Day of the 1st Month, 1 FC", "references": "Genesis 1:9-13",
-                        "text": "[9] And <h430><dn>Elohim</dn></h430> said, <dq>“Let the waters under the heavens be gathered together into one place, and let the dry land appear.”</dq> And it came to be so. [10] And <h430><dn>Elohim</dn></h430> called the dry land <h776>‘earth,’</h776> and the gathering together of the waters He called ‘seas.’ And <h430><dn>Elohim</dn></h430> saw that it was <kw>good</kw>. [11] And <h430><dn>Elohim</dn></h430> said, <dq>“Let the earth bring forth grass, the herb that yields seed, and the fruit tree that yields fruit according to its kind, whose seed is in itself, on the earth.”</dq> And it came to be so. [12] And the earth brought forth grass, the herb that yields seed according to its kind, and the tree that yields fruit, whose seed is in itself according to its kind. And <h430><dn>Elohim</dn></h430> saw that it was <kw>good</kw>. [13] And there came to be evening and there came to be morning, the third day.",
+                        "book": "1", "chapter": "1", "title": "Day Three", "subtitle": "The Dry Land and Vegetation",
+                        "chronological": "3rd Day of the 1st Month, 1 FC",
+                        "references": "Genesis 1:9-13",
+                        "text": "[9] And <h430><dn2>Elohim</dn2></h430> said, <dq>“Let the waters under the heavens be gathered together into one place, and let the dry land appear.”</dq> And it came to be so. [10] And <h430><dn2>Elohim</dn2></h430> called the dry land <h776>‘earth,’</h776> and the gathering together of the waters He called ‘seas.’ And <h430><dn2>Elohim</dn2></h430> saw that it was <kw1>good</kw1>. [11] And <h430><dn2>Elohim</dn2></h430> said, <dq>“Let the earth bring forth grass, the herb that yields seed, and the fruit tree that yields fruit according to its kind, whose seed is in itself, on the earth.”</dq> And it came to be so. [12] And the earth brought forth grass, the herb that yields seed according to its kind, and the tree that yields fruit, whose seed is in itself according to its kind. And <h430><dn2>Elohim</dn2></h430> saw that it was <kw1>good</kw1>. [13] And there came to be evening and there came to be morning, the third day.",
                         "footnotes": {}
                     }
                 ]
             },
             "data/strongs/H7225.json": {
-                "id": "H7225", "lemma": "רֵאשִׁית", "transliteration": "rēšît", "definition": "Beginning, chief, first, principal thing, first-fruits.", "usage": "In Genesis 1:1, it denotes the absolute beginning of the time-space-material universe. It is derived from the root H7218 (rō’š), meaning 'head' or 'top'."
+                "id": "H7225", "lemma": "רֵאשִׁית", "transliteration": "rēšît", "definition": "Beginning, chief, first, principal thing, first-fruits.",
+                "usage": "In Genesis 1:1, it denotes the absolute beginning of the time-space-material universe. It is derived from the root H7218 (rō’š), meaning 'head' or 'top'."
             }
         };
 
@@ -168,8 +213,12 @@
             Network: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>,
             Search: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>,
             Image: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500 cursor-pointer hover:scale-110 transition-transform"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>,
+            Film: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-rose-500 cursor-pointer hover:scale-110 transition-transform"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><path d="M7 3v18"/><path d="M3 7.5h4"/><path d="M3 12h18"/><path d="M3 16.5h4"/><path d="M17 3v18"/><path d="M17 7.5h4"/><path d="M17 16.5h4"/></svg>,
             ZoomIn: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></svg>,
-            ZoomOut: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></svg>
+            ZoomOut: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></svg>,
+            CheckList: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>,
+            Copy: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>,
+            X: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         };
 
         const smartFetch = async (url, type, updateStatus) => {
@@ -202,7 +251,7 @@
         const useTokenization = () => {
             const context = useContext(AppContext);
             if (!context) return { tokenize: (s) => s };
-            const { settings, dicts, setDetail, hoveredStrong, setHoveredStrong, setNetworkStatus } = context;
+            const { settings, dicts, setDetail, hoveredStrong, setHoveredStrong, setNetworkStatus, searchQuery } = context;
 
             const substitute = (type, key) => {
                 const map = dicts[type];
@@ -210,18 +259,36 @@
                 return map?.[key]?.[mode] || key;
             };
 
+            const highlightSearch = (text) => {
+                if (!searchQuery || searchQuery.length < 2) return text;
+                const parts = text.split(new RegExp(`(${searchQuery})`, 'gi'));
+                return parts.map((part, i) => 
+                    part.toLowerCase() === searchQuery.toLowerCase() ? 
+                    <span key={i} className="bg-yellow-200 dark:bg-yellow-800 text-black dark:text-white rounded px-0.5">{part}</span> : part
+                );
+            };
+
             const tokenize = (str, footnotes) => {
                 if (!str || typeof str !== 'string') return str;
-                const regex = /<(dn|dq|chr|pn|kw)>([\s\S]*?)<\/\1>|<([hg]\d+)>([\s\S]*?)<\/\3>|(\[.*?\])|\{([\w:.]+)\}|<img:([^>]+)>|<i>(.*?)<\/i>/g;
+                
+                const regex = /<(dn\d+|dq|chr|pn\d+|kw\d+)>([\s\S]*?)<\/\1>|<([hg]\d+)>([\s\S]*?)<\/\3>|(\[.*?\])|\{([\w:.]+)\}|<img:([^>]+)>|<vid:([^>]+)>|<(i|b|u|sup|sub)>(.*?)<\/\9>/g;
+                
                 const pieces = str.split(regex);
                 const elements = [];
 
-                for (let i = 0; i < pieces.length; i += 9) {
-                    elements.push(pieces[i]);
+                for (let i = 0; i < pieces.length; i += 11) {
+                    elements.push(highlightSearch(pieces[i]));
                     if (pieces[i+1]) {
-                        const tag = pieces[i+1], inner = pieces[i+2];
+                        const rawTag = pieces[i+1];
+                        const inner = pieces[i+2];
                         let label = inner;
-                        if (tag === 'dn' || tag === 'pn' || tag === 'kw') label = substitute(tag, inner);
+                        let tagType = rawTag.substring(0, 2); 
+                        if (rawTag === 'chr') tagType = 'chr'; 
+
+                        if (tagType === 'dn' || tagType === 'pn' || tagType === 'kw') {
+                            label = substitute(tagType, rawTag);
+                        }
+                        
                         const cls = { 
                             dn: settings.power.divineName ? 'divine-name-styled' : '', 
                             dq: settings.power.divineQuote ? 'divine-quote-styled' : '', 
@@ -229,11 +296,13 @@
                             pn: 'pn-tag text-blue-600 font-bold', 
                             kw: 'font-bold' 
                         };
-                        elements.push(<span key={`tag-${i}`} className={cls[tag]}>{tokenize(label, footnotes)}</span>);
+                        
+                        elements.push(<span key={`tag-${i}`} className={cls[tagType] || ''}>{tokenize(label, footnotes)}</span>);
                     }
                     if (pieces[i+3]) {
                         const sid = pieces[i+3].toUpperCase(), inner = pieces[i+4];
-                        elements.push(<span key={`str-${i}`} className={`lexical-token ${hoveredStrong === sid ? 'lexical-active' : ''}`} onMouseEnter={() => settings.power.lexical && setHoveredStrong(sid)} onMouseLeave={() => setHoveredStrong(null)} onClick={async () => { 
+                        elements.push(<span key={`str-${i}`} className={`lexical-token ${hoveredStrong === sid ? 'lexical-active' : ''}`} onMouseEnter={() => settings.power.lexical && setHoveredStrong(sid)} onMouseLeave={() => setHoveredStrong(null)} onClick={async (e) => { 
+                            e.stopPropagation();
                             try { 
                                 const data = await smartFetch(`data/strongs/${sid}.json`, `Lexicon Data`, setNetworkStatus); 
                                 setDetail({ type: 'strongs', data }); 
@@ -246,23 +315,38 @@
                         }}>{tokenize(inner, footnotes)}</span>);
                     }
                     if (pieces[i+5]) {
-                        // FIX: ALL content in square brackets is treated as a superscript marker
                         if (settings.power.verseMarkers) {
                             elements.push(<span key={`v-${i}`} className="verse-marker">{pieces[i+5]}</span>);
                         }
                     }
                     if (pieces[i+6]) {
                         const fid = pieces[i+6];
-                        if (settings.power.footnoteMarkers) elements.push(<span key={`fn-${i}`} className="footnote-marker" onClick={() => setDetail({ type: 'Footnotes', data: footnotes ? footnotes[fid] : fid })}>{"{" + fid + "}"}</span>);
+                        if (settings.power.footnoteMarkers) elements.push(<span key={`fn-${i}`} className="footnote-marker" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'footnote', data: footnotes ? footnotes[fid] : fid }) }}>{"{" + fid + "}"}</span>);
                     }
                     if (pieces[i+7]) {
                         if (settings.power.imageMarkers) {
                             const imgFile = pieces[i+7];
-                            elements.push(<button key={`img-${i}`} className="inline-flex mx-1 align-text-bottom" onClick={() => setDetail({ type: 'image', data: imgFile })}><Icons.Image /></button>);
+                            elements.push(<button key={`img-${i}`} className="inline-flex mx-1 align-text-bottom" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'image', data: imgFile }) }}><Icons.Image /></button>);
                         }
                     }
                     if (pieces[i+8]) {
-                        elements.push(<span key={`ital-${i}`} className="italic text-gray-500 dark:text-gray-400">{pieces[i+8]}</span>);
+                        if (settings.power.videoMarkers) {
+                            const vidId = pieces[i+8];
+                            elements.push(<button key={`vid-${i}`} className="inline-flex mx-1 align-text-bottom" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'video', data: vidId }) }}><Icons.Film /></button>);
+                        }
+                    }
+                    if (pieces[i+9]) {
+                        const tag = pieces[i+9];
+                        const content = pieces[i+10];
+                        const key = `ed-${i}`;
+                        switch(tag) {
+                            case 'i': elements.push(<span key={key} className="italic text-gray-500 dark:text-gray-400">{highlightSearch(content)}</span>); break;
+                            case 'b': elements.push(<b key={key} className="font-bold">{highlightSearch(content)}</b>); break;
+                            case 'u': elements.push(<u key={key} className="underline underline-offset-4">{highlightSearch(content)}</u>); break;
+                            case 'sup': elements.push(<sup key={key}>{highlightSearch(content)}</sup>); break;
+                            case 'sub': elements.push(<sub key={key}>{highlightSearch(content)}</sub>); break;
+                            default: elements.push(<span key={key}>{highlightSearch(content)}</span>);
+                        }
                     }
                 }
                 return elements;
@@ -270,10 +354,26 @@
             return { tokenize };
         };
 
-        const Verse = ({ content, footnotes }) => {
-            const { settings } = useContext(AppContext);
+        const Verse = ({ id, content, footnotes }) => {
+            const { settings, selectionMode, selectedVerses, toggleVerseSelection } = useContext(AppContext);
             const { tokenize } = useTokenization();
-            return <span className={`verse-wrapper ${settings.power.verseHighlight ? 'verse-highlight-active' : ''}`}>{tokenize(content, footnotes)}</span>;
+            
+            const isSelected = selectedVerses.has(id);
+            const handleClick = (e) => {
+                if (selectionMode) {
+                    e.stopPropagation();
+                    toggleVerseSelection(id);
+                }
+            };
+
+            return (
+                <span 
+                    className={`verse-wrapper ${settings.power.verseHighlight && !selectionMode ? 'verse-highlight-active' : ''} ${isSelected ? 'verse-selected' : ''}`}
+                    onClick={handleClick}
+                >
+                    {tokenize(content, footnotes)}
+                </span>
+            );
         };
 
         const Dropdown = ({ icon: Icon, label, isOpen, onToggle, children }) => {
@@ -450,36 +550,41 @@
             );
         };
 
-        const LexiconPanel = ({ data, onClose, tokenize }) => {
+        const DetailsPanel = ({ type, data, onClose, tokenize }) => {
             if (!data) return null;
             return (
-                <div className={`lexicon-panel ${data ? 'translate-x-0' : 'translate-x-full'}`}>
-                    <div className="lexicon-content">
+                <div className={`details-panel ${data ? 'translate-x-0' : 'translate-x-full'}`}>
+                    <div className="details-content">
                         <div className="flex justify-between items-start mb-8">
-                            <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-500/30">Strong's Lexicon</div>
+                            <div className={`text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${type === 'strongs' ? 'bg-blue-600 shadow-blue-500/30' : 'bg-emerald-600 shadow-emerald-500/30'}`}>
+                                {type === 'strongs' ? "Strong's Lexicon" : "Deep Dive Note"}
+                            </div>
                             <button onClick={onClose} className="p-2 hover:bg-black/5 rounded-full transition-colors">✕</button>
                         </div>
                         
-                        <div className="space-y-8">
-                            <div>
-                                <h1 className="text-4xl font-black text-blue-900 dark:text-blue-400 mb-2">{data.lemma}</h1>
-                                <div className="text-xl opacity-50 font-serif italic">{data.transliteration}</div>
-                            </div>
-
-                            <div className="w-full h-px bg-slate-200 dark:bg-zinc-800"></div>
-
-                            <div>
-                                <h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Definition</h3>
-                                <p className="text-lg leading-relaxed">{tokenize(data.definition, null)}</p>
-                            </div>
-
-                            {data.usage && (
-                                <div className="bg-slate-50 dark:bg-zinc-800/50 p-6 rounded-2xl border border-slate-100 dark:border-zinc-800">
-                                    <h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Contextual Usage</h3>
-                                    <p className="text-sm leading-relaxed opacity-80 italic">{tokenize(data.usage, null)}</p>
+                        {type === 'strongs' ? (
+                            <div className="space-y-8">
+                                <div>
+                                    <h1 className="text-4xl font-black text-blue-900 dark:text-blue-400 mb-2">{data.lemma}</h1>
+                                    <div className="text-xl opacity-50 font-serif italic">{data.transliteration}</div>
                                 </div>
-                            )}
-                        </div>
+                                <div className="w-full h-px bg-slate-200 dark:bg-zinc-800"></div>
+                                <div>
+                                    <h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Definition</h3>
+                                    <p className="text-lg leading-relaxed">{tokenize(data.definition, null)}</p>
+                                </div>
+                                {data.usage && (
+                                    <div className="bg-slate-50 dark:bg-zinc-800/50 p-6 rounded-2xl border border-slate-100 dark:border-zinc-800">
+                                        <h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Contextual Usage</h3>
+                                        <p className="text-sm leading-relaxed opacity-80 italic">{tokenize(data.usage, null)}</p>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div className="rich-content space-y-6 text-slate-800 dark:text-slate-200 leading-relaxed">
+                                <div dangerouslySetInnerHTML={{ __html: data }} />
+                            </div>
+                        )}
                     </div>
                 </div>
             );
@@ -504,11 +609,35 @@
             );
         };
 
+        const VideoViewer = ({ videoId, onClose }) => {
+            if (!videoId) return null;
+            const connector = videoId.includes('?') ? '&' : '?';
+            return (
+                <div className="video-viewer" onClick={onClose}>
+                    <div className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10" onClick={e => e.stopPropagation()}>
+                        <iframe 
+                            className="w-full h-full" 
+                            src={`https://www.youtube.com/embed/${videoId}${connector}autoplay=1`} 
+                            title="Video Player" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen>
+                        </iframe>
+                        <button onClick={onClose} className="absolute -top-12 right-0 text-white bg-black/80 border border-white/20 shadow-lg p-2 hover:bg-white/10 rounded-full flex items-center gap-2 font-bold text-xs uppercase tracking-widest z-50">
+                            <span>Close Player</span> ✕
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
         const EngineView = () => {
             const context = useContext(AppContext);
-            const { settings, setSettings, dicts, activeDay, setActiveDay, pageData, detail, setDetail, menu, setMenu, error, networkStatus } = context;
+            const { settings, setSettings, dicts, activeDay, setActiveDay, pageData, detail, setDetail, menu, setMenu, error, networkStatus, selectionMode, setSelectionMode, selectedVerses, setSelectedVerses, searchQuery, setSearchQuery } = context;
             const { tokenize } = useTokenization();
             const [view, setView] = useState({ atlas: false, calendar: false });
+            const searchInputRef = useRef(null);
 
             const updatePower = (key) => setSettings(s => ({...s, power: {...s.power, [key]: !s.power[key]}}));
             const cycleLang = (key, opts) => setSettings(s => {
@@ -517,12 +646,70 @@
                 return {...s, lang: {...s.lang, [key]: next}};
             });
 
+            const copyVerses = async () => {
+                const textToCopy = Array.from(selectedVerses).sort((a,b) => {
+                    const getNum = id => parseInt(id.split('-').pop());
+                    return getNum(a) - getNum(b);
+                }).map(id => {
+                    const el = document.getElementById(`verse-${id}`);
+                    return el ? el.innerText : ""; 
+                })
+                .join('\n\n')
+                .replace(/\{.*?\}/g, '') // Strip footnotes
+                .replace(/\s+/g, ' ') // Collapse multiple spaces
+                .replace(/\n\s*\n/g, '\n') // Normalize line breaks
+                .trim();
+                
+                try {
+                    // Try modern API first
+                    await navigator.clipboard.writeText(textToCopy);
+                    setSelectionMode(false);
+                    setSelectedVerses(new Set());
+                    alert("Verses copied to clipboard!");
+                } catch (err) {
+                    console.warn("Modern clipboard API failed, trying fallback...", err);
+                    // Fallback for older browsers or iframe restrictions
+                    try {
+                        const textArea = document.createElement("textarea");
+                        textArea.value = textToCopy;
+                        textArea.style.position = "fixed"; // Avoid scrolling to bottom
+                        textArea.style.left = "-9999px";
+                        document.body.appendChild(textArea);
+                        textArea.focus();
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        setSelectionMode(false);
+                        setSelectedVerses(new Set());
+                        alert("Verses copied to clipboard!");
+                    } catch (fallbackErr) {
+                        console.error("Copy failed:", fallbackErr);
+                        alert("Failed to copy. Please try selecting text manually.");
+                    }
+                }
+            };
+
+            const toggleSearch = () => {
+                if (menu === 'search') {
+                    setMenu(null);
+                    setSearchQuery("");
+                } else {
+                    setMenu('search');
+                    setTimeout(() => searchInputRef.current?.focus(), 100);
+                }
+            };
+
+            const toggleSelectionMode = () => {
+                setSelectionMode(!selectionMode);
+                setSelectedVerses(new Set());
+            };
+
             const formattedDate = useMemo(() => {
                 const dayInfo = dicts.calendar?.find(d => parseInt(d.dayId) === activeDay);
                 if (!dayInfo?.dateString) return `DAY ${activeDay}`;
                 
                 const year = parseInt(dayInfo.dateString.substring(0, 4));
-                const month = parseInt(dayInfo.dateString.substring(4, 6)) - 1; // JS months are 0-indexed
+                const month = parseInt(dayInfo.dateString.substring(4, 6)) - 1; 
                 const day = parseInt(dayInfo.dateString.substring(6, 8));
                 
                 const date = new Date(year, month, day);
@@ -533,7 +720,7 @@
                 const handleKeyDown = (e) => {
                     if (e.key === 'ArrowLeft') setActiveDay(prev => Math.max(1, prev - 1));
                     if (e.key === 'ArrowRight') setActiveDay(prev => Math.min(365, prev + 1));
-                    if (e.key === 'Escape') { setDetail(null); setView({ atlas: false, calendar: false }); setMenu(null); }
+                    if (e.key === 'Escape') { setDetail(null); setView({ atlas: false, calendar: false }); setMenu(null); setSearchQuery(""); setSelectionMode(false); }
                 };
                 window.addEventListener('keydown', handleKeyDown);
                 return () => window.removeEventListener('keydown', handleKeyDown);
@@ -542,7 +729,7 @@
             const filteredNetworkStatus = useMemo(() => {
                 const globalKeys = ['Divine Names', 'Proper Names', 'Key Words', 'Book Index', 'Chapter Map', 'Calendar', 'Lexicon Data'];
                 const dayKey = `Day ${activeDay}`;
-                return Object.fromEntries(Object.entries(networkStatus).filter(([k]) => globalKeys.includes(k) || k === dayKey || k.startsWith('Image')));
+                return Object.fromEntries(Object.entries(networkStatus).filter(([k]) => globalKeys.includes(k) || k === dayKey || k.startsWith('Image') || k.startsWith('Video')));
             }, [networkStatus, activeDay]);
 
             return (
@@ -555,7 +742,32 @@
                             <button onClick={() => setActiveDay(Math.max(1, activeDay-1))} className="p-2 hover:bg-black/5 rounded-lg"><Icons.Left /></button>
                             <button onClick={() => setActiveDay(Math.min(365, activeDay+1))} className="p-2 hover:bg-black/5 rounded-lg"><Icons.Right /></button>
                         </div>
+                        
+                        {/* Center Search Bar */}
+                        <div className={`flex-1 max-w-md mx-4 transition-all duration-300 ${menu === 'search' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none absolute'}`}>
+                            <div className="relative">
+                                <input 
+                                    ref={searchInputRef}
+                                    type="text" 
+                                    placeholder="Search in page..." 
+                                    className="w-full bg-slate-100 dark:bg-zinc-800 text-slate-900 dark:text-slate-100 rounded-full px-4 py-2 pl-10 outline-none border border-transparent focus:border-blue-500"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                                <div className="absolute left-3 top-2.5 opacity-50"><Icons.Search /></div>
+                                <button onClick={() => { setSearchQuery(""); setMenu(null); }} className="absolute right-3 top-2.5 opacity-50 hover:opacity-100"><Icons.X /></button>
+                            </div>
+                        </div>
+
                         <div className="flex items-center gap-2">
+                            <button onClick={toggleSearch} className={`p-2 rounded-lg ${menu === 'search' ? 'bg-blue-100 text-blue-600' : 'hover:bg-black/5'}`}>
+                                <Icons.Search />
+                            </button>
+                            
+                            <button onClick={toggleSelectionMode} className={`p-2 rounded-lg ${selectionMode ? 'bg-amber-100 text-amber-600' : 'hover:bg-black/5'}`}>
+                                <Icons.CheckList />
+                            </button>
+
                             <Dropdown icon={() => <NetworkStatusLight status={filteredNetworkStatus} />} isOpen={menu === 'network'} onToggle={() => setMenu(menu === 'network' ? null : 'network')}>
                                 <div className="space-y-3">
                                     <h3 className="text-[10px] font-black uppercase tracking-widest opacity-40">Data Stream</h3>
@@ -570,6 +782,7 @@
 
                             <button onClick={() => setSettings(s => ({...s, dark: !s.dark}))} className="p-2 rounded-lg">{settings.dark ? <Icons.Sun /> : <Icons.Moon />}</button>
                             <Dropdown icon={Icons.Power} isOpen={menu === 'power'} onToggle={() => setMenu(menu === 'power' ? null : 'power')}>
+                                {/* ... [Highlighting menu content remains same] ... */}
                                 <div className="space-y-4">
                                     <h3 className="text-[10px] font-black uppercase tracking-widest opacity-40">Highlighting</h3>
                                     {['verseHighlight', 'lexical', 'divineName', 'divineQuote'].map(k => (
@@ -580,13 +793,23 @@
                                             <div key={k} className="flex justify-between items-center text-sm font-bold mt-2"><span className="capitalize">{k.replace(/([A-Z])/g, ' $1')}</span><button onClick={() => updatePower(k)} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power[k] ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power[k] ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>
                                         ))}
                                         <div className="flex justify-between items-center text-sm font-bold mt-2"><span className="capitalize">Image Markers</span><button onClick={() => updatePower('imageMarkers')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.imageMarkers ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.imageMarkers ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>
+                                        <div className="flex justify-between items-center text-sm font-bold mt-2"><span className="capitalize">Video Markers</span><button onClick={() => updatePower('videoMarkers')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.videoMarkers ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.videoMarkers ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>
                                     </div>
                                 </div>
                             </Dropdown>
                             <Dropdown icon={Icons.Scroll} isOpen={menu === 'scroll'} onToggle={() => setMenu(menu === 'scroll' ? null : 'scroll')}>
+                                {/* ... [Language menu content remains same] ... */}
                                 <div className="space-y-4">
                                     {['dn', 'pn', 'kw'].map(k => (
-                                        <div key={k} className="flex justify-between items-center text-xs font-black opacity-40 uppercase">{k === 'dn' ? 'Divine Name' : k === 'pn' ? 'Proper Names' : 'Key Words'} <button onClick={() => cycleLang(k, k==='dn'?['native','transliterated']:k==='pn'?['transliterated','anglicized']:['traditional','modernized'])} className="bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-100 px-2 py-1 rounded">{settings.lang[k]}</button></div>
+                                        <div key={k} className="flex justify-between items-center text-xs font-black opacity-40 uppercase">
+                                            {k === 'dn' ? 'Divine Name' : k === 'pn' ? 'Proper Names' : 'Key Words'} 
+                                            <button 
+                                                onClick={() => cycleLang(k, k === 'dn' ? ['native', 'transliterated', 'anglicized'] : k === 'pn' ? ['transliterated', 'anglicized'] : ['traditional', 'modernized'])} 
+                                                className="bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-100 px-2 py-1 rounded capitalize"
+                                            >
+                                                {settings.lang[k]}
+                                            </button>
+                                        </div>
                                     ))}
                                 </div>
                             </Dropdown>
@@ -606,11 +829,17 @@
                                             {r.subtitle && <h4 className="subtitle-label">{r.subtitle}</h4>}
                                             {r.chronological && <p className="chronological-label">{r.chronological}</p>}
                                             {r.references && <p className="references-label">{r.references.split(/([1-3]?\s?[A-Za-z]+\s\d+:\d+(?:-\d+)?)/).map((p, k) => <span key={k} className={/([1-3]?\s?[A-Za-z]+\s\d+:\d+(?:-\d+)?)/.test(p) ? 'ref-purple' : ''}>{p}</span>)}</p>}
-                                            <div className="bible-text">{r.text.split(/(\[.*?\])/).filter(Boolean).reduce((acc, part, idx, arr) => {
-                                                if (part.startsWith('[')) acc.push({ marker: part, content: arr[idx + 1] || "" });
-                                                else if (idx === 0 && !arr[idx].startsWith('[')) acc.push({ marker: "", content: part });
-                                                return acc;
-                                            }, []).map((v, idx) => <Verse key={idx} content={v.marker + v.content} footnotes={r.footnotes} />)}</div>
+                                            <div className="bible-text">
+                                                {r.text.split(/(\[.*?\])/).filter(Boolean).reduce((acc, part, idx, arr) => {
+                                                    if (part.startsWith('[')) acc.push({ marker: part, content: arr[idx + 1] || "" });
+                                                    else if (idx === 0 && !arr[idx].startsWith('[')) acc.push({ marker: "", content: part });
+                                                    return acc;
+                                                }, []).map((v, idx) => {
+                                                    // Generate a unique ID for the verse span for copy selection
+                                                    const verseId = `${i}-${idx}`;
+                                                    return <span id={`verse-${verseId}`} key={idx}><Verse id={verseId} content={v.marker + v.content} footnotes={r.footnotes} /></span>
+                                                })}
+                                            </div>
                                         </div>
                                     ))}
                                 </>
@@ -629,27 +858,38 @@
                         </div>
                     </main>
 
+                    {/* Floating Action Bar for Selection Mode */}
+                    {selectionMode && selectedVerses.size > 0 && (
+                        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[190] animate-in slide-in-from-bottom-4">
+                            <div className="bg-zinc-900 text-white rounded-full shadow-2xl p-2 px-6 flex items-center gap-4 border border-zinc-700">
+                                <span className="font-bold text-sm">{selectedVerses.size} Selected</span>
+                                <div className="h-4 w-px bg-zinc-700"></div>
+                                <button onClick={copyVerses} className="flex items-center gap-2 hover:text-blue-400 font-bold text-sm uppercase tracking-wider">
+                                    <Icons.Copy /> Copy
+                                </button>
+                                <button onClick={() => setSelectedVerses(new Set())} className="hover:text-red-400">✕</button>
+                            </div>
+                        </div>
+                    )}
+
                     <BibleAtlasModal isOpen={view.atlas} onClose={() => setView({...view, atlas: false})} books={dicts.books || []} chapters={dicts.chapters || []} calendar={dicts.calendar || []} setDay={setActiveDay} />
                     <CalendarModal isOpen={view.calendar} onClose={() => setView({...view, calendar: false})} activeDay={activeDay} setDay={setActiveDay} />
 
-                    {detail && detail.type === 'strongs' ? (
-                        <LexiconPanel data={detail.data} onClose={() => setDetail(null)} tokenize={tokenize} />
-                    ) : detail && detail.type === 'image' ? (
+                    {/* Unified Details Panel (Handles Lexicon & Footnotes) */}
+                    <DetailsPanel type={detail?.type} data={detail?.data} onClose={() => setDetail(null)} tokenize={tokenize} />
+
+                    {detail && detail.type === 'image' && (
                         <ImageViewer file={detail.data} onClose={() => setDetail(null)} />
-                    ) : detail && (
-                        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 z-[180] animate-in slide-in-from-bottom-4">
-                            <div className="glass-footer rounded-3xl p-8 shadow-2xl border border-blue-500/10">
-                                <div className="flex justify-between items-start mb-4"><div className="flex items-center gap-3"><div className="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px] font-black uppercase font-bold tracking-widest">{detail.type}</div></div><button onClick={() => setDetail(null)} className="opacity-40">✕</button></div>
-                                <div className="text-sm leading-relaxed opacity-70 italic">{tokenize(detail.data, null)}</div>
-                            </div>
-                        </div>
+                    )}
+                    {detail && detail.type === 'video' && (
+                        <VideoViewer videoId={detail.data} onClose={() => setDetail(null)} />
                     )}
                 </div>
             );
         };
 
         const App = () => {
-            const [settings, setSettings] = useState({ dark: false, power: { verseHighlight: true, lexical: true, divineName: true, divineQuote: true, verseMarkers: true, footnoteMarkers: true, imageMarkers: true }, lang: { dn: 'transliterated', pn: 'transliterated', kw: 'modernized' } });
+            const [settings, setSettings] = useState({ dark: false, power: { verseHighlight: true, lexical: true, divineName: true, divineQuote: true, verseMarkers: true, footnoteMarkers: true, imageMarkers: true, videoMarkers: true }, lang: { dn: 'transliterated', pn: 'transliterated', kw: 'modernized' } });
             const [dicts, setDicts] = useState({ dn: {}, pn: {}, kw: {}, books: [], chapters: [], calendar: [] });
             const [activeDay, setActiveDay] = useState(1);
             const [pageData, setPageData] = useState(null);
@@ -658,6 +898,20 @@
             const [hoveredStrong, setHoveredStrong] = useState(null);
             const [error, setError] = useState(null);
             const [networkStatus, setNetworkStatus] = useState({});
+            
+            // New State for Search and Selection
+            const [searchQuery, setSearchQuery] = useState("");
+            const [selectionMode, setSelectionMode] = useState(false);
+            const [selectedVerses, setSelectedVerses] = useState(new Set());
+
+            const toggleVerseSelection = (id) => {
+                setSelectedVerses(prev => {
+                    const next = new Set(prev);
+                    if (next.has(id)) next.delete(id);
+                    else next.add(id);
+                    return next;
+                });
+            };
 
             useEffect(() => {
                 const init = async () => {
@@ -710,7 +964,7 @@
                 load();
             }, [activeDay]);
 
-            return (<AppContext.Provider value={{ settings, setSettings, dicts, activeDay, setActiveDay, pageData, detail, setDetail, menu, setMenu, hoveredStrong, setHoveredStrong, error, networkStatus, setNetworkStatus }}><EngineView /></AppContext.Provider>);
+            return (<AppContext.Provider value={{ settings, setSettings, dicts, activeDay, setActiveDay, pageData, detail, setDetail, menu, setMenu, hoveredStrong, setHoveredStrong, error, networkStatus, setNetworkStatus, searchQuery, setSearchQuery, selectionMode, setSelectionMode, selectedVerses, setSelectedVerses, toggleVerseSelection }}><EngineView /></AppContext.Provider>);
         };
 
         ReactDOM.createRoot(document.getElementById('root')).render(<App />);

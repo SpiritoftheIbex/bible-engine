@@ -1,53 +1,57 @@
 {
-  "Mosheh": {
+  "pn1": {
     "transliterated": "Mosheh",
     "anglicized": "Moses"
   },
-  "Miryam": {
+  "pn2": {
     "transliterated": "Miryam",
     "anglicized": "Mary"
   },
-  "Aharon": {
+  "pn3": {
     "transliterated": "Aharon",
     "anglicized": "Aaron"
   },
-  "Ya’aqob": {
+  "pn4": {
+    "transliterated": "Eloah",
+    "anglicized": "Eloah"
+  },
+  "pn5": {
     "transliterated": "Ya’aqob",
     "anglicized": "Jacob"
   },
-  "Yitshaq": {
+  "pn6": {
     "transliterated": "Yitshaq",
     "anglicized": "Isaac"
   },
-  "Abrahām": {
+  "pn7": {
     "transliterated": "Abrahām",
     "anglicized": "Abraham"
   },
-  "Yosĕph": {
+  "pn8": {
     "transliterated": "Yosĕph",
     "anglicized": "Joseph"
   },
-  "Dawid": {
+  "pn9": {
     "transliterated": "Dawid",
     "anglicized": "David"
   },
-  "Shelomoh": {
+  "pn10": {
     "transliterated": "Shelomoh",
     "anglicized": "Solomon"
   },
-  "Eliyahu": {
+  "pn11": {
     "transliterated": "Eliyahu",
     "anglicized": "Elijah"
   },
-  "Kĕpha": {
+  "pn12": {
     "transliterated": "Kĕpha",
     "anglicized": "Peter"
   },
-  "Sha’ul": {
+  "pn13": {
     "transliterated": "Sha’ul",
     "anglicized": "Paul"
   },
-  "Yoḥanan": {
+  "pn14": {
     "transliterated": "Yoḥanan",
     "anglicized": "John"
   }
