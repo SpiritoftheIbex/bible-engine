@@ -1,7 +1,7 @@
 [
 { "dayId": "1", "dateString": "20260101", "cycleYear": "2026", "reading": "Genesis 1:1–2:3" },
-{ "dayId": "2", "dateString": "20260102", "cycleYear": "2026" },
-{ "dayId": "3", "dateString": "20260103", "cycleYear": "2026" },
+{ "dayId": "2", "dateString": "20260102", "cycleYear": "2026", "reading": "Genesis 4:1-26; Genesis 5:1-32; 1 Chronicles 1:1-4; Genesis 6:1-22" },
+{ "dayId": "3", "dateString": "20260103", "cycleYear": "2026", "reading": "Genesis 4:1-26; Genesis 5:1-32; 1 Chronicles 1:1-4; Genesis 6:1-22" },
 { "dayId": "4", "dateString": "20260104", "cycleYear": "2026" },
 { "dayId": "5", "dateString": "20260105", "cycleYear": "2026" },
 { "dayId": "6", "dateString": "20260106", "cycleYear": "2026" },
