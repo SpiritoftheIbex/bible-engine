@@ -3,98 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chronological Bible Engine v1.12 (Shekinah)</title>
+    <title>Chronological Bible Engine v1.13 (Shekinah)</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --parchment-bg: #1a1a1a; } /* Default to Dark Mode Background */
+        :root { --parchment-bg: #1a1a1a; }
         .font-serif { font-family: 'Noto Serif', serif; }
-        
-        /* FIX 1: Global Overflow Handling */
-        body { overflow-x: hidden; width: 100%; background-color: #09090b; } /* Zinc-950 */
-        
-        .silver-table { background-color: #1a1a1a; background-image: radial-gradient(#333 1px, transparent 0); background-size: 20px 20px; transition: background 0.5s; max-width: 100vw; overflow-x: hidden; }
+        body { overflow-x: hidden; width: 100%; background-color: #09090b; }
+        .silver-table { background-color: #1a1a1a; background-image: radial-gradient(#333 1px, transparent 0); background-size: 20px 20px; transition: background 0.5s; max-width: 100vw; overflow-x: hidden; min-height: 100vh; }
         .parchment { background-color: var(--parchment-bg); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); position: relative; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); color: #f8fafc !important; }
-
-        /* Standard Labels - Dark Mode Only */
         .section-label { color: #60a5fa; font-weight: 900; font-size: clamp(2rem, 4vw, 3rem); text-align: center; line-height: 1.1; }
         .subsection-label { color: #93c5fd; font-weight: 800; font-size: clamp(1.4rem, 2.5vw, 1.8rem); text-align: center; opacity: 0.8; }
-        
         .title-label { color: #34d399; font-weight: 800; font-size: clamp(1.2rem, 2vw, 1.5rem); text-align: center; }
         .subtitle-label { color: #6ee7b7; font-weight: 700; font-size: clamp(1rem, 1.5vw, 1.15rem); text-align: center; opacity: 0.7; }
-
         .gradient-bar-section { height: 4px; width: 60%; margin: 1.5rem auto; background: linear-gradient(to right, #2563eb, #7e22ce, #dc2626); border-radius: 99px; }
         .gradient-bar-title { height: 2px; width: 35%; margin: 1rem auto; background: linear-gradient(to right, #2563eb, #7e22ce, #dc2626); border-radius: 99px; }
-
         .chronological-label { color: #fde68a; font-weight: 700; font-size: 0.95rem; text-align: center; margin-bottom: 0.5rem; }
         .references-label { color: #1e3a8a; font-weight: 700; font-size: 1rem; text-align: center; }
         .ref-purple { color: #c084fc; font-weight: 800; }
-
         .bible-text { font-size: 1.2rem; line-height: 2; color: #f8fafc; text-align: justify; }
-
         .verse-marker { color: #c084fc; font-weight: 800; vertical-align: super; font-size: 0.65em; margin-right: 4px; }
         .footnote-marker { color: #94a3b8; vertical-align: sub; font-size: 0.65em; font-weight: bold; cursor: pointer; padding: 0 2px; opacity: 0.6; }
-
         .verse-wrapper { display: inline; padding: 2px 4px; margin: 0 -4px; border-radius: 6px; transition: background 0.3s, box-shadow 0.3s; -webkit-box-decoration-break: clone; box-decoration-break: clone; position: relative; }
         .verse-highlight-active:hover { background: rgba(56, 189, 248, 0.2); }
-        
         .verse-selected { background: rgba(234, 179, 8, 0.3); box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.5); z-index: 10; }
         .selection-mode-active .verse-wrapper { cursor: pointer; }
         .selection-mode-active .verse-wrapper:hover { background: rgba(234, 179, 8, 0.1); }
-
         .lexical-token { transition: all 0.2s; cursor: pointer; border-bottom: 2px solid transparent; }
         .lexical-active { border-bottom-color: #3b82f6; text-decoration: underline; text-underline-offset: 4px; }
-
-        /* Standard Glow Animations */
-        @keyframes starlightGlow { 
-            0%, 100% { text-shadow: 0 0 4px rgba(255, 255, 255, 0.4), 0 0 8px rgba(147, 197, 253, 0.2); } 
-            50% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(147, 197, 253, 0.5); } 
-        }
-        
-        /* Base Divine Name Style (now only active if Shekinah is ON) */
+        @keyframes starlightGlow { 0%, 100% { text-shadow: 0 0 4px rgba(255, 255, 255, 0.4), 0 0 8px rgba(147, 197, 253, 0.2); } 50% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(147, 197, 253, 0.5); } }
         .divine-name-styled { font-weight: 800; color: #ffffff; animation: starlightGlow 6s infinite ease-in-out; display: inline-block; }
         .divine-quote-styled { color: #fda4af; font-weight: 600; animation: starlightGlow 6s infinite ease-in-out; }
-
-        /* --- SHEKINAH FUSION --- */
-        @keyframes shekinahShimmer {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
-        }
-        @keyframes shekinahPulse {
-            0% { filter: drop-shadow(0 0 5px rgba(234, 179, 8, 0.6)); transform: scale(1); }
-            100% { filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)); transform: scale(1.03); }
-        }
-
-        /* Combined Effect when Shekinah Mode is Active */
-        .shekinah-mode .parchment {
-             box-shadow: 0 0 80px rgba(255, 215, 0, 0.15);
-             border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .shekinah-mode .divine-name-styled {
-            background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            background-size: 200% auto;
-            color: transparent !important;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: shekinahShimmer 4s linear infinite, shekinahPulse 3s infinite alternate !important;
-            font-weight: 900;
-            text-shadow: none !important;
-        }
-
-        /* --- UI Elements --- */
+        @keyframes shekinahShimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+        @keyframes shekinahPulse { 0% { filter: drop-shadow(0 0 5px rgba(234, 179, 8, 0.6)); transform: scale(1); } 100% { filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)); transform: scale(1.03); } }
+        .shekinah-mode .parchment { box-shadow: 0 0 80px rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.2); }
+        .shekinah-mode .divine-name-styled { background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); background-size: 200% auto; color: transparent !important; -webkit-background-clip: text; background-clip: text; animation: shekinahShimmer 4s linear infinite, shekinahPulse 3s infinite alternate !important; font-weight: 900; text-shadow: none !important; }
         .glass-header { background: rgba(24, 24, 27, 0.8); border-bottom: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(12px); }
         .glass-footer { background: rgba(15, 15, 15, 0.9); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.1); }
-        
-        /* Details Panel */
         .details-panel { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 100%; background: rgba(24, 24, 27, 0.95); backdrop-filter: blur(16px); box-shadow: -10px 0 30px rgba(0,0,0,0.1); z-index: 190; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-left: 1px solid rgba(255,255,255,0.05); color: #f8fafc; }
         @media (min-width: 768px) { .details-panel { max-width: 28rem; } }
         .details-content { height: 100%; overflow-y: auto; padding: 2rem; }
-
-        /* Rich HTML Styles */
         .rich-content { color: #e2e8f0 !important; }
         .rich-content :is(p, li, span, td, th) { color: inherit; }
         .rich-content h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; color: #60a5fa !important; }
@@ -104,11 +55,9 @@
         .rich-content th, .rich-content td { border: 1px solid #3f3f46; padding: 0.5rem; text-align: left; }
         .rich-content th { background-color: #27272a; color: #f8fafc !important; font-weight: 700; }
         .rich-content blockquote { border-left: 4px solid #60a5fa; padding-left: 1rem; font-style: italic; color: #94a3b8 !important; margin: 1rem 0; background: #27272a; padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; }
-
         .atlas-modal { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 20px; }
         .image-viewer { position: fixed; inset: 0; z-index: 210; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; }
         .video-viewer { position: fixed; inset: 0; z-index: 210; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; padding: 20px; }
-
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
@@ -117,447 +66,10 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        // --- DATA VAULT ---
-        const DATA_VAULT = {
-            "data/books.json": [
-                { "bookId": "1", "bookName": "Genesis", "abbreviation": "Gn" }, { "bookId": "2", "bookName": "Exodus", "abbreviation": "Ex" }, { "bookId": "3", "bookName": "Leviticus", "abbreviation": "Lv" }, { "bookId": "4", "bookName": "Numbers", "abbreviation": "Nm" }, { "bookId": "5", "bookName": "Deuteronomy", "abbreviation": "Dt" }, { "bookId": "6", "bookName": "Joshua", "abbreviation": "Jos" }, { "bookId": "7", "bookName": "Judges", "abbreviation": "Jgs" }, { "bookId": "8", "bookName": "Ruth", "abbreviation": "Ru" }, { "bookId": "9", "bookName": "1 Samuel", "abbreviation": "1Sm" }, { "bookId": "10", "bookName": "2 Samuel", "abbreviation": "2Sm" }, { "bookId": "11", "bookName": "1 Kings", "abbreviation": "1Ki" }, { "bookId": "12", "bookName": "2 Kings", "abbreviation": "2Ki" }, { "bookId": "13", "bookName": "1 Chronicles", "abbreviation": "1Ch" }, { "bookId": "14", "bookName": "2 Chronicles", "abbreviation": "2Ch" }, { "bookId": "15", "bookName": "Ezra", "abbreviation": "Ezr" }, { "bookId": "16", "bookName": "Nehemiah", "abbreviation": "Neh" }, { "bookId": "17", "bookName": "Esther", "abbreviation": "Est" }, { "bookId": "18", "bookName": "Job", "abbreviation": "Jb" }, { "bookId": "19", "bookName": "Psalms", "abbreviation": "Ps" }, { "bookId": "20", "bookName": "Proverbs", "abbreviation": "Prv" }, { "bookId": "21", "bookName": "Ecclesiastes", "abbreviation": "Ec" }, { "bookId": "22", "bookName": "Song of Solomon", "abbreviation": "Sg" }, { "bookId": "23", "bookName": "Isaiah", "abbreviation": "Is" }, { "bookId": "24", "bookName": "Jeremiah", "abbreviation": "Jer" }, { "bookId": "25", "bookName": "Lamentations", "abbreviation": "Lam" }, { "bookId": "26", "bookName": "Ezekiel", "abbreviation": "Ezk" }, { "bookId": "27", "bookName": "Daniel", "abbreviation": "Dn" }, { "bookId": "28", "bookName": "Hosea", "abbreviation": "Hos" }, { "bookId": "29", "bookName": "Joel", "abbreviation": "Jl" }, { "bookId": "30", "bookName": "Amos", "abbreviation": "Am" }, { "bookId": "31", "bookName": "Obadiah", "abbreviation": "Ob" }, { "bookId": "32", "bookName": "Jonah", "abbreviation": "Jon" }, { "bookId": "33", "bookName": "Micah", "abbreviation": "Mi" }, { "bookId": "34", "bookName": "Nahum", "abbreviation": "Na" }, { "bookId": "35", "bookName": "Habakkuk", "abbreviation": "Hb" }, { "bookId": "36", "bookName": "Zephaniah", "abbreviation": "Zp" }, { "bookId": "37", "bookName": "Haggai", "abbreviation": "Hg" }, { "bookId": "38", "bookName": "Zechariah", "abbreviation": "Zc" }, { "bookId": "39", "bookName": "Malachi", "abbreviation": "Ml" },
-                { "bookId": "40", "bookName": "Matthew", "abbreviation": "Mt" }, { "bookId": "41", "bookName": "Mark", "abbreviation": "Mk" }, { "bookId": "42", "bookName": "Luke", "abbreviation": "Lk" }, { "bookId": "43", "bookName": "John", "abbreviation": "Jn" }, { "bookId": "44", "bookName": "Acts", "abbreviation": "Ac" }, { "bookId": "45", "bookName": "Romans", "abbreviation": "Rm" }, { "bookId": "46", "bookName": "1 Corinthians", "abbreviation": "1Co" }, { "bookId": "47", "bookName": "2 Corinthians", "abbreviation": "2Co" }, { "bookId": "48", "bookName": "Galatians", "abbreviation": "Gl" }, { "bookId": "49", "bookName": "Ephesians", "abbreviation": "Eph" }, { "bookId": "50", "bookName": "Philippians", "abbreviation": "Ph" }, { "bookId": "51", "bookName": "Colossians", "abbreviation": "Cl" }, { "bookId": "52", "bookName": "1 Thessalonians", "abbreviation": "1Th" }, { "bookId": "53", "bookName": "2 Thessalonians", "abbreviation": "2Th" }, { "bookId": "54", "bookName": "1 Timothy", "abbreviation": "1Ti" }, { "bookId": "55", "bookName": "2 Timothy", "abbreviation": "2Ti" }, { "bookId": "56", "bookName": "Titus", "abbreviation": "Ti" }, { "bookId": "57", "bookName": "Philemon", "abbreviation": "Pm" }, { "bookId": "58", "bookName": "Hebrews", "abbreviation": "Hb" }, { "bookId": "59", "bookName": "James", "abbreviation": "Jm" }, { "bookId": "60", "bookName": "1 Peter", "abbreviation": "1Pe" }, { "bookId": "61", "bookName": "2 Peter", "abbreviation": "2Pe" }, { "bookId": "62", "bookName": "1 John", "abbreviation": "1Jn" }, { "bookId": "63", "bookName": "2 John", "abbreviation": "2Jn" }, { "bookId": "64", "bookName": "3 John", "abbreviation": "3Jn" }, { "bookId": "65", "bookName": "Jude", "abbreviation": "Jd" }, { "bookId": "66", "bookName": "Revelation", "abbreviation": "Rv" }
-            ],
-            "data/chapters.json": [
-                { "bookId": "1", "chapterNum": "1", "dayIds": ["1"] }, { "bookId": "1", "chapterNum": "2", "dayIds": ["1", "2"] }, { "bookId": "1", "chapterNum": "3", "dayIds": ["2"] }, { "bookId": "1", "chapterNum": "4", "dayIds": ["3"] }
-            ],
-            "data/calendar.json": (() => {
-                const days = [];
-                const date = new Date(2026, 0, 1); // Jan 1 2026
-                for (let i = 1; i <= 365; i++) {
-                    const y = date.getFullYear();
-                    const m = String(date.getMonth() + 1).padStart(2, '0');
-                    const d = String(date.getDate()).padStart(2, '0');
-                    days.push({
-                        dayId: String(i),
-                        dateString: `${y}${m}${d}`,
-                        cycleYear: String(y),
-                        reading: i === 1 ? "Genesis 1:1–2:3" : null
-                    });
-                    date.setDate(date.getDate() + 1);
-                }
-                return days;
-            })(),
-            "data/language/divine_names.json": {
-                "dn1": {
-                    "native": "יהוה",
-                    "transliterated": "YeHoVaH",
-                    "anglicized": "Jehovah"
-                },
-                "dn2": {
-                    "native": "אֱלֹהִים",
-                    "transliterated": "Elohim",
-                    "anglicized": "God"
-                },
-                "dn3": {
-                    "native": "אֲדֹנָי",
-                    "transliterated": "Adonai",
-                    "anglicized": "Master"
-                },
-                "dn4": {
-                    "native": "ישוע",
-                    "transliterated": "Yeshua",
-                    "anglicized": "Jesus"
-                },
-                "dn5": {
-                    "native": "אֵל שַׁדַּי",
-                    "transliterated": "El Shaddai",
-                    "anglicized": "God Almighty"
-                },
-                "dn6": {
-                    "native": "רוּחַ הַקֹּדֶשׁ",
-                    "transliterated": "Ruach HaKodesh",
-                    "anglicized": "Holy Spirit"
-                },
-                "dn7": {
-                    "native": "את",
-                    "transliterated": "את",
-                    "anglicized": "את"
-                },
-                "dn8": {
-                    "native": "Explanation",
-                    "transliterated": "Explanation",
-                    "anglicized": "Word"
-                },
-                "dn9": {
-                    "native": "He",
-                    "transliterated": "He",
-                    "anglicized": "He"
-                },
-                "dn10": {
-                    "native": "Him",
-                    "transliterated": "Him",
-                    "anglicized": "Him"
-                },
-                "dn11": {
-                    "native": "His",
-                    "transliterated": "His",
-                    "anglicized": "His"
-                },
-                "dn12": {
-                    "native": "You",
-                    "transliterated": "You",
-                    "anglicized": "You"
-                },
-                "dn13": {
-                    "native": "Your",
-                    "transliterated": "Your",
-                    "anglicized": "Your"
-                },
-                "dn14": {
-                    "native": "Yours",
-                    "transliterated": "Yours",
-                    "anglicized": "Yours"
-                },
-                "dn15": {
-                    "native": "the voice",
-                    "transliterated": "the voice",
-                    "anglicized": "the voice"
-                },
-                "dn16": {
-                    "native": "Your Voice",
-                    "transliterated": "Your Voice",
-                    "anglicized": "Your Voice"
-                },
-                "dn17": {
-                    "native": "I",
-                    "transliterated": "I",
-                    "anglicized": "I"
-                },
-                "dn18": {
-                    "native": "My",
-                    "transliterated": "My",
-                    "anglicized": "My"
-                },
-                "dn19": {
-                    "native": "her Seed",
-                    "transliterated": "her Seed",
-                    "anglicized": "her Seed"
-                }
-            },
-            "data/language/proper_names.json": {
-                "pn1": { "transliterated": "Mosheh", "anglicized": "Moses" }, 
-                "pn2": { "transliterated": "Miryam", "anglicized": "Mary" }, 
-                "pn3": { "transliterated": "Aharon", "anglicized": "Aaron" },
-                "pn4": { "transliterated": "Eloah", "anglicized": "Eloah" }
-            },
-            "data/language/key_words.json": {
-			  "kw1": {
-				"traditional": "good",
-				"modernized": "harmonious"
-			  },
-			  "kw2": {
-				"traditional": "day",
-				"modernized": "cycle"
-			  },
-			  "kw3": {
-				"traditional": "one day",
-				"modernized": "a unified cycle"
-			  },
-			  "kw4": {
-				"traditional": "one place",
-				"modernized": "a unified place"
-			  },
-			  "kw5": {
-				"traditional": "very good",
-				"modernized": "maximally harmonious"
-			  },
-			  "kw6": {
-				"traditional": "array",
-				"modernized": "ordered arrangements"
-			  },
-			  "kw7": {
-				"traditional": "set it apart",
-				"modernized": "made it exclusive"
-			  },
-			  "kw8": {
-				"traditional": "rested",
-				"modernized": "ceased"
-			  },
-			  "kw9": {
-				"traditional": "a helper for him, as his counterpart",
-				"modernized": "an ally corresponding to him"
-			  },
-			  "kw10": {
-				"traditional": "breath of lives",
-				"modernized": "a breath of great-life"
-			  },
-			  "kw11": {
-				"traditional": "the tree of life",
-				"modernized": "the tree of great-life"
-			  },
-			  "kw12": {
-				"traditional": "the tree of the knowledge of good and evil",
-				"modernized": "the tree of the experience of harmony and disharmony"
-			  },
-			  "kw13": {
-				"traditional": "Eat",
-				"modernized": "Eating you shall eat"
-			  },
-			  "kw14": {
-				"traditional": "you shall certainly die",
-				"modernized": "dying you shall die"
-			  },
-			  "kw15": {
-				"traditional": "ribs",
-				"modernized": "ribbed structures"
-			  },
-			  "kw16": {
-				"traditional": "rib",
-				"modernized": "ribbed structure"
-			  },
-			  "kw17": {
-				"traditional": "bone",
-				"modernized": "structure"
-			  },
-			  "kw18": {
-				"traditional": "bones",
-				"modernized": "structures"
-			  },
-			  "kw19": {
-				"traditional": "one flesh",
-				"modernized": "a unified flesh"
-			  },
-			  "kw20": {
-				"traditional": "knowing good and evil",
-				"modernized": "experiencing harmony and disharmony"
-			  },
-			  "kw21": {
-				"traditional": "husband",
-				"modernized": "man"
-			  },
-			  "kw22": {
-				"traditional": "loin coverings",
-				"modernized": "armours"
-			  },
-			  "kw23": {
-				"traditional": "every beast",
-				"modernized": "all living ones"
-			  },
-			  "kw24": {
-				"traditional": "the man",
-				"modernized": "Adam"
-			  },
-			  "kw25": {
-				"traditional": "wife",
-				"modernized": "woman"
-			  },
-			  "kw26": {
-				"traditional": "keruḇim",
-				"modernized": "guardians"
-			  },
-			  "kw27": {
-				"traditional": "know good and evil",
-				"modernized": "experience harmony and disharmony"
-			  },
-			  "kw28": {
-				"traditional": "cursed",
-				"modernized": "lacking blessing"
-			  },
-			  "kw29": {
-				"traditional": "altar",
-				"modernized": "slaughter-place"
-			  },
-			  "kw31": {
-				"traditional": "congregation",
-				"modernized": "assembly"
-			  },
-			  "kw32": {
-				"traditional": "covenant",
-				"modernized": "contract"
-			  },
-			  "kw33": {
-				"traditional": "gentile",
-				"modernized": "nations"
-			  },
-			  "kw34": {
-				"traditional": "law",
-				"modernized": "instruction"
-			  },
-			  "kw35": {
-				"traditional": "torah",
-				"modernized": "instruction"
-			  },
-			  "kw36": {
-				"traditional": "prophet",
-				"modernized": "spokesperson"
-			  },
-			  "kw37": {
-				"traditional": "sacrifice",
-				"modernized": "offering"
-			  },
-			  "kw38": {
-				"traditional": "tabernacle",
-				"modernized": "dwelling place"
-			  },
-			  "kw39": {
-				"traditional": "sin",
-				"modernized": "injustice"
-			  },
-			  "kw40": {
-				"traditional": "grace",
-				"modernized": "empowerment"
-			  },
-			  "kw41": {
-				"traditional": "holy",
-				"modernized": "exclusive"
-			  },
-			  "kw42": {
-				"traditional": "faith",
-				"modernized": "trust"
-			  },
-			  "kw43": {
-				"traditional": "belief",
-				"modernized": "trust"
-			  },
-			  "kw44": {
-				"traditional": "right",
-				"modernized": "just"
-			  },
-			  "kw45": {
-				"traditional": "righteous",
-				"modernized": "just"
-			  },
-			  "kw46": {
-				"traditional": "evil",
-				"modernized": "disharmony"
-			  },
-			  "kw47": {
-				"traditional": "clean",
-				"modernized": "fit"
-			  },
-			  "kw48": {
-				"traditional": "unclean",
-				"modernized": "unfit"
-			  }
-            },
-            "data/readings/day001.json": {
-                "dayid": "1",
-                "plan": "Genesis 1:1–2:3",
-				  "readings": [
-					{
-					  "book": "1",
-					  "chapter": "1",
-					  "section": "THE BEGINNING",
-					  "subsection": "The Creation of the Universe",
-					  "title": "The את",
-					  "subtitle": "The Explanation for All Things",
-					  "chronological": "Eternity",
-					  "references": "John 1:1",
-					  "text": "[John 1:1] In the beginning was the <dn8>Explanation</dn8>, and the <dn8>Explanation</dn8> was with <dn1>יהוה</dn1>, and the <dn8>Explanation</dn8> was <dn1>יהוה</dn1>.",
-					  "footnotes": {}
-					},
-					{
-					  "title": "A Unified Cycle",
-					  "subtitle": "The Generation of Light",
-					  "chronological": "1st Day of the 1st Month, 1 FC",
-					  "references": "Genesis 1:1-5",
-					  "text": "[Genesis 1:1] <h7225>In <i>the</i> beginning</h7225> <dn2>Elohim</dn2> created <dn7>את</dn7> the heavens and <dn7>את</dn7> the earth. {1.1} <vid:85BLkCl3L08?start=1> [2] Now the earth was formless and empty, and darkness was on the face of the deep. <img:0001.jpg> And the Spirit of <dn2>Elohim</dn2> was vibrating on the face of the waters. <img:0002.jpg> [3] And <dn2>Elohim</dn2> said, <dq>“light come to be,”</dq> and light came to be. [4] And <dn2>Elohim</dn2> saw <dn7>את</dn7> the light, that <i>it was</i> <kw1>good</kw1>. And <dn2>Elohim</dn2> separated the light from the darkness. [5] And <dn2>Elohim</dn2> called the light <dq>‘a <kw2>day</kw2>’</dq> and the darkness <dn9>He</dn9> called <dq>‘a night.’</dq> And there came to be evening and there came to be morning, <kw3>one day</kw3>.{5.1}",
-					  "footnotes": {
-						"1.1": "<h3>The Nature of Elohim</h3><p>The term <b style='color:#00FFFF'>Elohim</b> here is the plural of <i>Eloah</i>, yet it is used with the singular verb <span style='font-variant:small-caps'>Bara</span> (created). This grammatical construct signifies:</p><ul><li><b>The Unity:</b> One singular entity acting.</li><li><b>The Majesty:</b> Plural form denotes supreme authority and fullness.</li><li><b>The Complexity:</b> Hints at the multi-faceted nature of the Creator.</li></ul><br/><table><thead><tr><th>Hebrew</th><th>Type</th><th>Meaning</th></tr></thead><tbody><tr><td>Elohim</td><td>Plural</td><td>Supreme Power</td></tr><tr><td>Eloah</td><td>Singular</td><td>God / Deity</td></tr></tbody></table><blockquote>“The mystery of the Creator is hidden in the grammar of His name.” – Ancient Commentary</blockquote>",
-						"5.1": "a day 'echad', not as the unit 'one', but as a 'unity'."
-					  }
-					},
-					{
-					  "book": "1",
-					  "chapter": "1",
-					  "title": "The Second Cycle",
-					  "subtitle": "The Expansion of the Heavens",
-					  "chronological": "2nd Day of the 1st Month, 1 FC",
-					  "references": "Genesis 1:6-8",
-					  "text": "[Genesis 1:6] And <dn2>Elohim</dn2> said, <dq>“Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.”</dq> [7] And <dn2>Elohim</dn2> made <dn7>את</dn7> the expanse, and separated the waters which were under the expanse from the waters which were above the expanse. And it came to be so. [8] And <dn2>Elohim</dn2> called the expanse <dq>‘heavens.’</dq> And there came to be evening and there came to be morning, the second <kw2>day</kw2>.",
-					  "footnotes": {}
-					},
-					{
-					  "book": "1",
-					  "chapter": "1",
-					  "title": "The Third Cycle",
-					  "subtitle": "The Dry Land and Vegetation",
-					  "chronological": "3rd Day of the 1st Month, 1 FC",
-					  "references": "Genesis 1:9-13",
-					  "text": "[Genesis 1:9] And <dn2>Elohim</dn2> said, <dq>“Let the waters under the heavens be gathered together into <kw4>one place</kw4>, and let the dry land appear.”</dq> And it came to be so. [10] And <dn2>Elohim</dn2> called the dry land <dq>‘earth,’</dq> and the gathering together of the waters <dn9>He</dn9> called <dq>‘seas.’</dq> And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [11] And <dn2>Elohim</dn2> said, <dq>“Let the earth bring forth grass, the herb that yields seed, and the fruit tree that yields fruit according to its kind, whose seed is in itself, on the earth.”</dq> And it came to be so. [12] And the earth brought forth grass, the herb that yields seed according to its kind, and the tree that yields fruit, whose seed is in itself according to its kind. And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [13] And there came to be evening and there came to be morning, the third <kw2>day</kw2>.",
-					  "footnotes": {}
-					},
-					{
-					  "book": "1",
-					  "chapter": "1",
-					  "title": "The Fourth Cycle",
-					  "subtitle": "The Luminaries and Domains of Authority",
-					  "chronological": "4th Day of the 1st Month, 1 FC",
-					  "references": "Genesis 1:14-19",
-					  "text": "[Genesis 1:14] And <dn2>Elohim</dn2> said, <dq>“Let lights come to be in the expanse of the heavens to separate the day from the night, and let them be for signs and appointed times, and for days and years,</dq> [15] <dq>and let them be for lights in the expanse of the heavens to give light on the earth.”</dq> And it came to be so. [16] And <dn2>Elohim</dn2> <dn7>את</dn7> made two great lights: <dn7>את</dn7> the greater light to rule the day, and <dn7>את</dn7> the lesser light to rule the night, and <dn7>את</dn7> the stars. [17] And <dn2>Elohim</dn2> set them in the expanse of the heavens to give light on the earth, [18] and to rule over the day and over the night, and to separate the light from the darkness. And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [19] And there came to be evening and there came to be morning, the fourth <kw2>day</kw2>.",
-					  "footnotes": {}
-					},
-					{
-					  "book": "1",
-					  "chapter": "1",
-					  "title": "The Fifth Cycle",
-					  "subtitle": "Life and Blessing",
-					  "chronological": "5th Day of the 1st Month, 1 FC",
-					  "references": "Genesis 1:20-23",
-					  "text": "[Genesis 1:20] And <dn2>Elohim</dn2> said, <dq>“Let the waters teem with shoals of living beings, and let birds fly above the earth on the face of the expanse of the heavens.”</dq> [21] And <dn2>Elohim</dn2> created <dn7>את</dn7> the reptiles, the greatest ones, and every living being that moves, with which the waters teemed, according to their kind, and every winged bird according to its kind. And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [22] And <dn2>Elohim</dn2> blessed them, saying, <dq>“Be fruitful and increase, and fill <dn7>את</dn7> the waters in the seas, and let the birds increase on the earth.”</dq> [23] And there came to be evening and there came to be morning, the fifth <kw2>day</kw2>.",
-					  "footnotes": {}
-					},
-					{
-					  "book": "1",
-					  "chapter": "1",
-					  "title": "The Sixth Cycle",
-					  "subtitle": "The Work is Finished with the Crowning Glory",
-					  "chronological": "6th Day of the 1st Month, 1 FC",
-					  "references": "Genesis 1:24-31",
-					  "text": "[Genesis 1:24] And <dn2>Elohim</dn2> said, <dq>“Let the earth bring forth the living being according to its kind: livestock and creeping creatures and beasts of the earth, according to its kind.”</dq> And it came to be so. [25] And <dn2>Elohim</dn2> made <dn7>את</dn7> the living ones of the earth according to its kind, livestock according to its kind, and all that creep on the earth according to its kind. And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [26] And <dn2>Elohim</dn2> said, <dq>“Let us make a man in our image, according to our likeness, and let them rule over the fish of the sea, and over the birds of the heavens, and over the livestock, and over all the earth and over all the creeping creatures that creep on the ground.”</dq> [27] And <dn2>Elohim</dn2> created <dn7>את</dn7> the man in His image, in the image of <dn2>Elohim</dn2> <dn9>He</dn9> created him – male and female He created them. [28] And <dn2>Elohim</dn2> blessed them, and <dn2>Elohim</dn2> said to them, <dq>“Be fruitful and increase, and fill <dn7>את</dn7> the earth and subdue it, and rule over the fish of the sea, and over the birds of the heavens, and over all creeping creatures on the earth.”</dq> [29] And <dn2>Elohim</dn2> said, <dq>“See, I have given you <dn7>את</dn7> every plant that yields seed which is on the face of all the earth, and every tree whose fruit yields seed, to you it is for food.</dq> [30] <dq>And to every beast of the earth, and to every bird of the heavens, and to every creeping creature on the earth, in which there is a living being, <dn7>את</dn7> every green plant is for food.”</dq> And it came to be so. [31] And <dn2>Elohim</dn2> saw <dn7>את</dn7> all that <dn9>He</dn9> had made, and see, <i>it was</i> <kw5>very good</kw5>. And there came to be evening and there came to be morning, the sixth <kw2>day</kw2>.",
-					  "footnotes": {}
-					},
-					{
-					  "book": "1",
-					  "chapter": "2",
-					  "title": "The Seventh Cycle - The Shabbat",
-					  "subtitle": "Cessation from the Work and an Exclusive Rest",
-					  "chronological": "7th Day of the 1st Month, 1 FC",
-					  "references": "Genesis 2:1-4",
-					  "text": "[Genesis 2:1] Thus the heavens and the earth were completed, and all their <kw6>array</kw6>. [2] And in the seventh <kw2>day</kw2> <dn2>Elohim</dn2> completed <dn11>His</dn11> work which <dn9>He</dn9> had done, and <dn9>He</dn9> <kw8>rested</kw8> on the seventh <kw2>day</kw2> from all His work which <dn9>He</dn9> had made. [3] And <dn2>Elohim</dn2> blessed <dn7>את</dn7> the seventh <kw2>day</kw2> and <kw7>set it apart</kw7>, because on it <dn9>He</dn9> <kw8>rested</kw8> from all His work which <dn2>Elohim</dn2> in creating had made. [4] These are the births of the heavens and the earth when they were created, in the <kw2>day</kw2> {4.1} that <dn1>יהוה</dn1> <dn2>Elohim</dn2> made earth and heavens.",
-					  "footnotes": {
-						  "4.1": "The 1,000 year cycle"
-					  }
-					},
-					{
-					  "book": "1",
-					  "chapter": "2",
-					  "title": "Recap of Days 1-6",
-					  "subtitle": "",
-					  "chronological": "",
-					  "references": "Genesis 2:5-25",
-					  "text": "[Genesis 2:5] Now no shrub of the field was yet on the earth, and no plant of the field had yet sprung up, for <dn1>יהוה</dn1> <dn2>Elohim</dn2> had not sent rain on the earth, and there was no man to till the <dn7>את</dn7> ground, [6] but a mist went up from the earth and watered <dn7>את</dn7> the entire surface of the ground. [7] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> formed <dn7>את</dn7> the man out of dust from the ground, and breathed into his nostrils <kw10>breath of lives</kw10>. And the man became a living being. [8] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> planted a garden in Ěḏen, to the east, and there He put <dn7>את</dn7> the man whom He had formed. [9] And out of the ground <dn1>יהוה</dn1> <dn2>Elohim</dn2> made every tree grow that is pleasant to the sight and good for food, with <kw11>the tree of life</kw11> in the midst of the garden and <kw12>the tree of the knowledge of good and evil</kw12>. [10] Now a river went out from Ěḏen to water <dn7>את</dn7> the garden, and from there it divided and became four heads. [11] The name of the first is Pishon, it is the one surrounding <dn7>את</dn7> the entire land of Ḥavilah, where there is gold. [12] And the gold of that land is good. Bdellium is there, and the shoham stone. [13] And the name of the second river is Giḥon, it is the one surrounding <dn7>את</dn7> the entire land of Kush. [14] And the name of the third river is Ḥiddeqel, it is the one which goes toward the east of Ashshur. And the fourth river is the pherat. [15] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> took <dn7>את</dn7> the man and put him in the garden of Ěḏen to work it and to guard it. [16] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> commanded the man, saying, <dq>“<kw13>Eat</kw13> of every tree of the garden,</dq> [17] <dq>but do not eat of <kw12>the tree of the knowledge of good and evil</kw12>, for in the <kw2>day</kw2> that you eat of it <kw14>you shall certainly die</kw14>.”</dq> [18] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> said, <dq>“It is not <kw1>good</kw1> for the man to be alone, I am going to make <kw9>a helper for him, as his counterpart</kw9>.”</dq> {18.1} [19] And from the ground <dn1>יהוה</dn1> <dn2>Elohim</dn2> formed every beast of the field and every bird of the heavens, and brought them to the man to see what he would call them. And whatever the man called each living being, that was its name. [20] So the man gave names to all livestock, and to the birds of the heavens, and to every beast of the field. But for the man there was not found <kw9>a helper for him, as his counterpart</kw9>. [21] So <dn1>יהוה</dn1> <dn2>Elohim</dn2> caused a deep sleep to fall on the man, and he slept. And He took one of his <kw15>ribs</kw15> {21.1}, and closed up the flesh in its place. [22] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> made <dn7>את</dn7> the <kw16>rib</kw16> which He had taken from the man into a woman, and He brought her to the man. [23] And the man said, “Now bone of my bones and flesh of my flesh. This one is called ‘woman,’ because she was taken out of man.” [24] For this cause shall a man leave <dn7>את</dn7> his father and <dn7>את</dn7> his mother, and cleave to his wife, and they shall become <kw19>one flesh</kw19>. [25] And they were both naked, the man and his wife, and they were not ashamed.",
-					  "footnotes": {
-						  "21.1": "Maybe a helix of Adam's DNA?",
-						  "18.1": "<h3>The Nature of the Ally (<i>Ezer</i>)</h3><p>The Hebrew term <b style='color:#00FFFF'>Ezer</b> describes a vital function rather than a specific rank. It refers to one who provides essential aid, defense, or support that the receiver cannot provide for themselves. While often translated as \"helper,\" the term \"Ally\" better captures the military and vital context of the word without forcing a hierarchy.</p><ul><li><b>The Meaning:</b> The Paleo-Hebrew roots (Eye + Weapon) depict one who sees a need and acts to defend or supply it.</li><li><b>The Spectrum of Strength:</b> The word is status-agnostic. It is used of God (Superior Aid), political alliances (Equal Aid), and here of the woman. It does not dictate that the parties are equal in strength, only that the aid is indispensable.</li><li><b>The Conclusion:</b> An ally may provide 90% of the strength or 10%; the definition holds true as long as their contribution is necessary for the mission's success.</li></ul><br/><table border='1' cellpadding='5' cellspacing='0' style='border-collapse: collapse; width: 100%;'><thead><tr style='background-color:#f3f4f6; text-align:left;'><th>Translation</th><th>Implied Rank</th><th>Theological Fit</th></tr></thead><tbody><tr><td><b>Helper</b></td><td>Fixed Subordinate</td><td><b>Limited:</b> Does not fit when God is the Helper.</td></tr><tr><td><b>Ally</b></td><td>Variable (Sup/Eq/Inf)</td><td><b>Accurate:</b> Fits God, nations, and woman interchangeably.</td></tr></tbody></table><blockquote style='border-left: 4px solid #1e40af; padding-left: 10px; margin-top: 20px; color: #555;'>“The <i>Ezer</i> is the one who supplies the lack. Whether superior or subordinate, the Ally is the essential component that moves the situation from 'not good' to 'very good'.”</blockquote>"
-					  }
-					  },
-					{
-					  "book": "1",
-					  "chapter": "3",
-					  "title": "The Deception",
-					  "subtitle": "",
-					  "chronological": "",
-					  "references": "Genesis 3:1-24",
-					  "text": "[Genesis 3:1] And the naḥash was more crafty than all the lives of the field which <dn1>יהוה</dn1> <dn2>Elohim</dn2> had made, and he said to the woman, “Is it true that <dn2>Elohim</dn2> has said, ‘Do not eat of every tree of the garden’?” [2] And the woman said to the naḥash, “We are to eat of the fruit of the trees of the garden, [3] but of the fruit of the tree which is in the midst of the garden, <dn2>Elohim</dn2> has said, ‘Do not eat of it, nor touch it, lest you die.’ ” [4] And the naḥash said to the woman, “Not dying you will die. [5] “For knows <dn2>Elohim</dn2> that in the <kw2>day</kw2> you eat of it your eyes shall be opened, and you shall be like <dn2>Elohim</dn2>, <kw20>knowing good and evil</kw20>.” [6] And the woman saw that the tree was <kw1>good</kw1> for food, that it was pleasant to the eyes, and the tree desirable to make one wise, and she took of its fruit and ate. And she also gave to her <kw21>husband</kw21> with her, and he ate. [7] Then the eyes of both of them were opened, and they knew that they were naked. And they sewed fig leaves together and made <kw22>loin coverings</kw22> for themselves. [8] And they heard <dn7>את</dn7> <dn15>the voice</dn15> of <dn1>יהוה</dn1> <dn2>Elohim</dn2> walking about in the garden in the cool of the day, and the man and his wife hid themselves from the presence of <dn1>יהוה</dn1> <dn2>Elohim</dn2> among the trees of the garden. [9] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> called unto the man and said to him, <dq>“Where are you?”</dq> [10] And he said, “I heard <dn7>את</dn7> <dn16>Your voice</dn16> in the garden, and I was afraid because I was naked, so I hid myself.” [11] And He said, <dq>“Who made you know that you were naked? Have you eaten of the tree of which I commanded you that you should not eat?”</dq> [12] And the man said, “The woman whom You gave to be with me, she gave me of the tree and I ate.” [13] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> said to the woman, <dq>“What is this you have done?”</dq> And the woman said, “The naḥash deceived me, and I ate.” [14] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> said to the naḥash, <dq>“Because you have done this, you are <kw28>cursed</kw28> more than all livestock and more than <kw23>every beast</kw23> of the field. On your belly you are to go, and eat dust all the days of your life.</dq> [15] <dq>And I put enmity between you and the woman, and between your seed and <dn19>her Seed</dn19>. <dn9>He</dn9> shall crush your head, and you shall crush <dn11>His</dn11> heel.”</dq> [16] To the woman <dn9>He</dn9> said, <dq>“<dn17>I</dn17> greatly increase your sorrow and your conception – bring forth children in pain. And your desire is for your <kw21>husband</kw21>, and he does rule over you.”</dq> [17] And to <kw24>the man</kw24> <dn9>He</dn9> said, <dq>“Because you have listened to the voice of your <kw25>wife</kw25>, and have eaten of the tree of which I commanded you, saying, ‘Do not eat of it’: “<kw28>cursed</kw28> is the ground because of you, in toil you are to eat of it all the days of your life,</dq> [18] <dq>and the ground shall bring forth thorns and thistles for you, and you shall eat <dn7>את</dn7> the herb of the field.</dq> [19] <dq>By the sweat of your face you are to eat bread until you return to the ground, for out of it you were taken. For dust you are, and to dust you return.</dq> [20] And the man called his <kw25>wife</kw25>’s name Ḥavvah, because she became the mother of all living. [21] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> made coats of skin for <kw24>the man</kw24> and his <kw25>wife</kw25> and dressed them. [22] And <dn1>יהוה</dn1> <dn2>Elohim</dn2> said, <dq>“See, the man has become like one of us, to <kw27>know good and evil</kw27>. And now, lest he put out his hand and take also of <kw11>the tree of life</kw11>, and eat, and live forever...”</dq> [23] so <dn1>יהוה</dn1> <dn2>Elohim</dn2> sent him out of the garden of Ěḏen to till <dn7>את</dn7> the ground from which he was taken, [24] and <dn9>He</dn9> drove out <dn7>את</dn7> the man. And <dn9>He</dn9> placed <dn7>את</dn7> <kw26>keruḇim</kw26> at the east of the garden of Ěḏen, and <dn7>את</dn7> a flaming sword which turned every way, to guard <dn7>את</dn7> the way to <kw11>the tree of life</kw11>.",
-					  "footnotes": {}
-					  
-					}
-				  ]
-            },
-            "data/strongs/H7225.json": {
-                "id": "H7225", "lemma": "רֵאשִׁית", "transliteration": "rēšît", "definition": "Beginning, chief, first, principal thing, first-fruits.",
-                "usage": "In Genesis 1:1, it denotes the absolute beginning of the time-space-material universe. It is derived from the root H7218 (rō’š), meaning 'head' or 'top'."
-            }
-        };
+        // --- DATA VAULT (Partial for offline preview) ---
+        const DATA_VAULT = { /* (Kept light for this version) */ };
 
-        const { useState, useEffect, useContext, createContext, useRef, useMemo, memo } = React;
+        const { useState, useEffect, useContext, createContext, useRef, useMemo } = React;
 
         const AppContext = createContext();
 
@@ -568,7 +80,6 @@
             Right: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>,
             Power: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.77.04"/></svg>,
             Scroll: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg>,
-            Network: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>,
             Search: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>,
             Image: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500 cursor-pointer hover:scale-110 transition-transform"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>,
             Film: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-rose-500 cursor-pointer hover:scale-110 transition-transform"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><path d="M7 3v18"/><path d="M3 7.5h4"/><path d="M3 12h18"/><path d="M3 16.5h4"/><path d="M17 3v18"/><path d="M17 7.5h4"/><path d="M17 16.5h4"/></svg>,
@@ -582,32 +93,16 @@
 
         const smartFetch = async (url, type, updateStatus) => {
             try {
-                // FIX: Safer URL construction to handle environments with invalid baseURIs (like about:blank)
                 let resolvedUrl = url;
-                try {
-                    resolvedUrl = new URL(url, document.baseURI || window.location.href).href;
-                } catch (e) {
-                    console.warn(`[SmartFetch] URL resolution skipped for ${url}, using relative path directly.`);
-                }
-                
+                try { resolvedUrl = new URL(url, document.baseURI || window.location.href).href; } catch (e) {}
                 if (resolvedUrl) console.log(`[SmartFetch] Attempting: ${resolvedUrl}`);
-
                 const urlWithCacheBuster = `${url}?t=${new Date().getTime()}`;
-                
                 const response = await fetch(urlWithCacheBuster);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
                 updateStatus(prev => ({ ...prev, [type]: 'LIVE' }));
                 return data;
             } catch (e) {
-                if (DATA_VAULT[url]) {
-                    console.warn(`[SmartFetch] Network/Parse failed for ${url} (Expected in Preview). Switching to Vault.`);
-                    const errCode = e.message.includes('HTTP') ? e.message.split(' ')[1] : '404';
-                    updateStatus(prev => ({ ...prev, [type]: `MOCK (${errCode})` }));
-                    await new Promise(r => setTimeout(r, 50));
-                    return DATA_VAULT[url];
-                }
-                
                 console.error(`[SmartFetch] Critical Error loading ${url}:`, e);
                 updateStatus(prev => ({ ...prev, [type]: 'ERROR' }));
                 throw e; 
@@ -636,9 +131,7 @@
 
             const tokenize = (str, footnotes) => {
                 if (!str || typeof str !== 'string') return str;
-                
                 const regex = /<(dn\d+|dq|chr|pn\d+|kw\d+)>([\s\S]*?)<\/\1>|<([hg]\d+)>([\s\S]*?)<\/\3>|(\[.*?\])|\{([\w:.]+)\}|<img:([^>]+)>|<vid:([^>]+)>|<(i|b|u|sup|sub)>(.*?)<\/\9>/g;
-                
                 const pieces = str.split(regex);
                 const elements = [];
 
@@ -650,61 +143,23 @@
                         let label = inner;
                         let tagType = rawTag.substring(0, 2); 
                         if (rawTag === 'chr') tagType = 'chr'; 
-
-                        if (tagType === 'dn' || tagType === 'pn' || tagType === 'kw') {
-                            label = substitute(tagType, rawTag);
-                        }
-                        
-                        const cls = { 
-                            dn: settings.power.shekinah ? 'divine-name-styled' : '',  // Unified Shekinah Toggle Logic
-                            dq: settings.power.divineQuote ? 'divine-quote-styled' : '', 
-                            chr: 'char-tag text-emerald-600 font-bold', 
-                            pn: 'pn-tag text-blue-400 font-bold', 
-                            kw: 'font-bold' 
-                        };
-                        
+                        if (tagType === 'dn' || tagType === 'pn' || tagType === 'kw') label = substitute(tagType, rawTag);
+                        const cls = { dn: settings.power.shekinah ? 'divine-name-styled' : '', dq: settings.power.divineQuote ? 'divine-quote-styled' : '', chr: 'char-tag text-emerald-600 font-bold', pn: 'pn-tag text-blue-400 font-bold', kw: 'font-bold' };
                         elements.push(<span key={`tag-${i}`} className={cls[tagType] || ''}>{tokenize(label, footnotes)}</span>);
                     }
                     if (pieces[i+3]) {
                         const sid = pieces[i+3].toUpperCase(), inner = pieces[i+4];
                         elements.push(<span key={`str-${i}`} className={`lexical-token ${hoveredStrong === sid ? 'lexical-active' : ''}`} onMouseEnter={() => settings.power.lexical && setHoveredStrong(sid)} onMouseLeave={() => setHoveredStrong(null)} onClick={async (e) => { 
                             e.stopPropagation();
-                            try { 
-                                const data = await smartFetch(`data/strongs/${sid}.json`, `Lexicon Data`, setNetworkStatus); 
-                                setDetail({ type: 'strongs', data }); 
-                            } catch(e) { 
-                                setDetail({ 
-                                    type: 'strongs', 
-                                    data: { lemma: sid, transliteration: "---", definition: "Definition pending...", usage: "This lexical entry has not yet been digitized." } 
-                                }); 
-                            } 
+                            try { const data = await smartFetch(`data/strongs/${sid}.json`, `Lexicon Data`, setNetworkStatus); setDetail({ type: 'strongs', data }); } catch(e) { setDetail({ type: 'strongs', data: { lemma: sid, transliteration: "---", definition: "Definition pending...", usage: "This lexical entry has not yet been digitized." } }); } 
                         }}>{tokenize(inner, footnotes)}</span>);
                     }
-                    if (pieces[i+5]) {
-                        if (settings.power.verseMarkers) {
-                            elements.push(<span key={`v-${i}`} className="verse-marker">{pieces[i+5]}</span>);
-                        }
-                    }
-                    if (pieces[i+6]) {
-                        const fid = pieces[i+6];
-                        if (settings.power.footnoteMarkers) elements.push(<span key={`fn-${i}`} className="footnote-marker" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'footnote', data: footnotes ? footnotes[fid] : fid }) }}>{"{" + fid + "}"}</span>);
-                    }
-                    if (pieces[i+7]) {
-                        if (settings.power.imageMarkers) {
-                            const imgFile = pieces[i+7];
-                            elements.push(<button key={`img-${i}`} className="inline-flex mx-1 align-text-bottom" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'image', data: imgFile }) }}><Icons.Image /></button>);
-                        }
-                    }
-                    if (pieces[i+8]) {
-                        if (settings.power.videoMarkers) {
-                            const vidId = pieces[i+8];
-                            elements.push(<button key={`vid-${i}`} className="inline-flex mx-1 align-text-bottom" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'video', data: vidId }) }}><Icons.Film /></button>);
-                        }
-                    }
+                    if (pieces[i+5]) { if (settings.power.verseMarkers) elements.push(<span key={`v-${i}`} className="verse-marker">{pieces[i+5]}</span>); }
+                    if (pieces[i+6]) { const fid = pieces[i+6]; if (settings.power.footnoteMarkers) elements.push(<span key={`fn-${i}`} className="footnote-marker" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'footnote', data: footnotes ? footnotes[fid] : fid }) }}>{"{" + fid + "}"}</span>); }
+                    if (pieces[i+7]) { if (settings.power.imageMarkers) { const imgFile = pieces[i+7]; elements.push(<button key={`img-${i}`} className="inline-flex mx-1 align-text-bottom" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'image', data: imgFile }) }}><Icons.Image /></button>); } }
+                    if (pieces[i+8]) { if (settings.power.videoMarkers) { const vidId = pieces[i+8]; elements.push(<button key={`vid-${i}`} className="inline-flex mx-1 align-text-bottom" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'video', data: vidId }) }}><Icons.Film /></button>); } }
                     if (pieces[i+9]) {
-                        const tag = pieces[i+9];
-                        const content = pieces[i+10];
-                        const key = `ed-${i}`;
+                        const tag = pieces[i+9], content = pieces[i+10], key = `ed-${i}`;
                         switch(tag) {
                             case 'i': elements.push(<span key={key} className="italic text-gray-400">{highlightSearch(content)}</span>); break;
                             case 'b': elements.push(<b key={key} className="font-bold">{highlightSearch(content)}</b>); break;
@@ -723,44 +178,20 @@
         const Verse = ({ id, content, footnotes }) => {
             const { settings, selectionMode, selectedVerses, toggleVerseSelection } = useContext(AppContext);
             const { tokenize } = useTokenization();
-            
             const isSelected = selectedVerses.has(id);
-            const handleClick = (e) => {
-                if (selectionMode) {
-                    e.stopPropagation();
-                    toggleVerseSelection(id);
-                }
-            };
-
-            return (
-                <span 
-                    className={`verse-wrapper ${settings.power.verseHighlight && !selectionMode ? 'verse-highlight-active' : ''} ${isSelected ? 'verse-selected' : ''}`}
-                    onClick={handleClick}
-                >
-                    {tokenize(content, footnotes)}
-                </span>
-            );
+            const handleClick = (e) => { if (selectionMode) { e.stopPropagation(); toggleVerseSelection(id); } };
+            return <span className={`verse-wrapper ${settings.power.verseHighlight && !selectionMode ? 'verse-highlight-active' : ''} ${isSelected ? 'verse-selected' : ''}`} onClick={handleClick}>{tokenize(content, footnotes)}</span>;
         };
 
         const Dropdown = ({ icon: Icon, label, isOpen, onToggle, children }) => {
             const dropdownRef = useRef(null);
-            
             useEffect(() => {
-                const handleClickOutside = (event) => {
-                    if (isOpen && dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                        onToggle();
-                    }
-                };
-                document.addEventListener("mousedown", handleClickOutside);
-                return () => document.removeEventListener("mousedown", handleClickOutside);
+                const handleClickOutside = (event) => { if (isOpen && dropdownRef.current && !dropdownRef.current.contains(event.target)) onToggle(); };
+                document.addEventListener("mousedown", handleClickOutside); return () => document.removeEventListener("mousedown", handleClickOutside);
             }, [isOpen, onToggle]);
-
             return (
                 <div className="relative" ref={dropdownRef}>
-                    <button onClick={onToggle} className={`flex items-center gap-2 p-2 rounded-xl transition-all ${isOpen ? 'bg-blue-600 text-white shadow-lg' : 'hover:bg-white/10'}`}>
-                        <Icon />
-                        {label && <span className="text-xs font-bold uppercase tracking-wider">{label}</span>}
-                    </button>
+                    <button onClick={onToggle} className={`flex items-center gap-2 p-2 rounded-xl transition-all ${isOpen ? 'bg-blue-600 text-white shadow-lg' : 'hover:bg-white/10'}`}><Icon />{label && <span className="text-xs font-bold uppercase tracking-wider">{label}</span>}</button>
                     {isOpen && <div className="absolute right-0 mt-3 w-64 glass-footer rounded-2xl p-4 shadow-2xl z-[150] border animate-in slide-in-from-top-2">{children}</div>}
                 </div>
             );
@@ -780,137 +211,25 @@
             const [selChapter, setSelChapter] = useState(null);
             const [search, setSearch] = useState("");
             const inputRef = useRef(null);
-
-            useEffect(() => {
-                if (isOpen && inputRef.current) inputRef.current.focus();
-                if (!isOpen) { setSearch(""); setSelBook(null); setSelChapter(null); }
-            }, [isOpen]);
-
+            useEffect(() => { if (isOpen && inputRef.current) inputRef.current.focus(); if (!isOpen) { setSearch(""); setSelBook(null); setSelChapter(null); } }, [isOpen]);
             if (!isOpen) return null;
-
-            const filteredBooks = books.filter(b => 
-                b.bookName.toLowerCase().includes(search.toLowerCase()) || 
-                b.abbreviation.toLowerCase().includes(search.toLowerCase())
-            );
-
+            const filteredBooks = books.filter(b => b.bookName.toLowerCase().includes(search.toLowerCase()) || b.abbreviation.toLowerCase().includes(search.toLowerCase()));
             const currentBook = books.find(b => b.bookId === selBook);
             const bookChapters = chapters.filter(c => c.bookId === selBook);
-
             return (
                 <div className="atlas-modal" onClick={onClose}>
                     <div className="bg-zinc-900 text-white rounded-[2rem] shadow-2xl p-8 w-full max-w-2xl overflow-y-auto max-h-[80vh] flex flex-col" onClick={e => e.stopPropagation()}>
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-2xl font-black text-blue-400 uppercase tracking-widest">Bible Atlas</h2>
-                            <button onClick={onClose} className="p-2 text-white hover:text-blue-400">✕</button>
-                        </div>
-                        
-                        {!selBook && (
-                            <div className="relative mb-6">
-                                <div className="absolute left-4 top-3.5 text-zinc-400"><Icons.Search /></div>
-                                <input ref={inputRef} type="text" placeholder="Search Books..." className="w-full bg-zinc-800 text-white placeholder-zinc-500 rounded-xl py-3 pl-12 pr-4 font-bold outline-none focus:ring-2 ring-blue-600" value={search} onChange={e => setSearch(e.target.value)} />
-                            </div>
-                        )}
-
+                        <div className="flex justify-between items-center mb-6"><h2 className="text-2xl font-black text-blue-400 uppercase tracking-widest">Bible Atlas</h2><button onClick={onClose} className="p-2 text-white hover:text-blue-400">✕</button></div>
+                        {!selBook && <div className="relative mb-6"><div className="absolute left-4 top-3.5 text-zinc-400"><Icons.Search /></div><input ref={inputRef} type="text" placeholder="Search Books..." className="w-full bg-zinc-800 text-white placeholder-zinc-500 rounded-xl py-3 pl-12 pr-4 font-bold outline-none focus:ring-2 ring-blue-600" value={search} onChange={e => setSearch(e.target.value)} /></div>}
                         <div className="flex-grow overflow-y-auto">
                             {!selBook ? (
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                    {filteredBooks.length > 0 ? filteredBooks.map(b => (
-                                        <button key={b.bookId} onClick={() => setSelBook(b.bookId)} className="p-3 text-left bg-zinc-800 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-colors">
-                                            {b.bookName}
-                                        </button>
-                                    )) : (
-                                        <div className="col-span-full text-center opacity-40 py-8 italic">No books found matching "{search}"</div>
-                                    )}
-                                </div>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">{filteredBooks.length > 0 ? filteredBooks.map(b => <button key={b.bookId} onClick={() => setSelBook(b.bookId)} className="p-3 text-left bg-zinc-800 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-colors">{b.bookName}</button>) : <div className="col-span-full text-center opacity-40 py-8 italic">No books found matching "{search}"</div>}</div>
                             ) : !selChapter ? (
-                                <div>
-                                    <button onClick={() => setSelBook(null)} className="mb-4 text-xs font-black text-blue-400 uppercase flex items-center gap-2">
-                                        <Icons.Left /> Back to Books
-                                    </button>
-                                    <h3 className="text-xl font-bold mb-4">{currentBook?.bookName}</h3>
-                                    <div className="grid grid-cols-5 gap-2">
-                                        {bookChapters.map(c => <button key={c.chapterNum} onClick={() => setSelChapter(c.chapterNum)} className="p-3 bg-zinc-800 rounded-xl font-bold hover:bg-blue-600 hover:text-white">{c.chapterNum}</button>)}
-                                    </div>
-                                </div>
+                                <div><button onClick={() => setSelBook(null)} className="mb-4 text-xs font-black text-blue-400 uppercase flex items-center gap-2"><Icons.Left /> Back to Books</button><h3 className="text-xl font-bold mb-4">{currentBook?.bookName}</h3><div className="grid grid-cols-5 gap-2">{bookChapters.map(c => <button key={c.chapterNum} onClick={() => setSelChapter(c.chapterNum)} className="p-3 bg-zinc-800 rounded-xl font-bold hover:bg-blue-600 hover:text-white">{c.chapterNum}</button>)}</div></div>
                             ) : (
-                                <div>
-                                    <button onClick={() => setSelChapter(null)} className="mb-4 text-xs font-black text-blue-400 uppercase flex items-center gap-2">
-                                        <Icons.Left /> Back to Chapters
-                                    </button>
-                                    <h3 className="text-xl font-bold mb-4">{currentBook?.bookName} {selChapter}</h3>
-                                    <div className="space-y-2">
-                                        {chapters.find(c => c.bookId === selBook && c.chapterNum === selChapter)?.dayIds.map(d => {
-                                            const planReading = calendar.find(c => c.dayId === d)?.reading;
-                                            return (
-                                                <button key={d} onClick={() => { setDay(parseInt(d)); onClose(); }} className="w-full p-4 text-left bg-zinc-800 rounded-xl font-bold hover:bg-blue-600 hover:text-white flex justify-between items-center group">
-                                                    <span>{planReading ? `Day ${d}: ${planReading}` : `Read on Day ${d}`}</span>
-                                                    <span className="opacity-0 group-hover:opacity-100 transition-opacity"><Icons.Right /></span>
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
+                                <div><button onClick={() => setSelChapter(null)} className="mb-4 text-xs font-black text-blue-400 uppercase flex items-center gap-2"><Icons.Left /> Back to Chapters</button><h3 className="text-xl font-bold mb-4">{currentBook?.bookName} {selChapter}</h3><div className="space-y-2">{chapters.find(c => c.bookId === selBook && c.chapterNum === selChapter)?.dayIds.map(d => { const planReading = calendar.find(c => c.dayId === d)?.reading; return <button key={d} onClick={() => { setDay(parseInt(d)); onClose(); }} className="w-full p-4 text-left bg-zinc-800 rounded-xl font-bold hover:bg-blue-600 hover:text-white flex justify-between items-center group"><span>{planReading ? `Day ${d}: ${planReading}` : `Read on Day ${d}`}</span><span className="opacity-0 group-hover:opacity-100 transition-opacity"><Icons.Right /></span></button>; })}</div></div>
                             )}
                         </div>
-                    </div>
-                </div>
-            );
-        };
-
-        const CalendarModal = ({ isOpen, onClose, activeDay, setDay }) => {
-            const [view, setView] = useState('months'); 
-            const [selectedMonth, setSelectedMonth] = useState(null);
-
-            useEffect(() => { if(!isOpen) { setView('months'); setSelectedMonth(null); } }, [isOpen]);
-
-            if (!isOpen) return null;
-            
-            const months = [
-                { name: "January", days: 31, offset: 0 },
-                { name: "February", days: 28, offset: 31 },
-                { name: "March", days: 31, offset: 59 },
-                { name: "April", days: 30, offset: 90 },
-                { name: "May", days: 31, offset: 120 },
-                { name: "June", days: 30, offset: 151 },
-                { name: "July", days: 31, offset: 181 },
-                { name: "August", days: 31, offset: 212 },
-                { name: "September", days: 30, offset: 243 },
-                { name: "October", days: 31, offset: 273 },
-                { name: "November", days: 30, offset: 304 },
-                { name: "December", days: 31, offset: 334 }
-            ];
-
-            return (
-                <div className="atlas-modal" onClick={onClose}>
-                    <div className="bg-zinc-900 text-white rounded-[2rem] shadow-2xl p-8 w-full max-w-4xl overflow-y-auto max-h-[85vh]" onClick={e => e.stopPropagation()}>
-                        <div className="flex justify-between items-center mb-8">
-                            <h2 className="text-2xl font-black text-blue-400 uppercase tracking-widest">Chronological Cycle</h2>
-                            <button onClick={onClose} className="hover:text-blue-400">✕</button>
-                        </div>
-                        
-                        {view === 'months' ? (
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {months.map((m, idx) => (
-                                    <button key={m.name} onClick={() => { setSelectedMonth(m); setView('days'); }} className="p-6 bg-zinc-800 rounded-xl hover:bg-blue-600 hover:text-white transition-all group text-left">
-                                        <div className="text-sm font-bold uppercase tracking-widest opacity-60 mb-1">{String(idx + 1).padStart(2,'0')}</div>
-                                        <div className="text-xl font-bold">{m.name}</div>
-                                    </button>
-                                ))}
-                            </div>
-                        ) : (
-                            <div>
-                                <button onClick={() => setView('months')} className="mb-6 text-xs font-black text-blue-400 uppercase flex items-center gap-2 hover:text-white">
-                                    <Icons.Left /> Back to Year
-                                </button>
-                                <h3 className="text-3xl font-bold mb-6">{selectedMonth.name}</h3>
-                                <div className="grid grid-cols-7 gap-2">
-                                    {Array.from({ length: selectedMonth.days }, (_, i) => {
-                                        const d = selectedMonth.offset + i + 1;
-                                        return <button key={d} onClick={() => { setDay(d); onClose(); }} className={`aspect-square rounded-xl text-sm font-bold flex items-center justify-center transition-all ${activeDay === d ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/50 scale-110' : 'bg-zinc-800 text-slate-200 hover:bg-zinc-700 hover:text-white'}`}>{i + 1}</button>;
-                                    })}
-                                </div>
-                            </div>
-                        )}
                     </div>
                 </div>
             );
@@ -921,36 +240,10 @@
             return (
                 <div className={`details-panel ${data ? 'translate-x-0' : 'translate-x-full'}`}>
                     <div className="details-content">
-                        <div className="flex justify-between items-start mb-8">
-                            <div className={`text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${type === 'strongs' ? 'bg-blue-600 shadow-blue-500/30' : 'bg-emerald-600 shadow-emerald-500/30'}`}>
-                                {type === 'strongs' ? "Strong's Lexicon" : "Deep Dive Note"}
-                            </div>
-                            <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">✕</button>
-                        </div>
-                        
+                        <div className="flex justify-between items-start mb-8"><div className={`text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${type === 'strongs' ? 'bg-blue-600 shadow-blue-500/30' : 'bg-emerald-600 shadow-emerald-500/30'}`}>{type === 'strongs' ? "Strong's Lexicon" : "Deep Dive Note"}</div><button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">✕</button></div>
                         {type === 'strongs' ? (
-                            <div className="space-y-8">
-                                <div>
-                                    <h1 className="text-4xl font-black text-blue-400 mb-2">{data.lemma}</h1>
-                                    <div className="text-xl opacity-50 font-serif italic">{data.transliteration}</div>
-                                </div>
-                                <div className="w-full h-px bg-zinc-800"></div>
-                                <div>
-                                    <h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Definition</h3>
-                                    <p className="text-lg leading-relaxed">{tokenize(data.definition, null)}</p>
-                                </div>
-                                {data.usage && (
-                                    <div className="bg-zinc-800/50 p-6 rounded-2xl border border-zinc-800">
-                                        <h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Contextual Usage</h3>
-                                        <p className="text-sm leading-relaxed opacity-80 italic">{tokenize(data.usage, null)}</p>
-                                    </div>
-                                )}
-                            </div>
-                        ) : (
-                            <div className="rich-content space-y-6 text-slate-200 leading-relaxed">
-                                <div dangerouslySetInnerHTML={{ __html: data }} />
-                            </div>
-                        )}
+                            <div className="space-y-8"><div><h1 className="text-4xl font-black text-blue-400 mb-2">{data.lemma}</h1><div className="text-xl opacity-50 font-serif italic">{data.transliteration}</div></div><div className="w-full h-px bg-zinc-800"></div><div><h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Definition</h3><p className="text-lg leading-relaxed">{tokenize(data.definition, null)}</p></div>{data.usage && (<div className="bg-zinc-800/50 p-6 rounded-2xl border border-zinc-800"><h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Contextual Usage</h3><p className="text-sm leading-relaxed opacity-80 italic">{tokenize(data.usage, null)}</p></div>)}</div>
+                        ) : (<div className="rich-content space-y-6 text-slate-200 leading-relaxed"><div dangerouslySetInnerHTML={{ __html: data }} /></div>)}
                     </div>
                 </div>
             );
@@ -963,13 +256,7 @@
                 <div className="image-viewer" onClick={onClose}>
                     <div className="relative max-w-[90vw] max-h-[90vh]" onClick={e => e.stopPropagation()}>
                         <img src={`data/images/${file}`} alt="Artifact" className="rounded-xl shadow-2xl transition-transform duration-200" style={{ transform: `scale(${scale})` }} />
-                        
-                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/50 backdrop-blur rounded-full p-2 border border-white/10">
-                            <button onClick={() => setScale(s => Math.max(0.5, s - 0.25))} className="p-2 text-white hover:bg-white/20 rounded-full"><Icons.ZoomOut /></button>
-                            <span className="text-xs font-bold text-white w-12 text-center">{Math.round(scale * 100)}%</span>
-                            <button onClick={() => setScale(s => Math.min(3, s + 0.25))} className="p-2 text-white hover:bg-white/20 rounded-full"><Icons.ZoomIn /></button>
-                        </div>
-                        <button onClick={onClose} className="absolute -top-12 right-0 text-white p-2 hover:bg-white/10 rounded-full">✕ CLOSE</button>
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/50 backdrop-blur rounded-full p-2 border border-white/10"><button onClick={() => setScale(s => Math.max(0.5, s - 0.25))} className="p-2 text-white hover:bg-white/20 rounded-full"><Icons.ZoomOut /></button><span className="text-xs font-bold text-white w-12 text-center">{Math.round(scale * 100)}%</span><button onClick={() => setScale(s => Math.min(3, s + 0.25))} className="p-2 text-white hover:bg-white/20 rounded-full"><Icons.ZoomIn /></button></div><button onClick={onClose} className="absolute -top-12 right-0 text-white p-2 hover:bg-white/10 rounded-full">✕ CLOSE</button>
                     </div>
                 </div>
             );
@@ -981,19 +268,63 @@
             return (
                 <div className="video-viewer" onClick={onClose}>
                     <div className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10" onClick={e => e.stopPropagation()}>
-                        <iframe 
-                            className="w-full h-full" 
-                            src={`https://www.youtube.com/embed/${videoId}${connector}autoplay=1`} 
-                            title="Video Player" 
-                            frameBorder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen>
-                        </iframe>
-                        {/* FIX 2: Mobile-Safe Close Button inside container */}
-                        <button onClick={onClose} className="absolute top-4 right-4 text-white bg-black/60 backdrop-blur-md border border-white/20 shadow-lg px-4 py-2 hover:bg-red-600/80 rounded-full flex items-center gap-2 font-bold text-xs uppercase tracking-widest z-50 transition-all">
-                            <span>Close</span> <Icons.X />
-                        </button>
+                        <iframe className="w-full h-full" src={`https://www.youtube.com/embed/${videoId}${connector}autoplay=1`} title="Video Player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe><button onClick={onClose} className="absolute top-4 right-4 text-white bg-black/60 backdrop-blur-md border border-white/20 shadow-lg px-4 py-2 hover:bg-red-600/80 rounded-full flex items-center gap-2 font-bold text-xs uppercase tracking-widest z-50 transition-all"><span>Close</span> <Icons.X /></button>
+                    </div>
+                </div>
+            );
+        };
+
+        const YearView = ({ onSelectMonth }) => {
+            const today = new Date();
+            const currentMonth = today.getMonth(); 
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            return (
+                <div className="max-w-6xl mx-auto p-4 md:p-12 animate-in fade-in duration-700">
+                    <h1 className="text-4xl md:text-6xl font-black text-center mb-12 tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-purple-600">2026 CHRONOLOGY</h1>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {months.map((m, i) => (
+                            <button key={m} onClick={() => onSelectMonth(i)} className={`p-8 rounded-3xl text-left transition-all duration-300 group relative overflow-hidden ${i === currentMonth ? 'bg-blue-600 shadow-[0_0_40px_rgba(37,99,235,0.5)] scale-105 ring-2 ring-white/20' : 'bg-zinc-900/50 hover:bg-zinc-800 border border-white/5 hover:border-white/10'}`}>
+                                <div className="text-xs font-black uppercase tracking-[0.3em] opacity-40 mb-4">Month {String(i+1).padStart(2,'0')}</div>
+                                <div className="text-3xl font-serif font-bold text-slate-100 group-hover:text-blue-400 transition-colors">{m}</div>
+                                {i === currentMonth && <div className="absolute top-4 right-4 w-2 h-2 bg-white rounded-full animate-pulse shadow-[0_0_10px_white]"></div>}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const MonthView = ({ monthIndex, calendarData, onSelectDay, onBack }) => {
+            const listRef = useRef(null);
+            const today = new Date();
+            const isCurrentMonth = today.getMonth() === monthIndex;
+            const currentDay = today.getDate();
+            const daysInMonth = calendarData.filter(d => (parseInt(d.dateString.substring(4, 6)) - 1) === monthIndex);
+            
+            useEffect(() => {
+                if (isCurrentMonth && listRef.current) {
+                    const row = document.getElementById(`day-row-${currentDay}`);
+                    if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, [isCurrentMonth, currentDay]);
+
+            const monthName = new Date(2026, monthIndex, 1).toLocaleString('default', { month: 'long' });
+
+            return (
+                <div className="max-w-4xl mx-auto p-4 md:p-8 animate-in slide-in-from-bottom-8 duration-500">
+                    <button onClick={onBack} className="mb-8 text-sm font-bold uppercase tracking-widest text-zinc-500 hover:text-white flex items-center gap-2 transition-colors"><Icons.Left /> Back to Year</button>
+                    <h1 className="text-5xl font-black mb-12 text-slate-100">{monthName}</h1>
+                    <div className="space-y-3" ref={listRef}>
+                        {daysInMonth.map((d) => {
+                            const dayNum = parseInt(d.dateString.substring(6, 8));
+                            const isToday = isCurrentMonth && dayNum === currentDay;
+                            return (
+                                <button key={d.dayId} id={`day-row-${dayNum}`} onClick={() => onSelectDay(parseInt(d.dayId))} className={`w-full text-left p-6 rounded-2xl flex flex-col md:flex-row gap-4 md:items-center transition-all duration-300 ${isToday ? 'bg-blue-600 shadow-[0_0_30px_rgba(37,99,235,0.4)] border border-blue-400/50' : 'bg-zinc-900/40 hover:bg-zinc-800 border border-white/5'}`}>
+                                    <div className="flex items-center gap-4 min-w-[140px]"><div className={`text-2xl font-black ${isToday ? 'text-white' : 'text-zinc-600'}`}>{String(dayNum).padStart(2,'0')}</div><div className="h-8 w-px bg-white/10"></div><div className={`text-xs font-bold uppercase tracking-wider ${isToday ? 'text-blue-200' : 'text-zinc-500'}`}>Day {d.dayId}</div></div>
+                                    <div className={`font-serif text-lg ${isToday ? 'text-white' : 'text-slate-300'}`}>{d.reading || "Rest / Reflection"}</div>
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
             );
@@ -1001,94 +332,42 @@
 
         const EngineView = () => {
             const context = useContext(AppContext);
-            const { settings, setSettings, dicts, activeDay, setActiveDay, pageData, detail, setDetail, menu, setMenu, error, networkStatus, selectionMode, setSelectionMode, selectedVerses, setSelectedVerses, searchQuery, setSearchQuery } = context;
+            const { settings, setSettings, dicts, activeDay, setActiveDay, pageData, detail, setDetail, menu, setMenu, error, networkStatus, selectionMode, setSelectionMode, selectedVerses, setSelectedVerses, searchQuery, setSearchQuery, appView, setAppView, selectedMonth, setSelectedMonth } = context;
             const { tokenize } = useTokenization();
-            const [view, setView] = useState({ atlas: false, calendar: false });
+            const [atlasOpen, setAtlasOpen] = useState(false);
             const searchInputRef = useRef(null);
 
             const updatePower = (key) => setSettings(s => ({...s, power: {...s.power, [key]: !s.power[key]}}));
-            const cycleLang = (key, opts) => setSettings(s => {
-                const cur = s.lang[key];
-                const next = opts[(opts.indexOf(cur) + 1) % opts.length];
-                return {...s, lang: {...s.lang, [key]: next}};
-            });
+            const cycleLang = (key, opts) => setSettings(s => { const cur = s.lang[key]; const next = opts[(opts.indexOf(cur) + 1) % opts.length]; return {...s, lang: {...s.lang, [key]: next}}; });
 
             const copyVerses = async () => {
-                const textToCopy = Array.from(selectedVerses).sort((a,b) => {
-                    const getNum = id => parseInt(id.split('-').pop());
-                    return getNum(a) - getNum(b);
-                }).map(id => {
-                    const el = document.getElementById(`verse-${id}`);
-                    return el ? el.innerText : ""; 
-                })
-                .join('\n\n')
-                .replace(/\{.*?\}/g, '') // Strip footnotes
-                .replace(/\s+/g, ' ') // Collapse multiple spaces
-                .replace(/\n\s*\n/g, '\n') // Normalize line breaks
-                .trim();
-                
-                try {
-                    await navigator.clipboard.writeText(textToCopy);
-                    setSelectionMode(false);
-                    setSelectedVerses(new Set());
-                    alert("Verses copied to clipboard!");
-                } catch (err) {
-                    try {
-                        const textArea = document.createElement("textarea");
-                        textArea.value = textToCopy;
-                        textArea.style.position = "fixed"; 
-                        textArea.style.left = "-9999px";
-                        document.body.appendChild(textArea);
-                        textArea.focus();
-                        textArea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textArea);
-                        setSelectionMode(false);
-                        setSelectedVerses(new Set());
-                        alert("Verses copied to clipboard!");
-                    } catch (fallbackErr) {
-                        console.error("Copy failed:", fallbackErr);
-                        alert("Failed to copy. Please try selecting text manually.");
-                    }
-                }
+                const textToCopy = Array.from(selectedVerses).sort((a,b) => { const getNum = id => parseInt(id.split('-').pop()); return getNum(a) - getNum(b); }).map(id => { const el = document.getElementById(`verse-${id}`); return el ? el.innerText : ""; }).join('\n\n').replace(/\{.*?\}/g, '').replace(/\s+/g, ' ').replace(/\n\s*\n/g, '\n').trim();
+                try { await navigator.clipboard.writeText(textToCopy); setSelectionMode(false); setSelectedVerses(new Set()); alert("Verses copied to clipboard!"); } catch (err) { alert("Failed to copy. Please try selecting text manually."); }
             };
 
-            const toggleSearch = () => {
-                if (menu === 'search') {
-                    setMenu(null);
-                    setSearchQuery("");
-                } else {
-                    setMenu('search');
-                    setTimeout(() => searchInputRef.current?.focus(), 100);
-                }
-            };
-
-            const toggleSelectionMode = () => {
-                setSelectionMode(!selectionMode);
-                setSelectedVerses(new Set());
-            };
+            const toggleSearch = () => { if (menu === 'search') { setMenu(null); setSearchQuery(""); } else { setMenu('search'); setTimeout(() => searchInputRef.current?.focus(), 100); } };
+            const toggleSelectionMode = () => { setSelectionMode(!selectionMode); setSelectedVerses(new Set()); };
 
             const formattedDate = useMemo(() => {
                 const dayInfo = dicts.calendar?.find(d => parseInt(d.dayId) === activeDay);
                 if (!dayInfo?.dateString) return `DAY ${activeDay}`;
-                
-                const year = parseInt(dayInfo.dateString.substring(0, 4));
-                const month = parseInt(dayInfo.dateString.substring(4, 6)) - 1; 
-                const day = parseInt(dayInfo.dateString.substring(6, 8));
-                
-                const date = new Date(year, month, day);
-                return new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(date).toUpperCase();
+                const year = parseInt(dayInfo.dateString.substring(0, 4)), month = parseInt(dayInfo.dateString.substring(4, 6)) - 1, day = parseInt(dayInfo.dateString.substring(6, 8));
+                return new Intl.DateTimeFormat('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(year, month, day)).toUpperCase();
             }, [activeDay, dicts.calendar]);
 
             useEffect(() => {
                 const handleKeyDown = (e) => {
-                    if (e.key === 'ArrowLeft') setActiveDay(prev => Math.max(1, prev - 1));
-                    if (e.key === 'ArrowRight') setActiveDay(prev => Math.min(365, prev + 1));
-                    if (e.key === 'Escape') { setDetail(null); setView({ atlas: false, calendar: false }); setMenu(null); setSearchQuery(""); setSelectionMode(false); }
+                    if (appView === 'reading') {
+                        if (e.key === 'ArrowLeft') setActiveDay(prev => Math.max(1, prev - 1));
+                        if (e.key === 'ArrowRight') setActiveDay(prev => Math.min(365, prev + 1));
+                    }
+                    if (e.key === 'Escape') { setDetail(null); setAtlasOpen(false); setMenu(null); setSearchQuery(""); setSelectionMode(false); }
                 };
-                window.addEventListener('keydown', handleKeyDown);
-                return () => window.removeEventListener('keydown', handleKeyDown);
-            }, []);
+                window.addEventListener('keydown', handleKeyDown); return () => window.removeEventListener('keydown', handleKeyDown);
+            }, [appView]);
+
+            // Scroll Reset
+            useEffect(() => { window.scrollTo(0, 0); }, [activeDay, appView]);
 
             const filteredNetworkStatus = useMemo(() => {
                 const globalKeys = ['Divine Names', 'Proper Names', 'Key Words', 'Book Index', 'Chapter Map', 'Calendar', 'Lexicon Data'];
@@ -1100,190 +379,107 @@
                 <div className={`min-h-screen flex flex-col transition-colors duration-500 bg-zinc-950 text-white dark-mode ${settings.power.shekinah ? 'shekinah-mode' : ''}`}>
                     <header className="sticky top-0 z-[110] glass-header px-6 py-4 flex justify-between items-center shadow-sm">
                         <div className="flex items-center gap-3">
-                            <button onClick={() => setView({ ...view, calendar: true })} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Calendar /></button>
-                            <button onClick={() => setView({ ...view, atlas: true })} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Compass /></button>
-                            <div className="h-5 w-px bg-zinc-800 mx-2"></div>
-                            <button onClick={() => setActiveDay(Math.max(1, activeDay-1))} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Left /></button>
-                            <button onClick={() => setActiveDay(Math.min(365, activeDay+1))} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Right /></button>
+                            <button onClick={() => setAppView('year')} className={`p-2 rounded-lg ${appView === 'year' ? 'bg-white/10' : 'hover:bg-white/10'}`}><Icons.Calendar /></button>
+                            <button onClick={() => setAtlasOpen(true)} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Compass /></button>
+                            {appView === 'reading' && (
+                                <>
+                                    <div className="h-5 w-px bg-zinc-800 mx-2"></div>
+                                    <button onClick={() => setActiveDay(Math.max(1, activeDay-1))} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Left /></button>
+                                    <button onClick={() => setActiveDay(Math.min(365, activeDay+1))} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Right /></button>
+                                </>
+                            )}
                         </div>
-                        
                         <div className="flex items-center gap-2">
-                            <button onClick={toggleSearch} className={`p-2 rounded-lg ${menu === 'search' ? 'bg-blue-900/40 text-blue-400' : 'hover:bg-white/10'}`}>
-                                <Icons.Search />
-                            </button>
-                            
-                            <button onClick={toggleSelectionMode} className={`p-2 rounded-lg ${selectionMode ? 'bg-amber-900/40 text-amber-400' : 'hover:bg-white/10'}`}>
-                                <Icons.CheckList />
-                            </button>
-
+                            <button onClick={toggleSearch} className={`p-2 rounded-lg ${menu === 'search' ? 'bg-blue-900/40 text-blue-400' : 'hover:bg-white/10'}`}><Icons.Search /></button>
+                            <button onClick={toggleSelectionMode} className={`p-2 rounded-lg ${selectionMode ? 'bg-amber-900/40 text-amber-400' : 'hover:bg-white/10'}`}><Icons.CheckList /></button>
                             <Dropdown icon={() => <NetworkStatusLight status={filteredNetworkStatus} />} isOpen={menu === 'network'} onToggle={() => setMenu(menu === 'network' ? null : 'network')}>
-                                <div className="space-y-3">
-                                    <h3 className="text-[10px] font-black uppercase tracking-widest opacity-40">Data Stream</h3>
-                                    {Object.entries(filteredNetworkStatus).map(([key, val]) => (
-                                        <div key={key} className="flex justify-between items-center text-xs">
-                                            <span className="font-bold opacity-70 truncate max-w-[120px]">{key}</span>
-                                            <span className={`px-1.5 py-0.5 rounded text-[9px] font-black tracking-wider ${val === 'LIVE' ? 'bg-emerald-900/40 text-emerald-400' : 'bg-rose-900/40 text-rose-400'}`}>{val}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                                <div className="space-y-3"><h3 className="text-[10px] font-black uppercase tracking-widest opacity-40">Data Stream</h3>{Object.entries(filteredNetworkStatus).map(([key, val]) => (<div key={key} className="flex justify-between items-center text-xs"><span className="font-bold opacity-70 truncate max-w-[120px]">{key}</span><span className={`px-1.5 py-0.5 rounded text-[9px] font-black tracking-wider ${val === 'LIVE' ? 'bg-emerald-900/40 text-emerald-400' : 'bg-rose-900/40 text-rose-400'}`}>{val}</span></div>))}</div>
                             </Dropdown>
-
                             <Dropdown icon={Icons.Power} isOpen={menu === 'power'} onToggle={() => setMenu(menu === 'power' ? null : 'power')}>
                                 <div className="space-y-4">
-                                    {/* Consolidated Shekinah Toggle */}
-                                    <div className="flex justify-between items-center text-sm font-bold mt-2 text-amber-400">
-                                        <div className="flex items-center gap-2"><Icons.Spark /><span className="capitalize">Shekinah</span></div>
-                                        <button onClick={() => updatePower('shekinah')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.shekinah ? 'bg-amber-500' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.shekinah ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button>
-                                    </div>
-
-                                    {/* Divine Quote moved to second position with custom styling */}
-                                    <div className="flex justify-between items-center text-sm font-bold mt-2 text-rose-400">
-                                        <div className="flex items-center gap-2"><Icons.Spark className="text-rose-500" /><span className="capitalize">Divine Quote</span></div>
-                                        <button onClick={() => updatePower('divineQuote')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.divineQuote ? 'bg-rose-500' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.divineQuote ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button>
-                                    </div>
-
+                                    <div className="flex justify-between items-center text-sm font-bold mt-2 text-amber-400"><div className="flex items-center gap-2"><Icons.Spark /><span className="capitalize">Shekinah</span></div><button onClick={() => updatePower('shekinah')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.shekinah ? 'bg-amber-500' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.shekinah ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>
+                                    <div className="flex justify-between items-center text-sm font-bold mt-2 text-rose-400"><div className="flex items-center gap-2"><Icons.Spark className="text-rose-500" /><span className="capitalize">Divine Quote</span></div><button onClick={() => updatePower('divineQuote')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.divineQuote ? 'bg-rose-500' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.divineQuote ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>
                                     <div className="border-t border-slate-700 my-2"></div>
-                                    
-                                    <h3 className="text-[10px] font-black uppercase tracking-widest opacity-40">Highlighting</h3>
-                                    {['verseHighlight', 'lexical'].map(k => (
-                                        <div key={k} className="flex justify-between items-center text-sm font-bold"><span className="capitalize">{k.replace(/([A-Z])/g, ' $1')}</span><button onClick={() => updatePower(k)} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power[k] ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power[k] ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>
-                                    ))}
-                                    <div className="border-t border-slate-700 pt-4">
-                                        {['verseMarkers', 'footnoteMarkers'].map(k => (
-                                            <div key={k} className="flex justify-between items-center text-sm font-bold mt-2"><span className="capitalize">{k.replace(/([A-Z])/g, ' $1')}</span><button onClick={() => updatePower(k)} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power[k] ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power[k] ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>
-                                        ))}
-                                        <div className="flex justify-between items-center text-sm font-bold mt-2"><span className="capitalize">Image Markers</span><button onClick={() => updatePower('imageMarkers')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.imageMarkers ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.imageMarkers ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>
-                                        <div className="flex justify-between items-center text-sm font-bold mt-2"><span className="capitalize">Video Markers</span><button onClick={() => updatePower('videoMarkers')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.videoMarkers ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.videoMarkers ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>
-                                    </div>
-                                </div>
+                                    <h3 className="text-[10px] font-black uppercase tracking-widest opacity-40">Highlighting</h3>{['verseHighlight', 'lexical'].map(k => (<div key={k} className="flex justify-between items-center text-sm font-bold"><span className="capitalize">{k.replace(/([A-Z])/g, ' $1')}</span><button onClick={() => updatePower(k)} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power[k] ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power[k] ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>))}<div className="border-t border-slate-700 pt-4">{['verseMarkers', 'footnoteMarkers'].map(k => (<div key={k} className="flex justify-between items-center text-sm font-bold mt-2"><span className="capitalize">{k.replace(/([A-Z])/g, ' $1')}</span><button onClick={() => updatePower(k)} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power[k] ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power[k] ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div>))}<div className="flex justify-between items-center text-sm font-bold mt-2"><span className="capitalize">Image Markers</span><button onClick={() => updatePower('imageMarkers')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.imageMarkers ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.imageMarkers ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div><div className="flex justify-between items-center text-sm font-bold mt-2"><span className="capitalize">Video Markers</span><button onClick={() => updatePower('videoMarkers')} className={`w-9 h-5 rounded-full relative transition-colors ${settings.power.videoMarkers ? 'bg-blue-600' : 'bg-slate-300'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-0.5 transition-transform duration-200 ${settings.power.videoMarkers ? 'translate-x-[18px]' : 'translate-x-[2px]'}`}></div></button></div></div></div>
                             </Dropdown>
                             <Dropdown icon={Icons.Scroll} isOpen={menu === 'scroll'} onToggle={() => setMenu(menu === 'scroll' ? null : 'scroll')}>
-                                <div className="space-y-4">
-                                    {['dn', 'pn', 'kw'].map(k => (
-                                        <div key={k} className="flex justify-between items-center text-xs font-black text-zinc-300 uppercase">
-                                            {k === 'dn' ? 'Divine Name' : k === 'pn' ? 'Proper Names' : 'Key Words'} 
-                                            <button 
-                                                onClick={() => cycleLang(k, k === 'dn' ? ['native', 'transliterated', 'anglicized'] : k === 'pn' ? ['transliterated', 'anglicized'] : ['traditional', 'modernized'])} 
-                                                className="bg-blue-600 text-white px-2 py-1 rounded capitalize"
-                                            >
-                                                {settings.lang[k]}
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
+                                <div className="space-y-4">{['dn', 'pn', 'kw'].map(k => (<div key={k} className="flex justify-between items-center text-xs font-black text-zinc-300 uppercase">{k === 'dn' ? 'Divine Name' : k === 'pn' ? 'Proper Names' : 'Key Words'} <button onClick={() => cycleLang(k, k === 'dn' ? ['native', 'transliterated', 'anglicized'] : k === 'pn' ? ['transliterated', 'anglicized'] : ['traditional', 'modernized'])} className="bg-blue-600 text-white px-2 py-1 rounded capitalize">{settings.lang[k]}</button></div>))}</div>
                             </Dropdown>
                         </div>
                     </header>
 
                     <main className="flex-grow silver-table p-4 md:p-12">
-                        <div className="parchment max-w-4xl mx-auto rounded-[3rem] p-8 md:p-20 font-serif min-h-[85vh]">
-                            {pageData ? (
-                                <>
-                                    <div className="text-center mb-16 opacity-30 text-[10px] font-black uppercase tracking-[0.4em]">{formattedDate}</div>
-                                    {pageData.readings.map((r, i) => (
-                                        <div key={i} className="space-y-10 mb-20">
-                                            {r.section && <div><h1 className="section-label">{r.section}</h1><div className="gradient-bar-section"></div></div>}
-                                            {r.subsection && <h2 className="subsection-label">{r.subsection}</h2>}
-                                            {r.title && <div><h3 className="title-label">{r.title}</h3><div className="gradient-bar-title"></div></div>}
-                                            {r.subtitle && <h4 className="subtitle-label">{r.subtitle}</h4>}
-                                            {r.chronological && <p className="chronological-label">{r.chronological}</p>}
-                                            {r.references && <p className="references-label">{r.references.split(/([1-3]?\s?[A-Za-z]+\s\d+:\d+(?:-\d+)?)/).map((p, k) => <span key={k} className={/([1-3]?\s?[A-Za-z]+\s\d+:\d+(?:-\d+)?)/.test(p) ? 'ref-purple' : ''}>{p}</span>)}</p>}
-                                            <div className="bible-text">
-                                                {r.text.split(/(\[.*?\])/).filter(Boolean).reduce((acc, part, idx, arr) => {
-                                                    if (part.startsWith('[')) acc.push({ marker: part, content: arr[idx + 1] || "" });
-                                                    else if (idx === 0 && !arr[idx].startsWith('[')) acc.push({ marker: "", content: part });
-                                                    return acc;
-                                                }, []).map((v, idx) => {
-                                                    const verseId = `${i}-${idx}`;
-                                                    return <span id={`verse-${verseId}`} key={idx}><Verse id={verseId} content={v.marker + v.content} footnotes={r.footnotes} /></span>
-                                                })}
+                        {appView === 'year' && (
+                            <YearView onSelectMonth={(idx) => { setSelectedMonth(idx); setAppView('month'); }} />
+                        )}
+                        
+                        {appView === 'month' && (
+                            <MonthView 
+                                monthIndex={selectedMonth} 
+                                calendarData={dicts.calendar} 
+                                onSelectDay={(day) => { setActiveDay(day); setAppView('reading'); }} 
+                                onBack={() => setAppView('year')} 
+                            />
+                        )}
+
+                        {appView === 'reading' && (
+                            <div className="parchment max-w-4xl mx-auto rounded-[3rem] p-8 md:p-20 font-serif min-h-[85vh]">
+                                {pageData ? (
+                                    <>
+                                        <div className="text-center mb-16 opacity-30 text-[10px] font-black uppercase tracking-[0.4em]">{formattedDate}</div>
+                                        {pageData.readings.map((r, i) => (
+                                            <div key={i} className="space-y-10 mb-20">
+                                                {r.section && <div><h1 className="section-label">{r.section}</h1><div className="gradient-bar-section"></div></div>}
+                                                {r.subsection && <h2 className="subsection-label">{r.subsection}</h2>}
+                                                {r.title && <div><h3 className="title-label">{r.title}</h3><div className="gradient-bar-title"></div></div>}
+                                                {r.subtitle && <h4 className="subtitle-label">{r.subtitle}</h4>}
+                                                {r.chronological && <p className="chronological-label">{r.chronological}</p>}
+                                                {r.references && <p className="references-label">{r.references.split(/([1-3]?\s?[A-Za-z]+\s\d+:\d+(?:-\d+)?)/).map((p, k) => <span key={k} className={/([1-3]?\s?[A-Za-z]+\s\d+:\d+(?:-\d+)?)/.test(p) ? 'ref-purple' : ''}>{p}</span>)}</p>}
+                                                <div className="bible-text">
+                                                    {r.text.split(/(\[.*?\])/).filter(Boolean).reduce((acc, part, idx, arr) => {
+                                                        if (part.startsWith('[')) acc.push({ marker: part, content: arr[idx + 1] || "" });
+                                                        else if (idx === 0 && !arr[idx].startsWith('[')) acc.push({ marker: "", content: part });
+                                                        return acc;
+                                                    }, []).map((v, idx) => {
+                                                        const verseId = `${i}-${idx}`;
+                                                        return <span id={`verse-${verseId}`} key={idx}><Verse id={verseId} content={v.marker + v.content} footnotes={r.footnotes} /></span>
+                                                    })}
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </>
-                            ) : (
-                                <div className="h-full flex flex-col items-center justify-center py-40 gap-4">
-                                    <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                                    <div className="max-w-md text-center">
-                                        <div className="font-black uppercase tracking-widest opacity-30 mb-4">{error ? "Connection Snag" : "Synchronizing Library..."}</div>
-                                        {error && <div className="text-red-500 text-sm font-sans bg-red-950/20 p-6 rounded-2xl border border-red-100">
-                                            <p className="font-bold mb-2">Browser Security block detected.</p>
-                                            <p className="opacity-80 leading-relaxed italic">The engine cannot fetch files directly from your hard drive due to CORS security. <br/><br/>To fix this, please run this project using a local web server (e.g., VS Code's "Live Server" extension).</p>
-                                        </div>}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <div className="h-full flex flex-col items-center justify-center py-40 gap-4"><div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div><div className="max-w-md text-center"><div className="font-black uppercase tracking-widest opacity-30 mb-4">{error ? "Connection Snag" : "Synchronizing Library..."}</div>{error && <div className="text-red-500 text-sm font-sans bg-red-950/20 p-6 rounded-2xl border border-red-100"><p className="font-bold mb-2">Browser Security block detected.</p><p className="opacity-80 leading-relaxed italic">The engine cannot fetch files directly from your hard drive due to CORS security. <br/><br/>To fix this, please run this project using a local web server (e.g., VS Code's "Live Server" extension).</p></div>}</div></div>
+                                )}
+                            </div>
+                        )}
                     </main>
 
-                    {/* FIX 3: Persistent Floating Search Pill */}
                     <div className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[180] transition-all duration-300 ${menu === 'search' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'}`}>
                         <div className="bg-zinc-900/90 backdrop-blur-xl border border-zinc-700 shadow-2xl rounded-full p-2 pl-6 flex items-center gap-4 w-[90vw] max-w-lg">
                             <Icons.Search />
-                            <input 
-                                ref={searchInputRef}
-                                type="text" 
-                                placeholder="Search in scroll..." 
-                                className="flex-grow bg-transparent outline-none text-slate-100 placeholder-slate-400 font-medium"
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                            />
+                            <input ref={searchInputRef} type="text" placeholder="Search in scroll..." className="flex-grow bg-transparent outline-none text-slate-100 placeholder-slate-400 font-medium" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
                             <div className="h-6 w-px bg-zinc-700"></div>
-                            <button onClick={() => { setSearchQuery(""); setMenu(null); }} className="p-2 hover:bg-zinc-800 rounded-full text-slate-500 hover:text-red-500 transition-colors">
-                                <Icons.X />
-                            </button>
+                            <button onClick={() => { setSearchQuery(""); setMenu(null); }} className="p-2 hover:bg-zinc-800 rounded-full text-slate-500 hover:text-red-500 transition-colors"><Icons.X /></button>
                         </div>
                     </div>
 
-                    {/* Floating Action Bar for Selection Mode */}
                     {selectionMode && selectedVerses.size > 0 && (
                         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[190] animate-in slide-in-from-bottom-4">
-                            <div className="bg-zinc-900 text-white rounded-full shadow-2xl p-2 px-6 flex items-center gap-4 border border-zinc-700">
-                                <span className="font-bold text-sm">{selectedVerses.size} Selected</span>
-                                <div className="h-4 w-px bg-zinc-700"></div>
-                                <button onClick={copyVerses} className="flex items-center gap-2 hover:text-blue-400 font-bold text-sm uppercase tracking-wider">
-                                    <Icons.Copy /> Copy
-                                </button>
-                                <button onClick={() => setSelectedVerses(new Set())} className="hover:text-red-400">✕</button>
-                            </div>
+                            <div className="bg-zinc-900 text-white rounded-full shadow-2xl p-2 px-6 flex items-center gap-4 border border-zinc-700"><span className="font-bold text-sm">{selectedVerses.size} Selected</span><div className="h-4 w-px bg-zinc-700"></div><button onClick={copyVerses} className="flex items-center gap-2 hover:text-blue-400 font-bold text-sm uppercase tracking-wider"><Icons.Copy /> Copy</button><button onClick={() => setSelectedVerses(new Set())} className="hover:text-red-400">✕</button></div>
                         </div>
                     )}
 
-                    <BibleAtlasModal isOpen={view.atlas} onClose={() => setView({...view, atlas: false})} books={dicts.books || []} chapters={dicts.chapters || []} calendar={dicts.calendar || []} setDay={setActiveDay} />
-                    <CalendarModal isOpen={view.calendar} onClose={() => setView({...view, calendar: false})} activeDay={activeDay} setDay={setActiveDay} />
-
-                    {/* Unified Details Panel (Handles Lexicon & Footnotes) */}
+                    <BibleAtlasModal isOpen={atlasOpen} onClose={() => setAtlasOpen(false)} books={dicts.books || []} chapters={dicts.chapters || []} calendar={dicts.calendar || []} setDay={(d) => { setActiveDay(d); setAppView('reading'); }} />
                     <DetailsPanel type={detail?.type} data={detail?.data} onClose={() => setDetail(null)} tokenize={tokenize} />
-
-                    {detail && detail.type === 'image' && (
-                        <ImageViewer file={detail.data} onClose={() => setDetail(null)} />
-                    )}
-                    {detail && detail.type === 'video' && (
-                        <VideoViewer videoId={detail.data} onClose={() => setDetail(null)} />
-                    )}
+                    {detail && detail.type === 'image' && (<ImageViewer file={detail.data} onClose={() => setDetail(null)} />)}
+                    {detail && detail.type === 'video' && (<VideoViewer videoId={detail.data} onClose={() => setDetail(null)} />)}
                 </div>
             );
         };
 
         const App = () => {
-            const [settings, setSettings] = useState({ 
-                dark: true, 
-                power: { 
-                    verseHighlight: true, 
-                    lexical: true, 
-                    shekinah: true, // Consolidated Toggle
-                    divineQuote: true, 
-                    verseMarkers: true, 
-                    footnoteMarkers: true, 
-                    imageMarkers: true, 
-                    videoMarkers: true
-                }, 
-                lang: { 
-                    dn: 'transliterated', 
-                    pn: 'transliterated', 
-                    kw: 'modernized' 
-                } 
-            });
+            const [settings, setSettings] = useState({ dark: true, power: { verseHighlight: true, lexical: true, shekinah: true, divineQuote: true, verseMarkers: true, footnoteMarkers: true, imageMarkers: true, videoMarkers: true }, lang: { dn: 'transliterated', pn: 'transliterated', kw: 'modernized' } });
             const [dicts, setDicts] = useState({ dn: {}, pn: {}, kw: {}, books: [], chapters: [], calendar: [] });
             const [activeDay, setActiveDay] = useState(1);
             const [pageData, setPageData] = useState(null);
@@ -1292,19 +488,15 @@
             const [hoveredStrong, setHoveredStrong] = useState(null);
             const [error, setError] = useState(null);
             const [networkStatus, setNetworkStatus] = useState({});
-            
             const [searchQuery, setSearchQuery] = useState("");
             const [selectionMode, setSelectionMode] = useState(false);
             const [selectedVerses, setSelectedVerses] = useState(new Set());
+            
+            // NEW STATE for Calendar Navigation
+            const [appView, setAppView] = useState('year'); // 'year' | 'month' | 'reading'
+            const [selectedMonth, setSelectedMonth] = useState(0); // 0-11
 
-            const toggleVerseSelection = (id) => {
-                setSelectedVerses(prev => {
-                    const next = new Set(prev);
-                    if (next.has(id)) next.delete(id);
-                    else next.add(id);
-                    return next;
-                });
-            };
+            const toggleVerseSelection = (id) => { setSelectedVerses(prev => { const next = new Set(prev); if (next.has(id)) next.delete(id); else next.add(id); return next; }); };
 
             useEffect(() => {
                 const init = async () => {
@@ -1317,17 +509,10 @@
                             smartFetch('data/chapters.json', 'Chapter Map', setNetworkStatus),
                             smartFetch('data/calendar.json', 'Calendar', setNetworkStatus)
                         ]);
-                        
                         if (calendar && calendar.length > 0 && !calendar[0].reading) {
-                            console.log("[App] Hydrating calendar data with client-side metadata...");
                             const PLAN_MAP = { "1": "Genesis 1:1–2:3" };
-                            calendar.forEach(day => {
-                                if (PLAN_MAP[day.dayId]) {
-                                    day.reading = PLAN_MAP[day.dayId];
-                                }
-                            });
+                            calendar.forEach(day => { if (PLAN_MAP[day.dayId]) { day.reading = PLAN_MAP[day.dayId]; } });
                         }
-
                         setDicts({ dn, pn, kw, books, chapters, calendar });
                     } catch (e) { setError(e.toString()); }
                 };
@@ -1342,22 +527,14 @@
                         setPageData(data);
                         setError(null);
                     } catch (e) { 
-                        console.log("Caught fetch error for day:", activeDay);
-                        setPageData({
-                            dayid: String(activeDay),
-                            readings: [{
-                                title: "Content Pending",
-                                subtitle: "This portion of the scroll is yet to be unsealed.",
-                                text: "Stay tuned for future updates."
-                            }]
-                        });
+                        setPageData({ dayid: String(activeDay), readings: [{ title: "Content Pending", subtitle: "This portion of the scroll is yet to be unsealed.", text: "Stay tuned for future updates." }] });
                         setError(null);
                     }
                 };
                 load();
             }, [activeDay]);
 
-            return (<AppContext.Provider value={{ settings, setSettings, dicts, activeDay, setActiveDay, pageData, detail, setDetail, menu, setMenu, hoveredStrong, setHoveredStrong, error, networkStatus, setNetworkStatus, searchQuery, setSearchQuery, selectionMode, setSelectionMode, selectedVerses, setSelectedVerses, toggleVerseSelection }}><EngineView /></AppContext.Provider>);
+            return (<AppContext.Provider value={{ settings, setSettings, dicts, activeDay, setActiveDay, pageData, detail, setDetail, menu, setMenu, hoveredStrong, setHoveredStrong, error, networkStatus, setNetworkStatus, searchQuery, setSearchQuery, selectionMode, setSelectionMode, selectedVerses, setSelectedVerses, toggleVerseSelection, appView, setAppView, selectedMonth, setSelectedMonth }}><EngineView /></AppContext.Provider>);
         };
 
         ReactDOM.createRoot(document.getElementById('root')).render(<App />);
