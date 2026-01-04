@@ -1,6 +1,6 @@
 {
   "dayid": "1",
-  "plan": "Genesis 1:1–2:3",
+  "plan": "John 1:1; Genesis 1:1–2:4; Genesis 2:5-25; Genesis 3:1-24",
   "readings": [
     {
       "book": "1",
@@ -9,7 +9,7 @@
       "subsection": "The Creation of the Universe",
       "title": "The את",
       "subtitle": "The Explanation for All Things",
-      "chronological": "Eternity",
+      "chronological": "[Eternity]",
       "references": "John 1:1",
       "text": "[John 1:1] In the beginning was the <dn8>Explanation</dn8>, and the <dn8>Explanation</dn8> was with <dn1>יהוה</dn1>, and the <dn8>Explanation</dn8> was <dn1>יהוה</dn1>.",
       "footnotes": {}
@@ -17,9 +17,9 @@
     {
       "title": "A Unified Cycle",
       "subtitle": "The Generation of Light",
-      "chronological": "1st Day of the 1st Month, 1 FC",
+      "chronological": "[1st Day of the 1st Month, 1 FC]",
       "references": "Genesis 1:1-5",
-      "text": "[Genesis 1:1] <h7225>In <i>the</i> beginning</h7225> <dn2>Elohim</dn2> created <dn7>את</dn7> the heavens and <dn7>את</dn7> the earth. {1.1} <vid:85BLkCl3L08?start=1> [2] Now the earth was formless and empty, and darkness was on the face of the deep. <img:0001.jpg> And the Spirit of <dn2>Elohim</dn2> was vibrating on the face of the waters. <img:0002.jpg> [3] And <dn2>Elohim</dn2> said, <dq>“light come to be,”</dq> and light came to be. [4] And <dn2>Elohim</dn2> saw <dn7>את</dn7> the light, that <i>it was</i> <kw1>good</kw1>. And <dn2>Elohim</dn2> separated the light from the darkness. [5] And <dn2>Elohim</dn2> called the light <dq>‘a <kw2>day</kw2>’</dq> and the darkness <dn9>He</dn9> called <dq>‘a night.’</dq> And there came to be evening and there came to be morning, <kw3>one day</kw3>.{5.1}",
+      "text": "[Genesis 1:1] <h7225>In <i>the</i> beginning</h7225> <dn2>Elohim</dn2> created <dn7>את</dn7> the heavens and <dn7>את</dn7> the earth. {1.1} <vid:85BLkCl3L08?start=1> [2] Now the earth was formless and empty, and darkness was on the face of the deep. <img:Waters 1.jpg, Waters 2.jpg, Waters 3.jpg, Waters 4.jpg, Waters 5.jpg, Waters 6.jpg, Waters 7.jpg> And the Spirit of <dn2>Elohim</dn2> was vibrating on the face of the waters. <img:Spirit 1.jpg, Spirit 2.jpg, Spirit 3.jpg> [3] And <dn2>Elohim</dn2> said, <dq>“light come to be,”</dq> and light came to be. [4] And <dn2>Elohim</dn2> saw <dn7>את</dn7> the light, that <i>it was</i> <kw1>good</kw1>. And <dn2>Elohim</dn2> separated the light from the darkness. [5] And <dn2>Elohim</dn2> called the light <dq>‘a <kw2>day</kw2>’</dq> and the darkness <dn9>He</dn9> called <dq>‘a night.’</dq> And there came to be evening and there came to be morning, <kw3>one day</kw3>.{5.1}",
       "footnotes": {
         "1.1": "<h3>The Nature of Elohim</h3><p>The term <b style='color:#00FFFF'>Elohim</b> here is the plural of <i>Eloah</i>, yet it is used with the singular verb <span style='font-variant:small-caps'>Bara</span> (created). This grammatical construct signifies:</p><ul><li><b>The Unity:</b> One singular entity acting.</li><li><b>The Majesty:</b> Plural form denotes supreme authority and fullness.</li><li><b>The Complexity:</b> Hints at the multi-faceted nature of the Creator.</li></ul><br/><table><thead><tr><th>Hebrew</th><th>Type</th><th>Meaning</th></tr></thead><tbody><tr><td>Elohim</td><td>Plural</td><td>Supreme Power</td></tr><tr><td>Eloah</td><td>Singular</td><td>God / Deity</td></tr></tbody></table><blockquote>“The mystery of the Creator is hidden in the grammar of His name.” – Ancient Commentary</blockquote>",
 		"5.1": "a day 'echad', not as the unit 'one', but as a 'unity'."
@@ -30,7 +30,7 @@
       "chapter": "1",
       "title": "The Second Cycle",
       "subtitle": "The Expansion of the Heavens",
-      "chronological": "2nd Day of the 1st Month, 1 FC",
+      "chronological": "[2nd Day of the 1st Month, 1 FC]",
       "references": "Genesis 1:6-8",
       "text": "[Genesis 1:6] And <dn2>Elohim</dn2> said, <dq>“Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.”</dq> [7] And <dn2>Elohim</dn2> made <dn7>את</dn7> the expanse, and separated the waters which were under the expanse from the waters which were above the expanse. And it came to be so. [8] And <dn2>Elohim</dn2> called the expanse <dq>‘heavens.’</dq> And there came to be evening and there came to be morning, the second <kw2>day</kw2>.",
       "footnotes": {}
@@ -40,7 +40,7 @@
       "chapter": "1",
       "title": "The Third Cycle",
       "subtitle": "The Dry Land and Vegetation",
-      "chronological": "3rd Day of the 1st Month, 1 FC",
+      "chronological": "[3rd Day of the 1st Month, 1 FC]",
       "references": "Genesis 1:9-13",
       "text": "[Genesis 1:9] And <dn2>Elohim</dn2> said, <dq>“Let the waters under the heavens be gathered together into <kw4>one place</kw4>, and let the dry land appear.”</dq> And it came to be so. [10] And <dn2>Elohim</dn2> called the dry land <dq>‘earth,’</dq> and the gathering together of the waters <dn9>He</dn9> called <dq>‘seas.’</dq> And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [11] And <dn2>Elohim</dn2> said, <dq>“Let the earth bring forth grass, the herb that yields seed, and the fruit tree that yields fruit according to its kind, whose seed is in itself, on the earth.”</dq> And it came to be so. [12] And the earth brought forth grass, the herb that yields seed according to its kind, and the tree that yields fruit, whose seed is in itself according to its kind. And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [13] And there came to be evening and there came to be morning, the third <kw2>day</kw2>.",
       "footnotes": {}
@@ -50,7 +50,7 @@
       "chapter": "1",
       "title": "The Fourth Cycle",
       "subtitle": "The Luminaries and Domains of Authority",
-      "chronological": "4th Day of the 1st Month, 1 FC",
+      "chronological": "[4th Day of the 1st Month, 1 FC]",
       "references": "Genesis 1:14-19",
       "text": "[Genesis 1:14] And <dn2>Elohim</dn2> said, <dq>“Let lights come to be in the expanse of the heavens to separate the day from the night, and let them be for signs and appointed times, and for days and years,</dq> [15] <dq>and let them be for lights in the expanse of the heavens to give light on the earth.”</dq> And it came to be so. [16] And <dn2>Elohim</dn2> <dn7>את</dn7> made two great lights: <dn7>את</dn7> the greater light to rule the day, and <dn7>את</dn7> the lesser light to rule the night, and <dn7>את</dn7> the stars. [17] And <dn2>Elohim</dn2> set them in the expanse of the heavens to give light on the earth, [18] and to rule over the day and over the night, and to separate the light from the darkness. And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [19] And there came to be evening and there came to be morning, the fourth <kw2>day</kw2>.",
       "footnotes": {}
@@ -60,7 +60,7 @@
       "chapter": "1",
       "title": "The Fifth Cycle",
       "subtitle": "Life and Blessing",
-      "chronological": "5th Day of the 1st Month, 1 FC",
+      "chronological": "[5th Day of the 1st Month, 1 FC]",
       "references": "Genesis 1:20-23",
       "text": "[Genesis 1:20] And <dn2>Elohim</dn2> said, <dq>“Let the waters teem with shoals of living beings, and let birds fly above the earth on the face of the expanse of the heavens.”</dq> [21] And <dn2>Elohim</dn2> created <dn7>את</dn7> the reptiles, the greatest ones, and every living being that moves, with which the waters teemed, according to their kind, and every winged bird according to its kind. And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [22] And <dn2>Elohim</dn2> blessed them, saying, <dq>“Be fruitful and increase, and fill <dn7>את</dn7> the waters in the seas, and let the birds increase on the earth.”</dq> [23] And there came to be evening and there came to be morning, the fifth <kw2>day</kw2>.",
       "footnotes": {}
@@ -70,7 +70,7 @@
       "chapter": "1",
       "title": "The Sixth Cycle",
       "subtitle": "The Work is Finished with the Crowning Glory",
-      "chronological": "6th Day of the 1st Month, 1 FC",
+      "chronological": "[6th Day of the 1st Month, 1 FC]",
       "references": "Genesis 1:24-31",
       "text": "[Genesis 1:24] And <dn2>Elohim</dn2> said, <dq>“Let the earth bring forth the living being according to its kind: livestock and creeping creatures and beasts of the earth, according to its kind.”</dq> And it came to be so. [25] And <dn2>Elohim</dn2> made <dn7>את</dn7> the living ones of the earth according to its kind, livestock according to its kind, and all that creep on the earth according to its kind. And <dn2>Elohim</dn2> saw that <i>it was</i> <kw1>good</kw1>. [26] And <dn2>Elohim</dn2> said, <dq>“Let us make a man in our image, according to our likeness, and let them rule over the fish of the sea, and over the birds of the heavens, and over the livestock, and over all the earth and over all the creeping creatures that creep on the ground.”</dq> [27] And <dn2>Elohim</dn2> created <dn7>את</dn7> the man in His image, in the image of <dn2>Elohim</dn2> <dn9>He</dn9> created him – male and female He created them. [28] And <dn2>Elohim</dn2> blessed them, and <dn2>Elohim</dn2> said to them, <dq>“Be fruitful and increase, and fill <dn7>את</dn7> the earth and subdue it, and rule over the fish of the sea, and over the birds of the heavens, and over all creeping creatures on the earth.”</dq> [29] And <dn2>Elohim</dn2> said, <dq>“See, I have given you <dn7>את</dn7> every plant that yields seed which is on the face of all the earth, and every tree whose fruit yields seed, to you it is for food.</dq> [30] <dq>And to every beast of the earth, and to every bird of the heavens, and to every creeping creature on the earth, in which there is a living being, <dn7>את</dn7> every green plant is for food.”</dq> And it came to be so. [31] And <dn2>Elohim</dn2> saw <dn7>את</dn7> all that <dn9>He</dn9> had made, and see, <i>it was</i> <kw5>very good</kw5>. And there came to be evening and there came to be morning, the sixth <kw2>day</kw2>.",
       "footnotes": {}
@@ -80,7 +80,7 @@
       "chapter": "2",
       "title": "The Seventh Cycle - The Shabbat",
       "subtitle": "Cessation from the Work and an Exclusive Rest",
-      "chronological": "7th Day of the 1st Month, 1 FC",
+      "chronological": "[7th Day of the 1st Month, 1 FC]",
       "references": "Genesis 2:1-4",
       "text": "[Genesis 2:1] Thus the heavens and the earth were completed, and all their <kw6>array</kw6>. [2] And in the seventh <kw2>day</kw2> <dn2>Elohim</dn2> completed <dn11>His</dn11> work which <dn9>He</dn9> had done, and <dn9>He</dn9> <kw8>rested</kw8> on the seventh <kw2>day</kw2> from all His work which <dn9>He</dn9> had made. [3] And <dn2>Elohim</dn2> blessed <dn7>את</dn7> the seventh <kw2>day</kw2> and <kw7>set it apart</kw7>, because on it <dn9>He</dn9> <kw8>rested</kw8> from all His work which <dn2>Elohim</dn2> in creating had made. [4] These are the births of the heavens and the earth when they were created, in the <kw2>day</kw2> {4.1} that <dn1>יהוה</dn1> <dn2>Elohim</dn2> made earth and heavens.",
       "footnotes": {
@@ -90,7 +90,7 @@
     {
       "book": "1",
       "chapter": "2",
-      "title": "Recap of Days 1-6",
+      "title": "Creation Recap",
       "subtitle": "",
       "chronological": "",
       "references": "Genesis 2:5-25",

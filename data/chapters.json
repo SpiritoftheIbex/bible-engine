@@ -996,7 +996,7 @@
 {"bookId": "42",  "chapterNum": "22",  "dayIds": ["298","299","300","302","303"] },
 {"bookId": "42",  "chapterNum": "23",  "dayIds": ["303","304","305","306","307","308"] },
 {"bookId": "42",  "chapterNum": "24",  "dayIds": ["309","310"] },
-{"bookId": "43",  "chapterNum": "1",  "dayIds": ["267","269","273","274"] },
+{"bookId": "43",  "chapterNum": "1",  "dayIds": ["1","267","269","273","274"] },
 {"bookId": "43",  "chapterNum": "2",  "dayIds": ["274","275"] },
 {"bookId": "43",  "chapterNum": "3",  "dayIds": ["275"] },
 {"bookId": "43",  "chapterNum": "4",  "dayIds": ["275","276"] },
