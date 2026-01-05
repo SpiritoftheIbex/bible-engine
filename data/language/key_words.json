@@ -1,190 +1,41 @@
-{
-  "kw1": {
-    "traditional": "good",
-    "modernized": "harmonious"
-  },
-  "kw2": {
-    "traditional": "day",
-    "modernized": "cycle"
-  },
-  "kw3": {
-    "traditional": "one day",
-    "modernized": "a unified cycle"
-  },
-  "kw4": {
-    "traditional": "one place",
-    "modernized": "a unified place"
-  },
-  "kw5": {
-    "traditional": "very good",
-    "modernized": "maximally harmonious"
-  },
-  "kw6": {
-    "traditional": "array",
-    "modernized": "ordered arrangements"
-  },
-  "kw7": {
-    "traditional": "set it apart",
-    "modernized": "made it exclusive"
-  },
-  "kw8": {
-    "traditional": "rested",
-    "modernized": "ceased"
-  },
-  "kw9": {
-    "traditional": "a helper for him, as his counterpart",
-    "modernized": "an ally corresponding to him"
-  },
-  "kw10": {
-    "traditional": "breath of lives",
-    "modernized": "a breath of great-life"
-  },
-  "kw11": {
-    "traditional": "the tree of life",
-    "modernized": "the tree of great-life"
-  },
-  "kw12": {
-    "traditional": "the tree of the knowledge of good and evil",
-    "modernized": "the tree of the experience of harmony and disharmony"
-  },
-  "kw13": {
-    "traditional": "Eat",
-    "modernized": "Eating you shall eat"
-  },
-  "kw14": {
-    "traditional": "you shall certainly die",
-    "modernized": "dying you shall die"
-  },
-  "kw15": {
-    "traditional": "ribs",
-    "modernized": "ribbed structures"
-  },
-  "kw16": {
-    "traditional": "rib",
-    "modernized": "ribbed structure"
-  },
-  "kw17": {
-    "traditional": "bone",
-    "modernized": "structure"
-  },
-  "kw18": {
-    "traditional": "bones",
-    "modernized": "structures"
-  },
-  "kw19": {
-    "traditional": "one flesh",
-    "modernized": "a unified flesh"
-  },
-  "kw20": {
-    "traditional": "knowing good and evil",
-    "modernized": "experiencing harmony and disharmony"
-  },
-  "kw21": {
-    "traditional": "husband",
-    "modernized": "man"
-  },
-  "kw22": {
-    "traditional": "loin coverings",
-    "modernized": "armours"
-  },
-  "kw23": {
-    "traditional": "every beast",
-    "modernized": "all living ones"
-  },
-  "kw24": {
-    "traditional": "the man",
-    "modernized": "Adam"
-  },
-  "kw25": {
-    "traditional": "wife",
-    "modernized": "woman"
-  },
-  "kw26": {
-    "traditional": "keruḇim",
-    "modernized": "guardians"
-  },
-  "kw27": {
-    "traditional": "know good and evil",
-    "modernized": "experience harmony and disharmony"
-  },
-  "kw28": {
-    "traditional": "cursed",
-    "modernized": "lacking blessing"
-  },
-  "kw29": {
-    "traditional": "altar",
-    "modernized": "slaughter-place"
-  },
-  "kw31": {
-    "traditional": "congregation",
-    "modernized": "assembly"
-  },
-  "kw32": {
-    "traditional": "covenant",
-    "modernized": "contract"
-  },
-  "kw33": {
-    "traditional": "gentile",
-    "modernized": "nations"
-  },
-  "kw34": {
-    "traditional": "law",
-    "modernized": "instruction"
-  },
-  "kw35": {
-    "traditional": "torah",
-    "modernized": "instruction"
-  },
-  "kw36": {
-    "traditional": "prophet",
-    "modernized": "spokesperson"
-  },
-  "kw37": {
-    "traditional": "sacrifice",
-    "modernized": "offering"
-  },
-  "kw38": {
-    "traditional": "tabernacle",
-    "modernized": "dwelling place"
-  },
-  "kw39": {
-    "traditional": "sin",
-    "modernized": "injustice"
-  },
-  "kw40": {
-    "traditional": "grace",
-    "modernized": "empowerment"
-  },
-  "kw41": {
-    "traditional": "holy",
-    "modernized": "exclusive"
-  },
-  "kw42": {
-    "traditional": "faith",
-    "modernized": "trust"
-  },
-  "kw43": {
-    "traditional": "belief",
-    "modernized": "trust"
-  },
-  "kw44": {
-    "traditional": "right",
-    "modernized": "just"
-  },
-  "kw45": {
-    "traditional": "righteous",
-    "modernized": "just"
-  },
-  "kw46": {
-    "traditional": "evil",
-    "modernized": "disharmony"
-  },
-  "kw47": {
-    "traditional": "clean",
-    "modernized": "fit"
-  },
-  "kw48": {
-    "traditional": "unclean",
-    "modernized": "unfit"
-  }
+{ 
+"kw1": { "traditional": "Word", "modernized": "Explanation" },
+"kw2": { "traditional": "Elohim", "modernized": "YeHoVaH" },
+"kw3": { "traditional": "moving", "modernized": "vibrating" },
+"kw4": { "traditional": "light", "modernized": "illumination" },
+"kw5": { "traditional": "good", "modernized": "harmonious" },
+"kw6": { "traditional": "day", "modernized": "cycle" }, 
+"kw7": { "traditional": "one day", "modernized": "a unified cycle" },
+"kw8": { "traditional": "one place", "modernized": "a unified place" }, 
+"kw9": { "traditional": "very good", "modernized": "maximally harmonious" }, 
+"kw10": { "traditional": "array", "modernized": "ordered arrangements" }, 
+"kw11": { "traditional": "set", "modernized": "made" }, 
+"kw12": { "traditional": "apart", "modernized": "exclusive" }, 
+"kw13": { "traditional": "a helper for him, as his counterpart", "modernized": "an ally corresponding to him" }, 
+"kw14": { "traditional": "breath of lives", "modernized": "a breath of great-life" }, 
+"kw15": { "traditional": "the tree of life", "modernized": "the tree of great-life" }, 
+"kw16": { "traditional": "the tree of the knowledge of good and evil", 
+	"modernized": "the tree of the experience of harmony and disharmony" }, 
+"kw17": { "traditional": "Eat", "modernized": "Eating you shall eat" }, 
+"kw18": { "traditional": "you shall certainly die", "modernized": "dying you shall die" }, 
+"kw19": { "traditional": "ribs", "modernized": "ribbed structures" }, 
+"kw20": { "traditional": "rib", "modernized": "ribbed structure" }, 
+"kw21": { "traditional": "bone", "modernized": "structure" }, 
+"kw22": { "traditional": "bones", "modernized": "structures" }, 
+"kw23": { "traditional": "one flesh", "modernized": "a unified flesh" }, 
+"kw24": { "traditional": "knowing good and evil", "modernized": "experiencing harmony and disharmony" }, 
+"kw25": { "traditional": "husband", "modernized": "man" }, 
+"kw26": { "traditional": "loin coverings", "modernized": "armours" }, 
+"kw27": { "traditional": "every beast", "modernized": "all living ones" }, 
+"kw28": { "traditional": "the man", "modernized": "Adam" }, 
+"kw29": { "traditional": "wife", "modernized": "woman" }, 
+"kw30": { "traditional": "keruḇim", "modernized": "the guardians" }, 
+"kw31": { "traditional": "know good and evil", "modernized": "experience harmony and disharmony" }, 
+"kw32": { "traditional": "cursed", "modernized": "lacking blessing" },
+"kw33": { "traditional": "created", "modernized": "structured" },
+"kw34": { "traditional": "great sea creatures", "modernized": "the great living furnaces (dragons)" },
+"kw35": { "traditional": "rested", "modernized": "ceased" },
+"kw36": { "traditional": "man", "modernized": "human" },
+"kw37": { "traditional": "a flaming sword", "modernized": "the sword of flame" },
+"kw38": { "traditional": "in creating had made", "modernized": "structured for making" }
 }
