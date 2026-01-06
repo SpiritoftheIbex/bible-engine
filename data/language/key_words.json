@@ -1,6 +1,6 @@
 { 
-"kw1": { "traditional": "Word", "modernized": "Explanation" },
-"kw2": { "traditional": "Elohim", "modernized": "YeHoVaH" },
+"kw1": { "traditional": "the Word", "modernized": "The Explanation" },
+"kw2": { "traditional": "Elohim", "modernized": "The Elohim" },
 "kw3": { "traditional": "moving", "modernized": "vibrating" },
 "kw4": { "traditional": "light", "modernized": "illumination" },
 "kw5": { "traditional": "good", "modernized": "harmonious" },
@@ -43,5 +43,6 @@
 "kw41": { "traditional": "rooms", "modernized": "nests" },
 "kw42": { "traditional": "tar", "modernized": "a sheltering coat" },
 "kw43": { "traditional": "cubit", "modernized": "armlength" },
-"kw44": { "traditional": "die", "modernized": "expire" }
+"kw44": { "traditional": "die", "modernized": "expire" },
+"kw45": { "traditional": "with", "modernized": "next to" }
 }

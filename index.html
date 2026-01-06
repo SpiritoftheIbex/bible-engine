@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chronological Bible Engine v1.20 (Shekinah)</title>
+    <title>Chronological Bible Engine v1.21 (Shekinah)</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -246,13 +246,6 @@
                 }));
             };
 
-            const adjustScrollSpeed = (delta) => {
-                setSettings(prev => ({
-                    ...prev,
-                    autoScrollSpeed: Math.min(3.0, Math.max(0.5, parseFloat((prev.autoScrollSpeed + delta).toFixed(1))))
-                }));
-            };
-
             const filteredNetworkStatus = Object.entries(networkStatus).filter(([k]) => ['Divine Names', 'Proper Names', 'Key Words', 'Book Index', 'Chapter Map', 'Calendar'].includes(k) || k.startsWith('Day') || k.startsWith('Scroll') || k.startsWith('Image') || k.startsWith('Video'));
 
             return (
@@ -275,14 +268,6 @@
                                             <button onClick={() => adjustFontSize(-0.1)} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded text-xs text-zinc-400 hover:text-white font-serif">A-</button>
                                             <span className="w-10 text-center text-xs font-black tracking-widest text-blue-400">{settings.fontSize.toFixed(1)}</span>
                                             <button onClick={() => adjustFontSize(0.1)} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded text-lg text-zinc-400 hover:text-white font-serif">A+</button>
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="font-bold text-sm text-zinc-300">Auto Scroll Speed</span>
-                                        <div className="flex items-center gap-2 bg-black/40 rounded-lg p-1 border border-white/5">
-                                            <button onClick={() => adjustScrollSpeed(-0.5)} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded text-zinc-400 hover:text-white"><Icons.Turtle /></button>
-                                            <span className="w-10 text-center text-xs font-black tracking-widest text-emerald-400">{settings.autoScrollSpeed}x</span>
-                                            <button onClick={() => adjustScrollSpeed(0.5)} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded text-zinc-400 hover:text-white"><Icons.Rabbit /></button>
                                         </div>
                                     </div>
                                 </div>
@@ -587,13 +572,23 @@
             const today = new Date();
             const currentMonth = today.getMonth(); 
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            useEffect(() => {
+                // Small timeout to ensure DOM is ready
+                const timer = setTimeout(() => {
+                    const monthEl = document.getElementById(`month-${currentMonth}`);
+                    if (monthEl) monthEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+                return () => clearTimeout(timer);
+            }, [currentMonth]);
+
             return (
                 <div className="max-w-6xl mx-auto p-4 md:p-12 animate-in fade-in duration-700">
                     <button onClick={onBack} className="mb-8 text-sm font-bold uppercase tracking-widest text-zinc-500 hover:text-white flex items-center gap-2 transition-colors"><Icons.Home /> Back to Entry Hall</button>
                     <h1 className="text-4xl md:text-6xl font-black text-center mb-12 tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-purple-600">2026 CHRONOLOGY</h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {months.map((m, i) => (
-                            <button key={m} onClick={() => onSelectMonth(i)} className={`p-8 rounded-3xl text-left transition-all duration-300 group relative overflow-hidden ${i === currentMonth ? 'bg-blue-600 shadow-[0_0_40px_rgba(37,99,235,0.5)] scale-105 ring-2 ring-white/20' : 'bg-zinc-900/50 hover:bg-zinc-800 border border-white/5 hover:border-white/10'}`}>
+                            <button key={m} id={`month-${i}`} onClick={() => onSelectMonth(i)} className={`p-8 rounded-3xl text-left transition-all duration-300 group relative overflow-hidden ${i === currentMonth ? 'bg-blue-600 shadow-[0_0_40px_rgba(37,99,235,0.5)] scale-105 ring-2 ring-white/20' : 'bg-zinc-900/50 hover:bg-zinc-800 border border-white/5 hover:border-white/10'}`}>
                                 <div className="text-xs font-black uppercase tracking-[0.3em] opacity-40 mb-4">Month {String(i+1).padStart(2,'0')}</div>
                                 <div className="text-3xl font-serif font-bold text-slate-100 group-hover:text-blue-400 transition-colors">{m}</div>
                                 {i === currentMonth && <div className="absolute top-4 right-4 w-2 h-2 bg-white rounded-full animate-pulse shadow-[0_0_10px_white]"></div>}
@@ -612,11 +607,15 @@
             const daysInMonth = calendarData.filter(d => (parseInt(d.dateString.substring(4, 6)) - 1) === monthIndex);
             
             useEffect(() => {
-                if (isCurrentMonth && listRef.current) {
-                    const row = document.getElementById(`day-row-${currentDay}`);
-                    if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (isCurrentMonth) {
+                    // Small timeout to ensure DOM is ready
+                    const timer = setTimeout(() => {
+                        const row = document.getElementById(`day-row-${currentDay}`);
+                        if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                    return () => clearTimeout(timer);
                 }
-            }, [isCurrentMonth, currentDay]);
+            }, [isCurrentMonth, currentDay, monthIndex]); // Added monthIndex to dependencies
 
             const monthName = new Date(2026, monthIndex, 1).toLocaleString('default', { month: 'long' });
 
@@ -646,63 +645,6 @@
             const { tokenize } = useTokenization();
             const [atlasOpen, setAtlasOpen] = useState(false);
             const searchInputRef = useRef(null);
-            
-            // Auto Scroll State
-            const [isAutoScrolling, setIsAutoScrolling] = useState(false);
-            const scrollRef = useRef(null);
-
-            const toggleAutoScroll = () => {
-                setIsAutoScrolling(prev => !prev);
-            };
-
-            // Auto Scroll Logic
-            useEffect(() => {
-                let animationFrameId;
-                let lastTime = 0;
-
-                const animateScroll = (time) => {
-                    if (!isAutoScrolling) return;
-                    
-                    if (time - lastTime > 16) { // Cap at ~60fps
-                        const baseSpeed = 0.5; // Base pixels per frame
-                        // Faster font = more vertical space to cover = slightly faster scroll needed to maintain reading pace
-                        const speed = baseSpeed * (settings.fontSize / 1.2) * settings.autoScrollSpeed;
-                        
-                        window.scrollBy(0, speed);
-                        
-                        // Stop if at bottom
-                        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
-                            setIsAutoScrolling(false);
-                        }
-                        
-                        lastTime = time;
-                    }
-                    animationFrameId = requestAnimationFrame(animateScroll);
-                };
-
-                if (isAutoScrolling) {
-                    animationFrameId = requestAnimationFrame(animateScroll);
-                }
-
-                return () => cancelAnimationFrame(animationFrameId);
-            }, [isAutoScrolling, settings.fontSize, settings.autoScrollSpeed]);
-
-            // Stop autoscroll on user interaction
-            useEffect(() => {
-                const handleInteraction = () => {
-                    if (isAutoScrolling) setIsAutoScrolling(false);
-                };
-
-                window.addEventListener('wheel', handleInteraction);
-                window.addEventListener('touchmove', handleInteraction);
-                window.addEventListener('keydown', handleInteraction);
-
-                return () => {
-                    window.removeEventListener('wheel', handleInteraction);
-                    window.removeEventListener('touchmove', handleInteraction);
-                    window.removeEventListener('keydown', handleInteraction);
-                };
-            }, [isAutoScrolling]);
 
             const copyVerses = async () => {
                 const textToCopy = Array.from(selectedVerses).sort((a,b) => { const getNum = id => parseInt(id.split('-').pop()); return getNum(a) - getNum(b); }).map(id => { const el = document.getElementById(`verse-${id}`); return el ? el.innerText : ""; }).join('\n\n').replace(/\{.*?\}/g, '').replace(/\s+/g, ' ').replace(/\n\s*\n/g, '\n').trim();
@@ -751,7 +693,17 @@
                             
                             {appView === 'reading' && (
                                 <>
-                                    <button onClick={() => setAppView('year')} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Calendar /></button>
+                                    <button onClick={() => {
+                                        // Update month based on current activeDay before switching
+                                        if (dicts.calendar) {
+                                            const dayData = dicts.calendar.find(d => parseInt(d.dayId) === activeDay);
+                                            if (dayData && dayData.dateString) {
+                                                const monthIdx = parseInt(dayData.dateString.substring(4, 6)) - 1;
+                                                setSelectedMonth(monthIdx);
+                                            }
+                                        }
+                                        setAppView('month');
+                                    }} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Calendar /></button>
                                     <button onClick={() => setAtlasOpen(true)} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Compass /></button>
                                     <div className="h-5 w-px bg-zinc-800 mx-1 md:mx-2"></div>
                                     <button 
@@ -850,16 +802,6 @@
                         )}
                     </main>
 
-                    {isAutoScrolling && (
-                        <button 
-                            onClick={toggleAutoScroll}
-                            className="fixed bottom-10 right-10 z-[190] bg-blue-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 hover:bg-blue-500 transition-all animate-bounce"
-                            title="Pause Auto Scroll"
-                        >
-                            <Icons.Pause className="w-6 h-6" />
-                        </button>
-                    )}
-
                     <div className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[180] transition-all duration-300 ${menu === 'search' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'}`}>
                         <div className="bg-zinc-900/90 backdrop-blur-xl border border-zinc-700 shadow-2xl rounded-full p-2 pl-6 flex items-center gap-4 w-[90vw] max-w-lg">
                             <Icons.Search />
@@ -899,7 +841,6 @@
                     const defaults = { 
                         dark: true, 
                         fontSize: 1.2, 
-                        autoScrollSpeed: 1.0,
                         power: { verseHighlight: true, lexical: true, shekinah: true, divineQuote: true, verseMarkers: true, footnoteMarkers: true, imageMarkers: true, videoMarkers: true }, 
                         lang: { dn: 'transliterated', pn: 'transliterated', kw: 'modernized' } 
                     };
@@ -908,7 +849,6 @@
                     return { 
                         dark: true, 
                         fontSize: 1.2, 
-                        autoScrollSpeed: 1.0,
                         power: { verseHighlight: true, lexical: true, shekinah: true, divineQuote: true, verseMarkers: true, footnoteMarkers: true, imageMarkers: true, videoMarkers: true }, 
                         lang: { dn: 'transliterated', pn: 'transliterated', kw: 'modernized' } 
                     };
