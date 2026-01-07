@@ -880,27 +880,27 @@
                     </main>
 
                     <div className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[180] transition-all duration-300 ${menu === 'search' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'}`}>
-                        <div className="bg-zinc-900/90 backdrop-blur-xl border border-zinc-700 shadow-2xl rounded-full p-2 pl-6 flex items-center gap-4 w-[90vw] max-w-lg">
-                            <Icons.Search />
+                        <div className="bg-zinc-900/90 backdrop-blur-xl border border-zinc-700 shadow-2xl rounded-full p-2 pl-3 md:pl-6 flex items-center gap-2 md:gap-4 w-[95vw] md:w-[90vw] max-w-lg">
+                            <div className="hidden sm:block"><Icons.Search /></div>
                             <input 
                                 ref={searchInputRef} 
                                 type="text" 
                                 placeholder={appView === 'portico' ? "Filter scrolls..." : "Find in text..."}
-                                className="flex-grow bg-transparent outline-none text-slate-100 placeholder-slate-400 font-medium" 
+                                className="flex-grow bg-transparent outline-none text-slate-100 placeholder-slate-400 font-medium min-w-0" 
                                 value={searchQuery} 
                                 onChange={(e) => setSearchQuery(e.target.value)} 
                             />
                             {searchMatches.count > 0 && (
-                                <div className="flex items-center gap-2 border-l border-white/10 pl-4 ml-2 animate-in fade-in slide-in-from-right-2">
-                                    <span className="text-xs font-mono text-slate-400 min-w-[3rem] text-center">
-                                        {searchMatches.current + 1} / {searchMatches.count}
+                                <div className="flex items-center gap-1 md:gap-2 border-l border-white/10 pl-2 ml-1 md:pl-4 md:ml-2 animate-in fade-in slide-in-from-right-2 flex-shrink-0">
+                                    <span className="text-[10px] md:text-xs font-mono text-slate-400 min-w-[2.5rem] md:min-w-[3rem] text-center whitespace-nowrap">
+                                        {searchMatches.current + 1}/{searchMatches.count}
                                     </span>
                                     <button onClick={() => navigateSearch(-1)} className="p-1 hover:text-white text-slate-400 hover:bg-white/10 rounded"><Icons.Up /></button>
                                     <button onClick={() => navigateSearch(1)} className="p-1 hover:text-white text-slate-400 hover:bg-white/10 rounded"><Icons.Down /></button>
                                 </div>
                             )}
-                            <div className="h-6 w-px bg-zinc-700"></div>
-                            <button onClick={() => { setSearchQuery(""); setMenu(null); }} className="p-2 hover:bg-zinc-800 rounded-full text-slate-500 hover:text-red-500 transition-colors"><Icons.X /></button>
+                            <div className="h-6 w-px bg-zinc-700 hidden sm:block"></div>
+                            <button onClick={() => { setSearchQuery(""); setMenu(null); }} className="p-2 hover:bg-zinc-800 rounded-full text-slate-500 hover:text-red-500 transition-colors flex-shrink-0"><Icons.X /></button>
                         </div>
                     </div>
 
