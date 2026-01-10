@@ -738,22 +738,31 @@
 
             useEffect(() => {
                 if (pageData && scrollTarget && appView === 'reading') {
-                    // Small delay to allow rendering
-                    setTimeout(() => {
-                         const idx = pageData.readings.findIndex(r => {
-                             if (!r.references) return false;
-                             const b = scrollTarget.book; 
-                             const c = scrollTarget.chapter;
-                             return r.references.includes(`${b} ${c}:`) || r.references.includes(`${b} ${c} `) || r.references.endsWith(`${b} ${c}`);
-                         });
-                         if (idx >= 0) {
-                             const el = document.getElementById(`reading-block-${idx}`);
-                             if (el) {
-                                 el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                             }
-                         }
-                         setScrollTarget(null);
-                    }, 100);
+                    // Start an attempt cycle to find the element
+                    const attemptScroll = (count = 0) => {
+                        const idx = pageData.readings.findIndex(r => {
+                            if (!r.references) return false;
+                            const b = scrollTarget.book; 
+                            const c = scrollTarget.chapter;
+                            return r.references.includes(`${b} ${c}:`) || r.references.includes(`${b} ${c} `) || r.references.endsWith(`${b} ${c}`);
+                        });
+
+                        if (idx >= 0) {
+                            const el = document.getElementById(`reading-block-${idx}`);
+                            if (el) {
+                                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                setScrollTarget(null); // Success
+                            } else if (count < 15) {
+                                // Retry up to 15 times (1.5 seconds)
+                                setTimeout(() => attemptScroll(count + 1), 100);
+                            }
+                        } else {
+                            setScrollTarget(null); // Not found in data
+                        }
+                    };
+                    
+                    // Initial Kickoff
+                    setTimeout(() => attemptScroll(0), 100);
                 }
             }, [pageData, scrollTarget, appView]);
 
