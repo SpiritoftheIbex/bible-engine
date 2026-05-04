@@ -1,69 +1,150 @@
-﻿{
+{
   "dayid": "116",
   "plan": "1 Chronicles 20:1; 2 Samuel 11:1, 2-13, 14-27; 2 Samuel 12:1-12, 13-14, 15-23, 24-25; 2 Samuel 5:14-16; 1 Chronicles 14:3-7; 1 Chronicles 3:5-9; Psalm 51:1-19",
   "readings": [
     {
-      "book": "13",
+      "book": "1 Chronicles",
       "chapter": "20",
-      "title": "The Siege of Rabbah",
-      "subtitle": "",
+      "section": "The Reign of Daviḏ",
+      "subsection": "Campaigns Against Ammon",
+      "title": "The Fall of Rabbah",
+      "subtitle": "Yo'aḇ Destroys the Ammonite Capital",
       "chronological": "",
-      "references": "1 Chronicles 20:1; 2 Samuel 11:1",
-      "text": "[1 Chronicles 20:1] And it came to be, at the turn of the year, at the time sovereigns go out to battle, that Yo’aḇ led out <dn>את</dn> the armed forces and ruined <dn>את</dn> the country of the children of Ammon, and came and besieged <dn>את</dn> Rabbah. But Dawiḏ stayed at Yerushalayim. And Yo’aḇ smote <dn>את</dn> Rabbah and overthrew it. [2 Samuel 11:1] And it came to be, at the turn of the year, at the time sovereigns go out to battle, that Dawiḏ sent <dn>את</dn> Yo’aḇ and <dn>את</dn> his servants with him, and all Yisra’ĕl, and they destroyed <dn>את</dn> the children of Ammon and besieged Rabbah. But Dawiḏ remained at Yerushalayim."
+      "references": "1 Chronicles 20:1-3",
+      "text": "[1 Chronicles 20:1] And it came to be at the turn of the year, at the time sovereigns go out to battle, that Yo’aḇ led out the power of the army and destroyed <dn>את</dn> the land of the children of Ammon, and came and besieged <dn>את</dn> Rabbah. But Daviḏ remained at Yerushalayim. And Yo’aḇ struck <dn>את</dn> Rabbah and overthrew it. [2] And Daviḏ took <dn>את</dn> their sovereign’s crown from his head, and found it weighed a talent of gold, and there were precious stones in it. And it was set on Daviḏ’s head. And he also brought out <dn>את</dn> the spoil of the city, a very great amount. [3] And he brought out <dn>את</dn> the people who were in it, and put them to work with saws, and with iron picks, and with axes. And thus Daviḏ did to all the cities of the children of Ammon. Then Daviḏ and all the people returned to Yerushalayim.",
+      "footnotes": {}
     },
     {
-      "book": "10",
-      "chapter": "11",
-      "title": "Dawid and Bathsheḇa",
-      "subtitle": "",
+      "book": "1 Chronicles",
+      "chapter": "20",
+      "section": "The Reign of Daviḏ",
+      "subsection": "Campaigns Against Philistia",
+      "title": "Defeating the Giants",
+      "subtitle": "Daviḏ's Mighty Men Strike Down the Sons of the Giant",
       "chronological": "",
-      "references": "2 Samuel 11:2-13",
-      "text": "[2 Samuel 11:2] And it came to be at evening that Dawiḏ arose from his bed and walked about on the roof of the sovereign’s house. And from the roof he saw a woman bathing, and the woman was very good-looking. [3] And Dawiḏ sent and asked about the woman. And someone said, “Is this not Bathsheḇa, the daughter of Eli‛am, the wife of Uriyah the Ḥittite?” [4] And Dawiḏ sent messengers and took her. And she came to him, and he lay with her, for she was cleansed from her impurity, and she returned to her house. [5] And the woman conceived, and sent and informed Dawiḏ, and said, “I am pregnant.” [6] And Dawiḏ sent to Yo’aḇ, saying, “Send me <dn>את</dn> Uriyah the Ḥittite.” And Yo’aḇ sent <dn>את</dn> Uriyah to Dawiḏ. [7] And when Uriyah came to him, Dawiḏ asked how Yo’aḇ was doing, and how the people were doing, and how the war prospered. [8] And Dawiḏ said to Uriyah, “Go down to your house and wash your feet.” And Uriyah went out of the sovereign’s house, and a gift from the sovereign went out after him. [9] But Uriyah slept at the door of the sovereign’s house with all the servants of his master, and did not go down to his house. [10] And they informed Dawiḏ, saying, “Uriyah did not go down to his house.” So Dawiḏ said to Uriyah, “Did you not come from a journey? Why did you not go down to your house?” [11] And Uriyah said to Dawiḏ, “The ark and Yisra’ĕl and Yehuḏah are dwelling in tents, and my master Yo’aḇ and the servants of my master are encamped in the open fields. Should I then go to my house to eat and drink, and to lie with my wife? As you live, and as your being lives, I do not do this!” [12] And Dawiḏ said to Uriyah, “Wait here today also, and tomorrow I let you go.” So Uriyah remained in Yerushalayim that day and the next. [13] And Dawiḏ called him, and he ate and drank before him, and he made him drunk. And at evening he went out to lie on his bed with the servants of his master, but he did not go down to his house."
+      "references": "1 Chronicles 20:4-8",
+      "text": "[1 Chronicles 20:4] And afterward it came to be that fighting broke out at Gezer with the Philistines. Then Sibbeḵai the Ḥushathite struck <dn>את</dn> Sippai of the sons of the giant, and they were humbled. [5] And there was fighting again with the Philistines, and Elḥanan son of Ya’ir struck <dn>את</dn> Laḥmi the brother of Golyath the Gittite, the shaft of whose spear was like a weaver’s beam. [6] And there was fighting again at Gath, where there was a man of great size, with twenty-four fingers and toes, six and six. And he too was born to the giant. [7] And he reproached Yisra’ěl, and Yehonathan son of Shim‛a, Daviḏ’s brother, struck him. [8] These were born to the giant in Gath, and they fell by the hand of Daviḏ and by the hand of his servants.",
+      "footnotes": {}
     },
     {
-      "book": "10",
-      "chapter": "11",
-      "title": "The Death of Uriyah",
-      "subtitle": "",
+      "book": "2 Samuel",
+      "chapter": "5",
+      "section": "The United Kingdom",
+      "subsection": "Daviḏ Anointed Over All Yisra'ěl",
+      "title": "The Covenant at Ḥeḇron",
+      "subtitle": "The Tribes Submit to Daviḏ",
       "chronological": "",
-      "references": "2 Samuel 11:14-27",
-      "text": "[2 Samuel 11:14] And in the morning it came to be that Dawiḏ wrote a letter to Yo’aḇ and sent it by the hand of Uriyah. [15] And he wrote in the letter, saying, “Set <dn>את</dn> Uriyah in the forefront of the heaviest fighting, and withdraw from him, and he shall be smitten, and die.” [16] And it came to be, while Yo’aḇ besieged the city, that he put <dn>את</dn> Uriyah at a place where he knew there were valiant men. [17] And the men of the city came out and fought with Yo’aḇ. And some of the people of the servants of Dawiḏ fell, and Uriyah the Ḥittite died too. [18] And Yo’aḇ sent and informed Dawiḏ <dn>את</dn> of all the matters of the battle, [19] and he commanded the messenger, saying, “When you have finished reporting <dn>את</dn> all the matters of the battle to the sovereign, [20] and if the sovereign’s wrath rises, and he says to you, ‘Why did you approach so near to the city when you fought? Did you not know that they would shoot from the wall? [21] ‘Who smote <dn>את</dn> Aḇimelek son of Yerubbesheth? Was it not a woman who cast a piece of a millstone on him from the wall, so that he died in Tĕḇĕts? Why did you go near the wall?’ then you shall say, ‘Your servant Uriyah the Ḥittite is dead too.’ ” [22] And the messenger went, and came and reported to Dawiḏ <dn>את</dn> all that Yo’aḇ had sent him for. [23] And the messenger said to Dawiḏ, “The men prevailed against us and came out to us in the field, but we drove them back as far as the entrance of the gate. [24] “And the shooters shot from the wall at your servants, and some of the sovereign’s servants died, and your servant Uriyah the Ḥittite is dead too.” [25] And Dawiḏ said to the messenger, “Say this to Yo’aḇ, ‘Do not let this matter be evil in your eyes, for the sword devours one as well as another. Strengthen your attack against the city, and overthrow it,’ and encourage him.” [26] And when the wife of Uriyah heard that Uriyah her husband was dead, she mourned for her husband. [27] And when her mourning was over, Dawiḏ sent and brought her to his house, and she became his wife and bore him a son. But the deed that Dawiḏ had done was evil in the eyes of <dn>YeHoVaH</dn>."
+      "references": "2 Samuel 5:1-5",
+      "text": "[2 Samuel 5:1] And all the tribes of Yisra’ěl came to Daviḏ at Ḥeḇron and spoke, saying, “Look, we are your bone and your flesh. [2] “Formerly, when Sha’ul was sovereign over us, you were the one who led Yisra’ěl out and brought them in. And <dn>YeHoVaH</dn> said to you, <dq>‘Shepherd <dn>את</dn> <dn>My</dn> people <dn>את</dn> Yisra’ěl, and be ruler over Yisra’ěl.’</dq> ” [3] And all the elders of Yisra’ěl came to the sovereign at Ḥeḇron, and Sovereign Daviḏ made a covenant with them at Ḥeḇron before <dn>YeHoVaH</dn>. And they anointed <dn>את</dn> Daviḏ sovereign over Yisra’ěl. [4] Daviḏ was thirty years old when he began to reign, and he reigned forty years. [5] In Ḥeḇron he reigned over Yehuḏah seven years and six new moons, and in Yerushalayim he reigned thirty-three years over all Yisra’ěl and Yehuḏah.",
+      "footnotes": {}
     },
     {
-      "book": "10",
-      "chapter": "12",
-      "title": "Nathan's Parable",
-      "subtitle": "",
+      "book": "2 Samuel",
+      "chapter": "5",
+      "section": "The United Kingdom",
+      "subsection": "The Conquest of Yerushalayim",
+      "title": "The City of Daviḏ",
+      "subtitle": "Capturing the Stronghold of Tsiyon",
       "chronological": "",
-      "references": "2 Samuel 12:1-12",
-      "text": "[2 Samuel 12:1] And <dn>YeHoVaH</dn> sent <dn>את</dn> Nathan to Dawiḏ. And he came to him, and said to him, “There were two men in one city, one rich and the other poor. [2] “The rich one had flocks and herds, very many. [3] “But the poor one had nothing, except one little ewe lamb which he had bought and kept alive. And it grew up with him and with his children together. It ate of his own food and drank from his own cup and lay in his bosom, and it was like a daughter to him. [4] “And a traveler came to the rich man, who refused to take from his own flock and from his own herd to prepare one for the wayfaring man who had come to him, but he took <dn>את</dn> the poor man’s lamb and prepared it for the man who had come to him.” [5] And the wrath of Dawiḏ burned greatly against the man, and he said to Nathan, “As <dn>YeHoVaH</dn> lives, the man who has done this is a son of death! [6] “And he has to restore <dn>את</dn> the lamb fourfold, because he did this deed and because he had no compassion.” [7] Then Nathan said to Dawiḏ, “You are the man! Thus said <dn>YeHoVaH Elohim</dn> of Yisra’ĕl, <dq>‘<dn>I</dn> anointed you sovereign over Yisra’ĕl, and <dn>I</dn> delivered you from the hand of Sha’ul.</dq> [8] <dq>‘And <dn>I</dn> gave you <dn>את</dn> your master’s house and <dn>את</dn> your master’s wives into your bosom, and gave you <dn>את</dn> the house of Yisra’ĕl and Yehuḏah. And if that were too little, <dn>I</dn> also would have given you much more!</dq> [9] <dq>‘Why have you despised <dn>את</dn> the Word of <dn>YeHoVaH</dn>, to do evil in <dn>His</dn> eyes? You have smitten <dn>את</dn> Uriyah the Ḥittite with the sword, and <dn>את</dn> his wife you took to be your wife, and you have killed <dn>את</dn> him with the sword of the children of Ammon.</dq> [10] <dq>‘And now, the sword does not turn aside from your house forever, because you have despised <dn>את</dn> <dn>Me</dn>, and have taken <dn>את</dn> the wife of Uriyah the Ḥittite to be your wife.’</dq> [11] “Thus said <dn>YeHoVaH</dn>, <dq>‘See, <dn>I</dn> am raising up evil against you, from your own house, and shall take <dn>את</dn> your wives before your eyes and give them to your neighbor, and he shall lie with your wives in the sight of this sun.</dq> [12] <dq>‘For you did it in secret, but <dn>I</dn> shall do <dn>את</dn> this deed before all Yisra’ĕl, and before the sun.’</dq> ”"
+      "references": "2 Samuel 5:6-10",
+      "text": "[2 Samuel 5:6] And the sovereign and his men went to Yerushalayim against the Yeḇusites, the inhabitants of the land. And they spoke to Daviḏ, saying, “Except you take away the blind and the lame, you are not going to come in here,” thinking, “Daviḏ is not going to come in here.” [7] But Daviḏ captured <dn>את</dn> the stronghold of Tsiyon, the City of Daviḏ. [8] And Daviḏ said on that day, “Anyone who strikes the Yeḇusites, let him go by the water-shaft and take the lame and the blind, who are hated by Daviḏ’s being.” That is why they say, “The blind and the lame do not come into the house.” [9] And Daviḏ dwelt in the stronghold, and called it the City of Daviḏ. And Daviḏ built all around from the Millo and inward. [10] And Daviḏ went on and became great, and <dn>YeHoVaH</dn> <dn>Elohim</dn> of hosts was with him.",
+      "footnotes": {}
     },
     {
-      "book": "10",
-      "chapter": "12",
-      "title": "Dawid's Repentance and the Child's Death",
-      "subtitle": "",
+      "book": "2 Samuel",
+      "chapter": "5",
+      "section": "The United Kingdom",
+      "subsection": "Establishment in Yerushalayim",
+      "title": "Ḥiram's Alliance and Daviḏ's Family",
+      "subtitle": "The Sovereign's House and Offspring",
       "chronological": "",
-      "references": "2 Samuel 12:13-23",
-      "text": "[2 Samuel 12:13] And Dawiḏ said to Nathan, “I have sinned against <dn>YeHoVaH</dn>.” And Nathan said to Dawiḏ, “<dn>YeHoVaH</dn> also has put away your sin, you shall not die. [14] “However, because by this deed you have greatly blasphemed <dn>YeHoVaH</dn>, the child also who is born to you shall certainly die.” [15] And Nathan went to his house. And <dn>YeHoVaH</dn> struck <dn>את</dn> the child that Uriyah’s wife bore to Dawiḏ, and it became sick. [16] Dawiḏ therefore sought <dn>את</dn> <dn>Elohim</dn> for the child, and Dawiḏ fasted and went in and lay all night on the ground. [17] And the elders of his house stood by him, to raise him up from the ground, but he would not, nor did he eat food with them. [18] And it came to be on the seventh day that the child died. And the servants of Dawiḏ were afraid to inform him that the child was dead, for they said, “Look, while the child was alive, we spoke to him, and he would not listen to our voice. And how do we say to him that the child is dead? He might do harm!” [19] And Dawiḏ saw that his servants were whispering, and Dawiḏ perceived that the child was dead. And Dawiḏ said to his servants, “Is the child dead?” And they said, “He is dead.” [20] And Dawiḏ rose from the ground, and washed and anointed himself, and changed his clothes, and he went into the house of <dn>YeHoVaH</dn> and bowed himself. Then he went to his own house, and asked, and they set food before him, and he ate. [21] And his servants said to him, “What is this that you have done? You fasted and wept for the child while he was alive, but when the child died, you arose and ate food.” [22] And he said, “While the child was alive, I fasted and wept, for I said, ‘Who knows whether <dn>YeHoVaH</dn> would show favour to me, and let the child live?’ [23] “But now he is dead, why should I fast? Am I able to bring him back again? I am going to him, but he does not return to me.”"
+      "references": "2 Samuel 5:11-16",
+      "text": "[2 Samuel 5:11] Now Ḥiram sovereign of Tsor sent messengers to Daviḏ, and cedar trees, and carpenters and masons. And they built a house for Daviḏ. [12] And Daviḏ knew that <dn>YeHoVaH</dn> had established him as sovereign over Yisra’ěl, and that <dn>He</dn> had exalted <dn>His</dn> reign, because of <dn>His</dn> people Yisra’ěl. [13] And Daviḏ took more concubines and wives from Yerushalayim, after he had come from Ḥeḇron, and more sons and daughters were born to Daviḏ. [14] And these were the names of those born to him in Yerushalayim: Shammua, and Shoḇaḇ, and Nathan, and Shelomoh, [15] and Yiḇḥar, and Elishua, and Nepheḡ, and Yaphiya, [16] and Elishama, and Elyaḏa, and Eliphelet.",
+      "footnotes": {}
     },
     {
-      "book": "10",
-      "chapter": "12",
-      "title": "The Birth of Shelomoh and Dawid's Other Sons",
-      "subtitle": "",
+      "book": "2 Samuel",
+      "chapter": "5",
+      "section": "The United Kingdom",
+      "subsection": "Battles in the Valley of Repha'im",
+      "title": "Breakthrough at Ba‛al Peratsim",
+      "subtitle": "Daviḏ Inquires of YeHoVaH Against the Philistines",
       "chronological": "",
-      "references": "2 Samuel 12:24-25; 2 Samuel 5:14-16; 1 Chronicles 14:3-7; 1 Chronicles 3:5-9",
-      "text": "[2 Samuel 12:24] And Dawiḏ comforted <dn>את</dn> Bathsheḇa his wife, and went in to her and lay with her. And she bore a son, and he called <dn>את</dn> his name Shelomoh. And <dn>YeHoVaH</dn> loved him, [25] and sent by the hand of Nathan the prophet, and called <dn>את</dn> his name Yeḏiḏyah, because of <dn>YeHoVaH</dn>. [2 Samuel 5:14] And these are the names of those who were born to him in Yerushalayim: Shammua, and Shoḇaḇ, and Nathan, and Shelomoh, [15] and Yiḇḥar, and Elishu‛a, and Nepheg̱, and Yaphia, [16] and Elishama, and Elyaḏa, and Eliphelet. [1 Chronicles 14:3] And Dawiḏ took more wives in Yerushalayim, and Dawiḏ brought forth more sons and daughters. [4] And these are the names of his children whom he had in Yerushalayim: Shammua, and Shoḇaḇ, Nathan, and Shelomoh, [5] and Yiḇḥar, and Elishu‛a, and Elpelet, [6] and Nog̱ah, and Nepheg̱, and Yaphia, [7] and Elishama, and Be’elyaḏa, and Eliphelet. [1 Chronicles 3:5] And these were born to him in Yerushalayim: Shim‛a, and Shoḇaḇ, and Nathan, and Shelomoh – four by Bath-Shu‛a the daughter of Ammi’ĕl. [6] And Yiḇḥar, and Elishama, and Eliphelet, [7] and Nog̱ah, and Nepheg̱, and Yaphia, [8] and Elishama, and Elyaḏa, and Eliphelet – nine. [9] All were sons of Dawiḏ, besides the sons of the concubines, and Tamar their sister."
+      "references": "2 Samuel 5:17-25",
+      "text": "[2 Samuel 5:17] And the Philistines heard that they had anointed <dn>את</dn> Daviḏ sovereign over Yisra’ěl, and all the Philistines went up to search for Daviḏ, but Daviḏ heard and went down to the stronghold. [18] And the Philistines came and spread themselves out in the Valley of Repha’im. [19] And Daviḏ inquired of <dn>YeHoVaH</dn>, saying, “Do I go up against the Philistines? Do <dn>You</dn> give them into my hand?” And <dn>YeHoVaH</dn> said to Daviḏ, <dq>“Go up, for <dn>I</dn> shall certainly give <dn>את</dn> the Philistines into your hand.”</dq> [20] And Daviḏ came to Ba‛al Peratsim, and Daviḏ struck them there. And he said, “<dn>YeHoVaH</dn> has broken through my enemies before me, like a breakthrough of water.” So he called the name of that place Ba‛al Peratsim. [21] And they left <dn>את</dn> their images there, and Daviḏ and his men took them away. [22] And the Philistines again came up and were spread out in the Valley of Repha’im. [23] And when Daviḏ inquired of <dn>YeHoVaH</dn>, <dn>He</dn> said, <dq>“Do not go up, turn around behind them, and you shall come upon them in front of the mulberry trees.</dq> [24] <dq>“And it shall be, when you hear the sound of stepping in the tops of the mulberry trees, then act promptly, for then <dn>YeHoVaH</dn> shall go out before you to strike <dn>את</dn> the camp of the Philistines.”</dq> [25] And Daviḏ did so, as <dn>YeHoVaH</dn> commanded him, and smote <dn>את</dn> the Philistines from Geḇa as far as Gezer.",
+      "footnotes": {}
     },
     {
-      "book": "19",
+      "book": "1 Chronicles",
+      "chapter": "14",
+      "section": "The Reign of Daviḏ",
+      "subsection": "Establishment in Yerushalayim",
+      "title": "Ḥiram's Messengers and Daviḏ's Sons",
+      "subtitle": "The Exaltation of Daviḏ's Reign",
+      "chronological": "",
+      "references": "1 Chronicles 14:1-7",
+      "text": "[1 Chronicles 14:1] And Ḥiram sovereign of Tsor sent messengers to Daviḏ, and cedar trees, with stonemasons and carpenters, to build him a house. [2] And Daviḏ knew that <dn>YeHoVaH</dn> had established him as sovereign over Yisra’ěl, for his reign was highly exalted for the sake of <dn>His</dn> people Yisra’ěl. [3] And Daviḏ took more wives in Yerushalayim, and Daviḏ brought forth more sons and daughters. [4] And these are the names of his children whom he had in Yerushalayim: Shammua and Shoḇaḇ, Nathan and Shelomoh, [5] and Yiḇḥar, and Elishua, and Elpelet, [6] and Noḡah, and Nepheḡ, and Yaphiya, [7] and Elishama, and Be‛elyaḏa, and Eliphelet.",
+      "footnotes": {}
+    },
+    {
+      "book": "1 Chronicles",
+      "chapter": "14",
+      "section": "The Reign of Daviḏ",
+      "subsection": "Battles in the Valley of Repha'im",
+      "title": "The Sound in the Mulberry Trees",
+      "subtitle": "Elohim Goes Out Before Daviḏ",
+      "chronological": "",
+      "references": "1 Chronicles 14:8-17",
+      "text": "[1 Chronicles 14:8] And when the Philistines heard that they had anointed <dn>את</dn> Daviḏ sovereign over all Yisra’ěl, all the Philistines went up to seek Daviḏ. And Daviḏ heard and went out against them. [9] And the Philistines came and made a raid on the Valley of Repha’im. [10] And Daviḏ inquired of <dn>Elohim</dn>, saying, “Do I go up against the Philistines? And shall <dn>You</dn> give them into my hand?” And <dn>YeHoVaH</dn> said to him, <dq>“Go up, and <dn>I</dn> shall give them into your hand.”</dq> [11] And they went up to Ba‛al Peratsim, and Daviḏ struck them there. Then Daviḏ said, “<dn>Elohim</dn> has broken through my enemies by my hand like a breakthrough of water.” So they called the name of that place Ba‛al Peratsim. [12] And they left <dn>את</dn> their mighty ones there, so Daviḏ commanded, and they were burned with fire. [13] And the Philistines once again made a raid on the valley. [14] And Daviḏ again inquired of <dn>Elohim</dn>, and <dn>Elohim</dn> said to him, <dq>“Do not go up after them. Go around them, and come upon them in front of the mulberry trees.</dq> [15] <dq>“And it shall be, when you hear a sound of stepping in the tops of the mulberry trees, then go out to battle, for <dn>Elohim</dn> shall go out before you to strike <dn>את</dn> the camp of the Philistines.”</dq> [16] And Daviḏ did as <dn>Elohim</dn> commanded him, and they struck <dn>את</dn> the army of the Philistines from Giḇ‛on as far as Gezer. [17] And the name of Daviḏ went out into all lands, and <dn>YeHoVaH</dn> put the dread of him upon all nations.",
+      "footnotes": {}
+    },
+    {
+      "book": "1 Chronicles",
+      "chapter": "3",
+      "section": "The Genealogies of Yisra'ěl",
+      "subsection": "The Royal Line of Daviḏ",
+      "title": "The Sons Born in Ḥeḇron and Yerushalayim",
+      "subtitle": "The Descendants of Daviḏ",
+      "chronological": "",
+      "references": "1 Chronicles 3:1-9",
+      "text": "[1 Chronicles 3:1] And these were the sons of Daviḏ who were born to him in Ḥeḇron: The first-born was Amnon, by Aḥino‛am the Yizre‛ělitess; the second, Dani’ěl, by Aḇiḡayil the Karmelitess; [2] the third, Aḇshalom son of Ma‛aḵah, the daughter of Talmai, sovereign of Geshur; the fourth, Aḏoniyah son of Ḥaggith; [3] the fifth, Shephatyah, by Aḇital; the sixth, Yithre‛am, by his wife Eḡlah. [4] Six were born to him in Ḥeḇron. And he reigned there seven years and six new moons, and in Yerushalayim he reigned thirty-three years. [5] And these were born to him in Yerushalayim: Shim‛a, and Shoḇaḇ, and Nathan, and Shelomoh – four by Bathshua the daughter of Ammi’ěl. [6] Yiḇḥar also, and Elishama, and Eliphelet, [7] and Noḡah, and Nepheḡ, and Yaphiya, [8] and Elishama, and Elyaḏa, and Eliphelet, nine, [9] all the sons of Daviḏ, besides the sons of the concubines, and Tamar their sister.",
+      "footnotes": {}
+    },
+    {
+      "book": "1 Chronicles",
+      "chapter": "3",
+      "section": "The Genealogies of Yisra'ěl",
+      "subsection": "The Royal Line of Daviḏ",
+      "title": "The Descendants of Shelomoh",
+      "subtitle": "The Kings of Yehuḏah and the Post-Exilic Line",
+      "chronological": "",
+      "references": "1 Chronicles 3:10-24",
+      "text": "[1 Chronicles 3:10] And Shelomoh’s son was Reḥaḇ‛am, Aḇiyah his son, Asa his son, Yehoshaphat his son, [11] Yoram his son, Aḥazyahu his son, Yo’ash his son, [12] Amatsyahu his son, Azaryah his son, Yotham his son, [13] Aḥaz his son, Ḥizqiyahu his son, Menashsheh his son, [14] Amon his son, Yoshiyahu his son. [15] And the sons of Yoshiyahu: Yoḥanan the first-born, the second Yehoyaqim, the third Tsiḏqiyahu, the fourth Shallum. [16] And the sons of Yehoyaqim: Yeḵonyah his son and Tsiḏqiyah his son. [17] And the sons of Yeḵonyah the captive: She’alti’ěl his son, [18] and Malkiram, and Peḏayah, and Shenatstsar, Yeqamyah, Hoshama, and Neḏaḇyah. [19] And the sons of Peḏayah: Zerubbaḇel and Shim‛i. The sons of Zerubbaḇel: Meshullam, and Ḥananyah, and Shelomith their sister, [20] and Ḥashuḇah, and Ohel, and Bereḵyah, and Ḥasaḏyah, Yushaḇ-Ḥeseḏ, five. [21] And the sons of Ḥananyah: Pelatyah and Yeshayah, the sons of Rephayah, the sons of Arnan, the sons of Oḇaḏyah, the sons of Sheḵanyah. [22] And the son of Sheḵanyah: Shemayah. The sons of Shemayah: Ḥattush, and Yiḡ’al, and Bariyaḥ, and Ne‛aryah, and Shaphat, six. [23] And the sons of Ne‛aryah: Elyo‛ěynai, and Ḥizqiyah, and Azriqam, three. [24] And the sons of Elyo‛ěynai: Hoḏavyah, and Elyashiḇ, and Pelayah, and Aqquḇ, and Yoḥanan, and Delayah, and Anani, seven.",
+      "footnotes": {}
+    },
+    {
+      "book": "Psalm",
       "chapter": "51",
-      "title": "A Prayer of Repentance",
-      "subtitle": "",
+      "section": "The Psalms of Daviḏ",
+      "subsection": "Prayers of Repentance",
+      "title": "A Broken and Contrite Heart",
+      "subtitle": "Daviḏ Pleads for Cleansing",
       "chronological": "",
-      "references": "Psalm 51:1-19",
-      "text": "[Psalm 51:1] Show favour to me, O <dn>Elohim</dn>, according to <dn>Your</dn> loving-commitment; According to the greatness of <dn>Your</dn> compassion, blot out my transgressions. [2] Wash me completely from my guilt, And cleanse me from my sin. [3] For I know my transgressions, And my sin is ever before me. [4] Against <dn>You</dn>, <dn>You</dn> alone, have I sinned, And done evil in <dn>Your</dn> eyes; That <dn>You</dn> might be proven right in <dn>Your</dn> words; Be clear when <dn>You</dn> judge. [5] See, I was brought forth in crookedness, And in sin my mother conceived me. [6] See, <dn>You</dn> have desired truth in the inward parts, And in the hidden part <dn>You</dn> make me know wisdom. [7] Cleanse me with hyssop, and I am clean; Wash me, and I am whiter than snow. [8] Let me hear joy and gladness, Let the bones <dn>You</dn> have crushed rejoice. [9] Hide <dn>Your</dn> face from my sins, And blot out all my crookednesses. [10] Create in me a clean heart, O <dn>Elohim</dn>, And renew a steadfast spirit within me. [11] Do not cast me away from <dn>Your</dn> presence, And do not take <dn>Your</dn> <dn>Set-apart Spirit</dn> from me. [12] Restore to me the joy of <dn>Your</dn> deliverance, And uphold me, <dn>Noble Spirit</dn>! [13] Let me teach transgressors <dn>Your</dn> ways, So that sinners turn back to <dn>You</dn>. [14] Deliver me from blood-guiltiness, O <dn>Elohim</dn>, <dn>Elohim</dn> of my deliverance, Let my tongue sing aloud of <dn>Your</dn> righteousness. [15] O <dn>YeHoVaH</dn>, open my lips, And that my mouth declare <dn>Your</dn> praise. [16] For <dn>You</dn> do not desire slaughtering, or I would give it; <dn>You</dn> do not delight in burnt offering. [17] The slaughterings of <dn>Elohim</dn> are a broken spirit, A heart broken and crushed, O <dn>Elohim</dn>, These <dn>You</dn> do not despise. [18] Do good in <dn>Your</dn> good pleasure to <dn>את</dn> Tsiyon; Build <dn>את</dn> the walls of Yerushalayim. [19] Then <dn>You</dn> would delight in slaughterings of righteousness, In burnt offering and complete burnt offering; Then they would offer bulls on <dn>Your</dn> slaughter-place."
+      "references": "Psalm 51:1-9",
+      "text": "[Psalm 51:1] Show me favour, O <dn>Elohim</dn>, According to <dn>Your</dn> loving-commitment; According to the greatness of <dn>Your</dn> compassion, Blot out my transgressions. [2] Wash me completely from my guilt, And cleanse me from my sin. [3] For I know my transgressions, And my sin is ever before me. [4] Against <dn>You</dn>, <dn>You</dn> alone, have I sinned, And done evil in <dn>Your</dn> eyes; That <dn>You</dn> might be proven right in <dn>Your</dn> words; Be clear when <dn>You</dn> judge. [5] See, I was brought forth in crookedness, And in sin my mother conceived me. [6] See, <dn>You</dn> have desired truth in the inward parts, And in the hidden part <dn>You</dn> make me know wisdom. [7] Cleanse me with hyssop, and I am clean; Wash me, and I am whiter than snow. [8] Let me hear joy and gladness, Let the bones <dn>You</dn> have crushed rejoice. [9] Hide <dn>Your</dn> face from my sins, And blot out all my crookednesses.",
+      "footnotes": {}
+    },
+    {
+      "book": "Psalm",
+      "chapter": "51",
+      "section": "The Psalms of Daviḏ",
+      "subsection": "Prayers of Repentance",
+      "title": "Create in Me a Clean Heart",
+      "subtitle": "Restoration of Joy and Righteous Offerings",
+      "chronological": "",
+      "references": "Psalm 51:10-19",
+      "text": "[Psalm 51:10] Create in me a clean heart, O <dn>Elohim</dn>, And renew a steadfast spirit within me. [11] Do not cast me away from <dn>Your</dn> presence, And do not take <dn>Your</dn> Set-apart Spirit from me. [12] Restore to me the joy of <dn>Your</dn> deliverance, And uphold me, Noble Spirit! [13] Let me teach transgressors <dn>Your</dn> ways, So that sinners turn back to <dn>You</dn>. [14] Deliver me from blood-guilt, O <dn>Elohim</dn>, <dn>Elohim</dn> of my deliverance, Let my tongue sing aloud of <dn>Your</dn> righteousness. [15] O <dn>YeHoVaH</dn>, open my lips, And that my mouth declare <dn>Your</dn> praise. [16] For <dn>You</dn> do not desire slaughtering, or I would give it; <dn>You</dn> do not delight in ascending offering. [17] The slaughterings of <dn>Elohim</dn> are a broken spirit, A heart broken and crushed, O <dn>Elohim</dn>, These <dn>You</dn> do not despise. [18] Do good in <dn>Your</dn> good pleasure to Tsiyon; Build the walls of Yerushalayim. [19] Then <dn>You</dn> would delight in slaughterings of righteousness, In ascending offering and complete ascending offering; Then young bulls would be offered on <dn>Your</dn> slaughter-place.",
+      "footnotes": {}
     }
   ]
 }

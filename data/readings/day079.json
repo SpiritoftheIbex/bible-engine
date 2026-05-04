@@ -1,53 +1,138 @@
-﻿{
+{
   "dayid": "79",
   "plan": "Job 38:1-41; Job 39:1–40:2; Job 40:3-5",
   "readings": [
     {
-      "book": "18",
+      "book": "Job",
       "chapter": "38",
-      "section": "THE ANSWER OF YEHOVAH",
-      "subsection": "God Challenges Job from the Whirlwind",
-      "title": "Where Were You?",
-      "subtitle": "The Foundations of the Earth",
+      "section": "The Whirlwind Theophany",
+      "subsection": "The Foundations of the Earth",
+      "title": "The Creator's Challenge",
+      "subtitle": "The Limits of Human Knowledge",
       "chronological": "",
-      "references": "Job 38:1-18",
-      "text": "[Job 38:1] And <dn>YeHoVaH</dn> answered <dn>את</dn> Job out of the whirlwind, and said: [2] <dq>“Who is this who darkens counsel By words without knowledge?</dq> [3] <dq>Now gird up your loins like a man; And <dn>I</dn> ask you, and you answer <dn>Me</dn>.</dq> [4] <dq>Where were you when <dn>I</dn> laid the foundations of the earth? Declare, if you have understanding.</dq> [5] <dq>Who set its measurements, if you know? Or who stretched the line upon it?</dq> [6] <dq>Upon what were its foundations sunk? Or who laid its cornerstone,</dq> [7] <dq>When the morning stars sang together, And all the sons of <dn>Elohim</dn> shouted for joy?</dq> [8] <dq>Or who shut in the sea with doors, When it burst forth and issued from the womb;</dq> [9] <dq>When <dn>I</dn> made the clouds its garment, And thick darkness its swaddling band;</dq> [10] <dq>And <dn>I</dn> established <dn>My</dn> limit for it, And set bars and doors;</dq> [11] <dq>And said, ‘This far you come, but no further, And here your proud waves are stopped’?</dq> [12] <dq>Have you commanded the morning since your days began, And caused the dawn to know its place,</dq> [13] <dq>To take hold of the ends of the earth, And the wrong be shaken out of it?</dq> [14] <dq>It is changed like clay under a seal, And they stand out like a garment.</dq> [15] <dq>And from the wrong their light is withheld, And the upraised arm is broken.</dq> [16] <dq>Have you entered the springs of the sea? Or have you walked in search of the depths?</dq> [17] <dq>Have the gates of death been revealed to you? Or have you seen the doors of the shadow of death?</dq> [18] <dq>Have you understood the breadth of the earth? Declare, if you know it all.</dq>"
+      "references": "",
+      "text": "[Job 38:1] Then <dn>YeHoVaH</dn> answered <dn>את</dn> Iyoḇ out of the whirlwind, and said, [2] <dq>“Who is this who darkens counsel by words without knowledge?</dq> [3] <dq>Now gird up your loins like a man, and <dn>I</dn> ask you, and you answer <dn>Me</dn>.</dq> [4] <dq>Where were you when <dn>I</dn> laid the foundations of the earth? Declare, if you have understanding.</dq> [5] <dq>Who set its measurements, if you know? Or who stretched the line upon it?</dq> [6] <dq>Upon what were its foundations sunk? Or who laid its corner-stone,</dq> [7] <dq>when the morning stars sang together, and all the sons of <dn>Elohim</dn> shouted for joy?</dq> [8] <dq>Or who enclosed the sea with doors, when it burst forth and came from the womb;</dq> [9] <dq>when <dn>I</dn> made the clouds its garment, and thick darkness its swaddling band;</dq> [10] <dq>and assigned for it <dn>My</dn> law, and set bars and doors;</dq> [11] <dq>and said, ‘This far you have come, but no farther, and here your proud waves stop?’</dq>",
+      "footnotes": {}
     },
     {
-      "book": "18",
+      "book": "Job",
       "chapter": "38",
-      "title": "The Mysteries of the Heavens",
-      "subtitle": "Light, Snow, and Stars",
+      "section": "The Whirlwind Theophany",
+      "subsection": "The Storehouses of the Heavens",
+      "title": "The Boundaries of the Cosmos",
+      "subtitle": "The Master of the Elements",
       "chronological": "",
-      "references": "Job 38:19-38",
-      "text": "[Job 38:19] <dq>“Where is the way to the dwelling of light? And darkness, where is its place,</dq> [20] <dq>That you should take it to its boundary, And know the paths to its home?</dq> [21] <dq>Do you know it, because you were born then, Or because the number of your days is great?</dq> [22] <dq>Have you entered the storehouses of the snow, Or have you seen the storehouses of the hail,</dq> [23] <dq>Which <dn>I</dn> have reserved for the time of distress, For the day of fighting and battle?</dq> [24] <dq>Where is the way that light is divided, Or the east wind scattered over the earth?</dq> [25] <dq>Who has cleft a channel for the overflowing water, Or a way for the lightning of thunder,</dq> [26] <dq>To cause it to rain on the earth where no one is, On the wilderness in which there is no man;</dq> [27] <dq>To satisfy the wild and waste places, And to cause the sprout of grass to spring forth?</dq> [28] <dq>Does the rain have a father? Or who has brought forth the drops of dew?</dq> [29] <dq>From whose womb comes the ice? And the frost of the heavens, who gives it birth?</dq> [30] <dq>The waters harden like stone, And the face of the deep is frozen.</dq> [31] <dq>Do you bind the bands of Kimah, Or loosen the cords of Kesil?</dq> [32] <dq>Do you bring out Mazzaroth in its season? Or do you lead Ayish with her sons?</dq> [33] <dq>Do you know the laws of the heavens? Or do you set their rule over the earth?</dq> [34] <dq>Do you lift up your voice to the clouds, So that an abundance of water covers you?</dq> [35] <dq>Do you send out lightnings, and they go, And say to you, ‘Here we are!’?</dq> [36] <dq>Who has put wisdom in the inward parts? Or who has given understanding to the heart?</dq> [37] <dq>Who counts the clouds by wisdom? And who pours out the bottles of the heavens,</dq> [38] <dq>When the dust hardens in clumps, And the clods cleave together?</dq>"
+      "references": "",
+      "text": "[Job 38:12] <dq>Have you ever commanded the morning, and caused the dawn to know its place,</dq> [13] <dq>to take hold of the ends of the earth, and the wrong be shaken out of it?</dq> [14] <dq>It is changed like clay under a seal, and they stand out like a garment.</dq> [15] <dq>And their light is withheld from the wrong, and the arm lifted up is broken.</dq> [16] <dq>Have you come to the sources of the sea? Or have you walked about in the recesses of the deep?</dq> [17] <dq>Were the gates of death revealed to you? Or have you seen the gates of the shadow of death?</dq> [18] <dq>Have you understood the breadth of the earth? Declare, if you know it all.</dq> [19] <dq>Where is the way to the dwelling of light? And darkness, where is its place,</dq> [20] <dq>that you should take it to its boundary, and know the paths to its home?</dq> [21] <dq>Do you know? For you would have been born then, and the number of your days been many!</dq> [22] <dq>Have you entered into the storehouses of snow, or have you seen the storehouses of hail,</dq> [23] <dq>which <dn>I</dn> have kept for the time of distress, for the day of fighting and battle?</dq> [24] <dq>Where is the way that light is divided, or the east wind scattered over the earth?</dq>",
+      "footnotes": {}
     },
     {
-      "book": "18",
+      "book": "Job",
       "chapter": "38",
-      "title": "The Provider of the Wild",
-      "subtitle": "Lions, Ravens, and Goats",
+      "section": "The Whirlwind Theophany",
+      "subsection": "The Constellations and the Clouds",
+      "title": "The Ordinances of the Sky",
+      "subtitle": "Wisdom in the Inward Parts",
       "chronological": "",
-      "references": "Job 38:39–39:12",
-      "text": "[Job 38:39] <dq>“Do you hunt the prey for the lion? Or satisfy the appetite of the young lions,</dq> [40] <dq>When they bow down in the dens, And lie in wait in the lair?</dq> [41] <dq>Who provides food for the raven, When its young ones cry to <dn>El</dn>, And wander about for lack of food?</dq> [Job 39:1] <dq>“Do you know <dn>את</dn> the time the wild mountain goats bear young? Or do you mark when the hinds give birth?</dq> [2] <dq>Do you number the months they complete? Or do you know the time when they bear young?</dq> [3] <dq>They bow down, They bring forth their young, They cast out their labour pains.</dq> [4] <dq>Their young ones are healthy, They grow up with grain; They go out and do not return to them.</dq> [5] <dq>Who sent out the wild donkey free? And who loosened the bands of the wild donkey,</dq> [6] <dq>Whose home <dn>I</dn> have made the wilderness, And the barren land his dwelling?</dq> [7] <dq>He laughs at the turmoil of the city; He does not hear the shouting of the driver.</dq> [8] <dq>The range of mountains is his pasture, And he searches after every green thing.</dq> [9] <dq>Is the wild ox willing to serve you? Does he stay at your feeding-trough?</dq> [10] <dq>Do you bind the wild ox in the furrow with ropes? Or does he plough the valleys behind you?</dq> [11] <dq>Do you trust him because his strength is great? Or do you leave your labour to him?</dq> [12] <dq>Do you trust him to bring home your grain, And gather it to your threshing-floor?</dq>"
+      "references": "",
+      "text": "[Job 38:25] <dq>Who has cleft a channel for the overflowing water, or a way for the thunderclaps,</dq> [26] <dq>to make rain fall on land where no one is, a wilderness in which there is no man;</dq> [27] <dq>to satisfy the wild and waste places, and to make the seeds of grass to sprout?</dq> [28] <dq>Does the rain have a father? Or who has brought forth the drops of dew?</dq> [29] <dq>From whose belly comes the ice? And who gave birth to the frost of the heavens?</dq> [30] <dq>The waters harden like stone, and the surface of the deep is frozen.</dq> [31] <dq>Do you bind the bands of Kimah, or loosen the cords of Kesil?</dq> [32] <dq>Do you bring out <dn>את</dn> the constellations in its season? Or do you lead the Bear with its sons?</dq> [33] <dq>Do you know the laws of the heavens? Or do you set their rule over the earth?</dq> [34] <dq>Do you lift up your voice to the clouds, so that floods of water cover you?</dq> [35] <dq>Do you send out lightnings, and they go and say to you, ‘Here we are!’?</dq> [36] <dq>Who has put wisdom in the inward parts? Or who has given understanding to the heart?</dq> [37] <dq>Who has wisdom to count the clouds, or to tip over the bottles of the heavens,</dq> [38] <dq>when the dust hardens in clumps, and the clods cling together?</dq>",
+      "footnotes": {}
     },
     {
-      "book": "18",
+      "book": "Job",
+      "chapter": "38",
+      "section": "The Sustainer of the Wild",
+      "subsection": "Provision for the Predators",
+      "title": "The Lion and the Raven",
+      "subtitle": "The Cry to El",
+      "chronological": "",
+      "references": "",
+      "text": "[Job 38:39] <dq>Do you hunt the prey for the lion, or satisfy the appetite of the young lions,</dq> [40] <dq>when they crouch in dens, sit in the cover of their hiding place?</dq> [41] <dq>Who provides food for the raven, when its young ones cry to <dn>Ěl</dn>, and wander about without food?</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
       "chapter": "39",
-      "title": "The Fearless Horse and the Hawk",
-      "subtitle": "Majesty in Creation",
+      "section": "The Sustainer of the Wild",
+      "subsection": "Freedom of the Wilderness",
+      "title": "The Mountain Goats and the Wild Donkey",
+      "subtitle": "The Untamed Creation",
       "chronological": "",
-      "references": "Job 39:13-30",
-      "text": "[Job 39:13] <dq>“The wing of the ostrich waves joyously, But are her wings and feathers like the stork’s?</dq> [14] <dq>“For she leaves her eggs on the earth, And warms them in the dust,</dq> [15] <dq>“And forgets that a foot might crush them, Or that a wild beast might trod them down.</dq> [16] <dq>“She treats her young harshly, as if not hers; Her toil is in vain, without fear;</dq> [17] <dq>“Because <dn>Eloah</dn> deprived her of wisdom, And did not give her a share of understanding.</dq> [18] <dq>“When she lifts herself on high, She laughs at the horse and his rider.</dq> [19] <dq>“Do you give the horse strength? Do you clothe his neck with a mane?</dq> [20] <dq>“Do you make him leap like a locust? The splendour of his snorting is awesome.</dq> [21] <dq>“He paws in the valley, and rejoices in strength; He goes out to meet the armour.</dq> [22] <dq>“He laughs at fear, and is not frightened; And he does not turn back from the sword.</dq> [23] <dq>“A quiver rattles against him, The glittering spear and javelin.</dq> [24] <dq>“With shaking and rage he swallows the ground, And does not believe that it is the sound of the shofar.</dq> [25] <dq>“At the blast of the shofar he says, ‘Aha!’ And from afar he smells the battle, The thunder of commanders and shouting.</dq> [26] <dq>“Does the hawk fly by your wisdom, And spread its wings toward the south?</dq> [27] <dq>“Does the eagle mount up at your command, And make its nest on high?</dq> [28] <dq>“It dwells on the rock, and stays, On the crag of the rock and the stronghold.</dq> [29] <dq>“From there it spies out the food; Its eyes see from afar.</dq> [30] <dq>“And its young ones suck up blood; And where the slain are, there it is!”</dq>"
+      "references": "",
+      "text": "[Job 39:1] <dq>“Do you know the time when the wild mountain goats bear young? Or do you observe when the deer gives birth?</dq> [2] <dq>Do you number the months they complete? Or do you know the time when they bear young?</dq> [3] <dq>They bow down, they bring forth their young, their labour pains are ended.</dq> [4] <dq>Their young ones are thriving, they grow up in the field. They shall leave and shall not return to them.</dq> [5] <dq>Who set the wild donkey free? Who loosed the bonds of the wild donkey,</dq> [6] <dq>whose home <dn>I</dn> have made the desert, and the salt land his dwelling?</dq> [7] <dq>He laughs at the commotion of the city; he does not hear the shouts of the driver.</dq> [8] <dq>The range of the mountains is his pasture, and he searches for all that is green.</dq>",
+      "footnotes": {}
     },
     {
-      "book": "18",
-      "chapter": "40",
-      "title": "The Challenger Humbled",
-      "subtitle": "Job's Silence",
+      "book": "Job",
+      "chapter": "39",
+      "section": "The Sustainer of the Wild",
+      "subsection": "Untamed Strength and Folly",
+      "title": "The Wild Ox and the Ostrich",
+      "subtitle": "Deprived of Wisdom",
       "chronological": "",
-      "references": "Job 40:1-5",
-      "text": "[Job 40:1] And <dn>YeHoVaH</dn> answered <dn>את</dn> Job, and said, [2] <dq>“Is the reprover to contend with the <dn>Almighty</dn>? Let him who argues with <dn>Eloah</dn> answer it.”</dq> [3] And Job answered <dn>את</dn> <dn>YeHoVaH</dn> and said, [4] “See, I am vile; what shall I answer <dn>You</dn>? I have laid my hand on my mouth. [5] “Once I have spoken, but I do not answer; And twice, but I add no more.”"
+      "references": "",
+      "text": "[Job 39:9] <dq>Would the wild ox be pleased to serve you? Or spend the night by your feeding trough?</dq> [10] <dq>If you bind the wild ox in the furrow with ropes, would he plough the valleys behind you?</dq> [11] <dq>Would you rely on his great strength? Or would you leave your labour to him?</dq> [12] <dq>Would you trust him to bring home your grain, and gather it to your threshing-floor?</dq> [13] <dq>The wings of the ostrich flap joyously, but they are not the pinions and plumage of a stork!</dq> [14] <dq>She leaves her eggs on the ground, and warms them in the dust;</dq> [15] <dq>and she forgets that a foot might crush them, or a wild beast tread on them.</dq> [16] <dq>She treats her young harshly, as if not hers; her toil is in vain, without fear,</dq> [17] <dq>because <dn>Eloah</dn> has made her forget wisdom, and did not endow her with understanding.</dq> [18] <dq>When she lifts herself on high, she laughs at the horse and its rider.</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "39",
+      "section": "The Sustainer of the Wild",
+      "subsection": "Fearless in Battle",
+      "title": "The War Horse",
+      "subtitle": "Rejoicing in Strength",
+      "chronological": "",
+      "references": "",
+      "text": "[Job 39:19] <dq>Have you given the horse strength? Have you covered his neck with a mane?</dq> [20] <dq>Would you make him leap like a locust? His splendid snorting is frightening.</dq> [21] <dq>He paws in the valley, and rejoices in strength. He gallops into the clash of arms.</dq> [22] <dq>He laughs at fear, and is not frightened; nor does he turn back from the sword.</dq> [23] <dq>The quiver rattles against him, the glittering spear and lance.</dq> [24] <dq>He eats up the ground with fierceness and rage, and he does not stand still because of a voice of a shophar.</dq> [25] <dq>At the blast of the shophar he says, ‘Aha!’ And from afar he smells the battle, the thunder of commanders and shouting.</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "39",
+      "section": "The Sustainer of the Wild",
+      "subsection": "Sovereignty of the Skies",
+      "title": "The Hawk and the Eagle",
+      "subtitle": "Searching Out the Prey",
+      "chronological": "",
+      "references": "",
+      "text": "[Job 39:26] <dq>Does the hawk fly by your wisdom, spreading its wings toward the south?</dq> [27] <dq>Does the eagle mount up at your mouth, and make its nest on high?</dq> [28] <dq>It dwells on the rock, and lodges on the crag of the rock and the stronghold.</dq> [29] <dq>From there it searches out the prey, its eyes see it from afar.</dq> [30] <dq>And its young ones suck up blood. And where the slain are, there it is!”</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "40",
+      "section": "The Almighty's Contention",
+      "subsection": "The Reprover Challenged",
+      "title": "Iyoḇ's Submission",
+      "subtitle": "Laying a Hand Over the Mouth",
+      "chronological": "",
+      "references": "",
+      "text": "[Job 40:1] And <dn>YeHoVaH</dn> answered <dn>את</dn> Iyoḇ, and said, [2] <dq>“Should a reprover contend with the Almighty? Let him who reproves <dn>Eloah</dn> answer it.”</dq> [3] And Iyoḇ answered <dn>את</dn> <dn>YeHoVaH</dn> and said, [4] “See, I am insignificant, what would I answer <dn>You</dn>? I lay my hand over my mouth. [5] Once I have spoken, but I have no answer – and twice, but I say no more.”",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "40",
+      "section": "The Almighty's Contention",
+      "subsection": "The Limits of Human Justice",
+      "title": "The Call to Gird Up",
+      "subtitle": "The Arm Like El",
+      "chronological": "",
+      "references": "",
+      "text": "[Job 40:6] Then <dn>YeHoVaH</dn> answered <dn>את</dn> Iyoḇ out of the whirlwind, and said, [7] <dq>“Now gird up your loins like a man; <dn>I</dn> ask you, and you answer <dn>Me</dn>.</dq> [8] <dq>Would you also set aside <dn>My</dn> judgment? Would you pronounce <dn>Me</dn> wrong, and you be declared righteous?</dq> [9] <dq>Or do you have an arm like <dn>Ěl</dn>? Or do you thunder with a voice like <dn>His</dn>?</dq> [10] <dq>Deck yourself, please, with excellency and grandeur, and put on esteem and splendour.</dq> [11] <dq>Scatter abroad the rage of your wrath, and look on everyone who is proud and bring him low.</dq> [12] <dq>Look on everyone who is proud, humble him. And tread down the wrong-doers in their place.</dq> [13] <dq>Hide them in the dust together, bind their faces in obscurity.</dq> [14] <dq>Then even <dn>I</dn> would confess to you that your own right hand does save you.</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "40",
+      "section": "The Almighty's Contention",
+      "subsection": "The Chief of the Ways of El",
+      "title": "The Behemoth",
+      "subtitle": "Strength in the Loins",
+      "chronological": "",
+      "references": "",
+      "text": "[Job 40:15] <dq>See now, Behěmoth, which <dn>I</dn> made along with you – he eats grass like an ox.</dq> [16] <dq>See now, his strength is in his loins, and his power is in his stomach muscles.</dq> [17] <dq>He bends his tail like a cedar; the sinews of his thighs are knit together.</dq> [18] <dq>His bones are like tubes of bronze, his ribs like bars of iron.</dq> [19] <dq>He is the beginning of the ways of <dn>Ěl</dn>. <dn>His</dn> Maker brings near <dn>His</dn> sword.</dq> [20] <dq>For the mountains yield food for him, and all the beasts of the field play there.</dq> [21] <dq>He lies under the slender trees, under cover of reed and swamp.</dq> [22] <dq>The slender trees cover him with their shade; the willows by the stream surround him.</dq> [23] <dq>See, if a river rages, he is not alarmed; he feels safe, even if the Yarděn gushes into his mouth,</dq> [24] <dq>Before his eyes, shall he be caught, with snares? Or his nose pierced?</dq>",
+      "footnotes": {}
     }
   ]
 }

@@ -1,75 +1,65 @@
-﻿{
+{
   "dayid": "123",
   "plan": "1 Chronicles 23:1-6, 7-11, 12-20, 21-32; 1 Chronicles 24:1-19, 20-31; 1 Chronicles 25:1-31",
   "readings": [
     {
-      "book": "13",
-      "chapter": "23",
-      "title": "Dawiḏ Organizes the Lěwites",
-      "subtitle": "Shelomoh Made Sovereign and the Census of Lěwi",
-      "chronological": "",
-      "references": "1 Chronicles 23:1-6",
-      "text": "[1 Chronicles 23:1] And when Dawiḏ was old and satisfied with days, he made <dn>את</dn> his son Shelomoh sovereign over Yisra’ěl. [2] And he gathered <dn>את</dn> all the rulers of Yisra’ěl, with the priests and the Lěwites. [3] And the Lěwites were numbered from thirty years old and upward; and their number by head count, man by man, was thirty-eight thousand. [4] Of these, twenty-four thousand were to oversee the work of the House of <dn>YeHoVaH</dn>, and six thousand were officers and judges; [5] and four thousand were gatekeepers, and four thousand praised <dn>YeHoVaH</dn> with the instruments which I made for praising. [6] And Dawiḏ divided them into divisions among the sons of Lěwi: Gershon, Qehaṯ, and Merari.”",
-      "footnotes": {}
-    },
-    {
-      "book": "13",
-      "chapter": "23",
-      "title": "The Sons of Gershon",
-      "subtitle": "The First Division of Lěwites",
-      "chronological": "",
-      "references": "1 Chronicles 23:7-11",
-      "text": "[1 Chronicles 23:7] Of the Gershonites: La‛dan and Shim‛i. [8] The sons of La‛dan: Yeḥi’ěl the head, and Zětham, and Yo’ěl – three. [9] The sons of Shim‛i: Shelomith, and Ḥazi’ěl, and Haran – three. These were the heads of the fathers’ houses of La‛dan. [10] And the sons of Shim‛i: Yaḥath, Zina, and Ye‛ush, and Beri‛ah. These four were the sons of Shim‛i. [11] And Yaḥath was the head and Zizah the second. But Ye‛ush and Beri‛ah did not have many sons, so they were registered as one father’s house.",
-      "footnotes": {}
-    },
-    {
-      "book": "13",
-      "chapter": "23",
-      "title": "The Sons of Qehaṯ",
-      "subtitle": "The Descendants of Mosheh and Aharon",
-      "chronological": "",
-      "references": "1 Chronicles 23:12-20",
-      "text": "[1 Chronicles 23:12] The sons of Qehaṯ: Amram, Yitshar, Ḥeḇron, and Uzzi’ěl – four. [13] The sons of Amram: Aharon and Mosheh. And Aharon was set apart, he and his sons forever, to set apart the most set-apart things, to burn incense before <dn>YeHoVaH</dn>, to serve <dn>Him</dn>, and to give the blessing in <dn>His</dn> Name forever. [14] As for Mosheh the man of <dn>Elohim</dn>, his sons were named among the tribe of Lěwi. [15] The sons of Mosheh: Gershom and Eli‛ezer. [16] Of the sons of Gershom, Sheḇu’ěl was the head. [17] Of the sons of Eli‛ezer, Reḥaḇyah was the head. And Eli‛ezer had no other sons, but the sons of Reḥaḇyah were very many. [18] Of the sons of Yitshar, Shelomith was the head. [19] Of the sons of Ḥeḇron, Yeriyah the head, Amaryah the second, Yaḥazi’ěl the third, and Yeqam‛am the fourth. [20] Of the sons of Uzzi’ěl, Miḵah the head and Yishshiyah the second.",
-      "footnotes": {}
-    },
-    {
-      "book": "13",
-      "chapter": "23",
-      "title": "The Sons of Merari",
-      "subtitle": "The Duty and Service of the Lěwites",
-      "chronological": "",
-      "references": "1 Chronicles 23:21-32",
-      "text": "[1 Chronicles 23:21] The sons of Merari: Maḥli and Mushi. The sons of Maḥli: El‛azar and Qish. [22] And El‛azar died, and had no sons, but daughters, and their brothers, the sons of Qish, took them. [23] The sons of Mushi: Maḥli, and Ěḏer, and Yerěmoth – three. [24] These were the sons of Lěwi by their fathers’ houses, the heads of the fathers’ houses as they were registered by number of names by head count, who did the work for the service of the House of <dn>YeHoVaH</dn>, from twenty years old and upward. [25] For Dawiḏ said, “<dn>YeHoVaH</dn> <dn>Elohim</dn> of Yisra’ěl has given rest to <dn>His</dn> people, and <dn>He</dn> dwells in Yerushalayim forever. [26] “And the Lěwites no longer have to carry <dn>את</dn> the Dwelling Place or <dn>את</dn> any of its vessels for its service.” [27] For by the last words of Dawiḏ the sons of Lěwi were numbered from twenty years old and upward, [28] because their duty was to help the sons of Aharon in the service of the House of <dn>YeHoVaH</dn>, over the courtyards and over the rooms, and over the cleansing of all set-apart things and the work of the service of the House of <dn>Elohim</dn>, [29] and for the showbread, and for the fine flour for the grain offering, and for the unleavened cakes, and for what is baked in the pan, and for what is well-mixed, and for all measures of volume and size; [30] and to stand every morning to thank and praise <dn>YeHoVaH</dn>, and the same at evening; [31] and for all the burnt offerings to <dn>YeHoVaH</dn> on the Sabbaths and on the New Moons and on the appointed feasts, by number according to the right-ruling concerning them, continually before <dn>YeHoVaH</dn>; [32] and to guard <dn>את</dn> the duty of the Tent of Appointment, and <dn>את</dn> the duty of the set-apart place, and <dn>את</dn> the duty of the sons of Aharon their brothers in the service of the House of <dn>YeHoVaH</dn>.",
-      "footnotes": {}
-    },
-    {
-      "book": "13",
+      "book": "1 Chronicles",
       "chapter": "24",
-      "title": "The Divisions of the Priests",
-      "subtitle": "The Twenty-Four Lots for the Sons of Aharon",
+      "section": "The Reign of David",
+      "subsection": "Organization of the Priesthood",
+      "title": "The Divisions of Aaron's Sons",
+      "subtitle": "Eleazar and Ithamar",
       "chronological": "",
-      "references": "1 Chronicles 24:1-19",
-      "text": "[1 Chronicles 24:1] And for the sons of Aharon were their divisions. The sons of Aharon: Naḏaḇ and Aḇihu, El‛azar and Ithamar. [2] And Naḏaḇ and Aḇihu died before their father, and had no children. So El‛azar and Ithamar served as priests. [3] And Dawiḏ, with Tsaḏoq of the sons of El‛azar, and Aḥimeleḵ of the sons of Ithamar, divided them according to their offices in their service. [4] And there were more heads found of the sons of El‛azar than of the sons of Ithamar, and they divided them: sixteen heads of their fathers’ houses of the sons of El‛azar, and eight heads of their fathers’ houses of the sons of Ithamar. [5] And they divided them by lot, one with another, for the officials of the set-apart place and the officials of <dn>Elohim</dn> were from the sons of El‛azar and from the sons of Ithamar. [6] And Shemayah son of Nethan’ěl the scribe, one of the Lěwites, wrote them down in the presence of the sovereign, and the officers, and Tsaḏoq the priest, and Aḥimeleḵ son of Eḇyathar, and the heads of the fathers’ houses of the priests and the Lěwites – one father’s house taken for El‛azar and one taken for Ithamar. [7] And the first lot came out to Yehoyariḇ, the second to Yeḏayah, [8] the third to Ḥarim, the fourth to Se‛orim, [9] the fifth to Malkiyyah, the sixth to Miyyamin, [10] the seventh to Haqqots, the eighth to Aḇiyyah, [11] the ninth to Yeshua, the tenth to Sheḵanyah, [12] the eleventh to Elyashiḇ, the twelfth to Yaqim, [13] the thirteenth to Ḥuppah, the fourteenth to Yesheḇ’aḇ, [14] the fifteenth to Bilgah, the sixteenth to Imměr, [15] the seventeenth to Ḥězir, the eighteenth to Happitstsets, [16] the nineteenth to Pethaḥyah, the twentieth to Yeḥezqěl, [17] the twenty-first to Yaḵin, the twenty-second to Gamul, [18] the twenty-third to Delyahu, the twenty-fourth to Ma‛azyahu. [19] These were their offices for their service to come into the House of <dn>YeHoVaH</dn> according to their right-ruling by the hand of Aharon their father, as <dn>YeHoVaH</dn> <dn>Elohim</dn> of Yisra’ěl had commanded him.",
+      "references": "1 Chronicles 24:1-6",
+      "text": "[1 Chronicles 24:1] And the divisions of the sons of Aharon: The sons of Aharon were Naḏaḇ and Aḇihu, El‛azar and Ithamar. [2] But Naḏaḇ and Aḇihu died before their father, and had no children, so El‛azar and Ithamar served as priests. [3] And Daviḏ, with Tsaḏoq of the sons of El‛azar, and Aḥimeleḵ of the sons of Ithamar, divided them according to their offices in their service. [4] And there were more leaders found of the sons of El‛azar than of the sons of Ithamar. So they divided the sons of El‛azar into sixteen heads of their fathers’ houses, and the sons of Ithamar into eight heads of their fathers’ houses. [5] And they were divided by lot, one group as another, for there were officials of the set-apart place and officials of <dn>Elohim</dn>, from the sons of El‛azar and from the sons of Ithamar. [6] And the scribe, Shemayah son of Nethan’ěl, one of the Lěvites, wrote them down before the sovereign, and the rulers, and Tsaḏoq the priest, and Aḥimeleḵ son of Eḇyathar, and the heads of the fathers’ houses of the priests and Lěvites, one father’s house taken for El‛azar and one for Ithamar.",
       "footnotes": {}
     },
     {
-      "book": "13",
+      "book": "1 Chronicles",
       "chapter": "24",
-      "title": "The Rest of the Lěwites",
-      "subtitle": "Additional Assignments for the Tribe of Lěwi",
+      "section": "The Reign of David",
+      "subsection": "Organization of the Priesthood",
+      "title": "The Twenty-Four Priestly Courses",
+      "subtitle": "Casting Lots for Service",
+      "chronological": "",
+      "references": "1 Chronicles 24:7-19",
+      "text": "[1 Chronicles 24:7] And the first lot came forth to Yehoyariḇ, the second to Yeḏayah, [8] the third to Ḥarim, the fourth to Se‛orim, [9] the fifth to Malkiyah, the sixth to Miyamin, [10] the seventh to Haqqots, the eighth to Aḇiyah, [11] the ninth to Yěshua, the tenth to Sheḵanyahu, [12] the eleventh to Elyashiḇ, the twelfth to Yaqim, [13] the thirteenth to Ḥuppah, the fourteenth to Yesheḇ’aḇ, [14] the fifteenth to Bilgah, the sixteenth to Imměr, [15] the seventeenth to Ḥězir, the eighteenth to Happitstsěts, [16] the nineteenth to Pethaḥyah, the twentieth to Yeḥezqěl, [17] the twenty-first to Yaḵin, the twenty-second to Gamul, [18] the twenty-third to Delayahu, the twenty-fourth to Ma‛azyahu. [19] These were their offices in their service for coming into the House of <dn>YeHoVaH</dn> according to their right-ruling by the hand of Aharon their father, as <dn>YeHoVaH</dn> <dn>Elohim</dn> of Yisra’ěl had commanded him.",
+      "footnotes": {}
+    },
+    {
+      "book": "1 Chronicles",
+      "chapter": "24",
+      "section": "The Reign of David",
+      "subsection": "Organization of the Levites",
+      "title": "The Remaining Levitical Families",
+      "subtitle": "Casting Lots Alongside the Priests",
       "chronological": "",
       "references": "1 Chronicles 24:20-31",
-      "text": "[1 Chronicles 24:20] And of the rest of the sons of Lěwi: of the sons of Amram, Shuḇa’ěl; of the sons of Shuḇa’ěl, Yeḥdeyah. [21] Of Reḥaḇyah, of the sons of Reḥaḇyah, Yishshiyah the head. [22] Of the Yitsharites, Shelomoth; of the sons of Shelomoth, Yaḥath. [23] And the sons of Ḥeḇron: Yeriyah the head, Amaryah the second, Yaḥazi’ěl the third, Yeqam‛am the fourth. [24] Of the sons of Uzzi’ěl, Miḵah; of the sons of Miḵah, Shamir. [25] The brother of Miḵah, Yishshiyah; of the sons of Yishshiyah, Zeḵaryahu. [26] The sons of Merari: Maḥli and Mushi; the sons of Ya‛aziyahu, Beno. [27] The sons of Merari by Ya‛aziyahu: Beno, and Shoham, and Zakkur, and Iḇri. [28] Of Maḥli: El‛azar, who had no sons. [29] Of Qish: the son of Qish, Yeraḥme’ěl. [30] And the sons of Mushi: Maḥli, and Ěḏer, and Yerimoth. These were the sons of the Lěwites according to their fathers’ houses. [31] And these also cast lots as their brothers the sons of Aharon did in the presence of Sovereign Dawiḏ, and Tsaḏoq, and Aḥimeleḵ, and the heads of the fathers’ houses of the priests and the Lěwites – the head of the father’s house as well as his younger brother.",
+      "text": "[1 Chronicles 24:20] And the rest of the sons of Lěvi: of the sons of Amram, Shuḇa’ěl; of the sons of Shuḇa’ěl, Yeḥdeyahu. [21] Concerning Reḥaḇyahu, of the sons of Reḥaḇyahu, the head was Yishshiyah. [22] Of the Yitsharites, Shelomoth; of the sons of Shelomoth, Yaḥath. [23] Of the sons of Ḥeḇron, Yeriyahu was the head, Amaryahu the second, Yaḥazi’ěl the third, and Yeqam‛am the fourth. [24] Of the sons of Uzzi’ěl, Miḵah; of the sons of Miḵah, Shamir. [25] The brother of Miḵah, Yishshiyah; of the sons of Yishshiyah, Zeḵaryahu. [26] The sons of Merari: Maḥli and Mushi; the son of Ya‛aziyahu, Beno. [27] The sons of Merari by Ya‛aziyahu: Beno, and Shoham, and Zakkur, and Iḇri. [28] Of Maḥli: El‛azar, who had no sons. [29] Of Qish: the son of Qish, Yeraḥme’ěl. [30] And the sons of Mushi: Maḥli, Ěḏer, and Yerimoth. These were the sons of the Lěvites according to their fathers’ houses. [31] These also cast lots, they too, as their brothers the sons of Aharon, in the presence of Sovereign Daviḏ, and Tsaḏoq, and Aḥimeleḵ, and the heads of the fathers’ houses of the priests and Lěvites – the head of the fathers, as well as his younger brothers.",
       "footnotes": {}
     },
     {
-      "book": "13",
+      "book": "1 Chronicles",
       "chapter": "25",
-      "title": "The Divisions of the Singers",
-      "subtitle": "Prophesying with Harps, Lyres, and Cymbals",
+      "section": "The Reign of David",
+      "subsection": "Organization of the Musicians",
+      "title": "The Sons of Asaph, Heman, and Jeduthun",
+      "subtitle": "Prophesying with Instruments",
       "chronological": "",
-      "references": "1 Chronicles 25:1-31",
-      "text": "[1 Chronicles 25:1] And Dawiḏ and the commanders of the army separated for the service some of the sons of Asaph, and of Hěman, and of Yeḏuthun, who should prophesy with harps, with lyres, and with cymbals. And the number of the men of work for their service was: [2] Of the sons of Asaph: Zakkur, and Yosěph, and Nethanyah, and Ashar’ělah; the sons of Asaph were under the hand of Asaph, who prophesied under the hand of the sovereign. [3] Of Yeḏuthun, the sons of Yeḏuthun: Geḏalyahu, and Tseri, and Yeshayahu, Ḥashaḇyahu, and Mattithyahu, six, under the hands of their father Yeḏuthun, who prophesied with a harp to give thanks and to praise <dn>YeHoVaH</dn>. [4] Of Hěman, the sons of Hěman: Buqqiyahu, Mattanyahu, Uzzi’ěl, Sheḇu’ěl, and Yerimoth, Ḥananyah, Ḥanani, Eli’athah, Giddalti, and Romamti-Ězer, Yoshbeqashah, Mallothi, Hoṯir, Maḥazi’oth. [5] All these were sons of Hěman the seer of the sovereign in the words of <dn>Elohim</dn>, to exalt his horn. For <dn>Elohim</dn> gave Hěman fourteen sons and three daughters. [6] All these were under the hands of their father for the song in the House of <dn>YeHoVaH</dn>, with cymbals, lyres, and harps, for the service of the House of <dn>Elohim</dn>, under the hand of the sovereign: Asaph, Yeḏuthun, and Hěman. [7] And their number, with their brothers who were taught in the songs of <dn>YeHoVaH</dn>, all who were skilled, was two hundred and eighty-eight. [8] And they cast lots for their duty, the small as well as the great, the teacher with the student. [9] And the first lot for Asaph came out for Yosěph; the second for Geḏalyahu, him and his brothers and sons, twelve; [10] the third to Zakkur, his sons and his brothers, twelve; [11] the fourth to Yitsri, his sons and his brothers, twelve; [12] the fifth to Nethanyah, his sons and his brothers, twelve; [13] the sixth to Buqqiyahu, his sons and his brothers, twelve; [14] the seventh to Yesar’ělah, his sons and his brothers, twelve; [15] the eighth to Yeshayahu, his sons and his brothers, twelve; [16] the ninth to Mattanyahu, his sons and his brothers, twelve; [17] the tenth to Shim‛i, his sons and his brothers, twelve; [18] the eleventh to Azar’ěl, his sons and his brothers, twelve; [19] the twelfth to Ḥashaḇyah, his sons and his brothers, twelve; [20] the thirteenth to Shuḇa’ěl, his sons and his brothers, twelve; [21] the fourteenth to Mattithyahu, his sons and his brothers, twelve; [22] the fifteenth to Yerěmoth, his sons and his brothers, twelve; [23] the sixteenth to Ḥananyahu, his sons and his brothers, twelve; [24] the seventeenth to Yoshbeqashah, his sons and his brothers, twelve; [25] the eighteenth to Ḥanani, his sons and his brothers, twelve; [26] the nineteenth to Mallothi, his sons and his brothers, twelve; [27] the twentieth to Eli’yathah, his sons and his brothers, twelve; [28] the twenty-first to Hoṯir, his sons and his brothers, twelve; [29] the twenty-second to Giddalti, his sons and his brothers, twelve; [30] the twenty-third to Maḥazi’oth, his sons and his brothers, twelve; [31] the twenty-fourth to Romamti-Ězer, his sons and his brothers, twelve.”",
+      "references": "1 Chronicles 25:1-7",
+      "text": "[1 Chronicles 25:1] And Daviḏ and the commanders of the army separated for the service some of the sons of Asaph, and of Hěman, and of Yeḏuthun, who should prophesy with lyres, with harps, and with cymbals. And the number of the workmen according to their service was: [2] Of the sons of Asaph: Zakkur, and Yosěph, and Nethanyah, and Ashar’ělah, the sons of Asaph at the hands of Asaph, who prophesied at the hands of the sovereign. [3] Of Yeḏuthun, the sons of Yeḏuthun: Geḏalyahu, and Tseri, and Yeshayahu, Ḥashaḇyahu, and Mattithyahu, six, under the hands of their father Yeḏuthun, who prophesied with a lyre to give thanks and to praise <dn>YeHoVaH</dn>. [4] Of Hěman, the sons of Hěman: Buqqiyahu, Mattanyahu, Uzzi’ěl, Sheḇu’ěl, and Yerimoth, Ḥananyah, Ḥanani, Eliyathah, Giddalti, and Romamti-Ezer, Yoshbeqashah, Mallothi, Hothir, Maḥaziyoth. [5] All these were the sons of Hěman the sovereign’s seer in the words of <dn>Elohim</dn>, to exalt his horn. For <dn>Elohim</dn> gave Hěman fourteen sons and three daughters. [6] All these were at the hands of their father for song in the House of <dn>YeHoVaH</dn>, with cymbals, harps and lyres, for the service of the House of <dn>Elohim</dn>: Asaph, Yeḏuthun, and Hěman, at the hands of the sovereign. [7] And the number of them, with their brothers who were taught in the songs of <dn>YeHoVaH</dn>, all who were skilled, was two hundred and eighty-eight.",
+      "footnotes": {}
+    },
+    {
+      "book": "1 Chronicles",
+      "chapter": "25",
+      "section": "The Reign of David",
+      "subsection": "Organization of the Musicians",
+      "title": "The Twenty-Four Musical Courses",
+      "subtitle": "Casting Lots for Duty",
+      "chronological": "",
+      "references": "1 Chronicles 25:8-31",
+      "text": "[1 Chronicles 25:8] And they cast lots for their duty, the small as well as the great, the teacher with the student. [9] And the first lot for Asaph came forth for Yosěph; Geḏalyahu the second, he, and his brothers and sons, twelve; [10] the third Zakkur, his sons and his brothers, twelve; [11] the fourth Yitsri, his sons and his brothers, twelve; [12] the fifth Nethanyahu, his sons and his brothers, twelve; [13] the sixth Buqqiyahu, his sons and his brothers, twelve; [14] the seventh Yesar’ělah, his sons and his brothers, twelve; [15] the eighth Yeshayahu, his sons and his brothers, twelve; [16] the ninth Mattanyahu, his sons and his brothers, twelve; [17] the tenth Shim‛i, his sons and his brothers, twelve; [18] the eleventh Azar’ěl, his sons and his brothers, twelve; [19] the twelfth Ḥashaḇyah, his sons and his brothers, twelve; [20] the thirteenth Shuḇa’ěl, his sons and his brothers, twelve; [21] the fourteenth Mattithyahu, his sons and his brothers, twelve; [22] the fifteenth Yerěmoth, his sons and his brothers, twelve; [23] the sixteenth Ḥananyahu, his sons and his brothers, twelve; [24] the seventeenth Yoshbeqashah, his sons and his brothers, twelve; [25] the eighteenth Ḥanani, his sons and his brothers, twelve; [26] the nineteenth Mallothi, his sons and his brothers, twelve; [27] the twentieth Eliyathah, his sons and his brothers, twelve; [28] the twenty-first Hothir, his sons and his brothers, twelve; [29] the twenty-second Giddalti, his sons and his brothers, twelve; [30] the twenty-third Maḥaziyoth, his sons and his brothers, twelve; [31] the twenty-fourth Romamti-Ezer, his sons and his brothers, twelve.",
       "footnotes": {}
     }
   ]
