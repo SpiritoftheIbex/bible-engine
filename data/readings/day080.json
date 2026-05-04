@@ -1,66 +1,102 @@
 {
-    "dayid": "Day 80",
-    "plan": "Job 40:6-24; Job 41:1-34; Job 42:1-6, 7-17",
-    "readings": [
-        {
-            "book": "Job",
-            "chapter": "40",
-            "section": "The Trial of Job",
-            "subsection": "The Divine Interrogation",
-            "title": "The Almighty's Challenge",
-            "subtitle": "Job's Silence Before the Creator",
-            "chronological": "",
-            "references": "",
-            "text": "[Job 40:1] And <dn>YeHoVaH</dn> answered <dn>\u05d0\u05ea</dn> Iyo\u1e07, and said,\n[2] <dq>\u201cShould a reprover contend with the <dn>Almighty</dn>? Let him who reproves <dn>Eloah</dn> answer it.\u201d</dq>\n[3] And Iyo\u1e07 answered <dn>\u05d0\u05ea</dn> <dn>YeHoVaH</dn> and said,\n[4] \u201cSee, I am insignificant, what would I answer <dn>You</dn>? I lay my hand over my mouth.\n[5] Once I have spoken, but I have no answer \u2013 and twice, but I say no more.\u201d",
-            "footnotes": {}
-        },
-        {
-            "book": "Job",
-            "chapter": "40",
-            "section": "The Trial of Job",
-            "subsection": "The Divine Interrogation",
-            "title": "The Majesty of Behemoth",
-            "subtitle": "The Strength of the First of the Ways of El",
-            "chronological": "",
-            "references": "",
-            "text": "[Job 40:6] Then <dn>YeHoVaH</dn> answered <dn>\u05d0\u05ea</dn> Iyo\u1e07 out of the whirlwind, and said,\n[7] <dq>\u201cNow gird up your loins like a man; <dn>I</dn> ask you, and you answer <dn>Me</dn>.</dq>\n[8] <dq>Would you also set aside <dn>My</dn> judgment? Would you pronounce <dn>Me</dn> wrong, and you be declared righteous?</dq>\n[9] <dq>Or do you have an arm like <dn>\u011al</dn>? Or do you thunder with a voice like <dn>His</dn>?</dq>\n[10] <dq>Deck yourself, please, with excellency and grandeur, and put on esteem and splendour.</dq>\n[11] <dq>Scatter abroad the rage of your wrath, and look on everyone who is proud and bring him low.</dq>\n[12] <dq>Look on everyone who is proud, humble him. And tread down the wrong-doers in their place.</dq>\n[13] <dq>Hide them in the dust together, bind their faces in obscurity.</dq>\n[14] <dq>Then even <dn>I</dn> would confess to you that your own right hand does save you.</dq>\n[15] <dq>See now, Beh\u011bmoth, which <dn>I</dn> made along with you \u2013 he eats grass like an ox.</dq>\n[16] <dq>See now, his strength is in his loins, and his power is in his stomach muscles.</dq>\n[17] <dq>He bends his tail like a cedar; the sinews of his thighs are knit together.</dq>\n[18] <dq>His bones are like tubes of bronze, his ribs like bars of iron.</dq>\n[19] <dq>He is the beginning of the ways of <dn>\u011al</dn>. <dn>His</dn> Maker brings near <dn>His</dn> sword.</dq>\n[20] <dq>For the mountains yield food for him, and all the beasts of the field play there.</dq>\n[21] <dq>He lies under the slender trees, under cover of reed and swamp.</dq>\n[22] <dq>The slender trees cover him with their shade; the willows by the stream surround him.</dq>\n[23] <dq>See, if a river rages, he is not alarmed; he feels safe, even if the Yard\u011bn gushes into his mouth,</dq>\n[24] <dq>Before his eyes, shall he be caught, with snares? Or his nose pierced?</dq>",
-            "footnotes": {}
-        },
-        {
-            "book": "Job",
-            "chapter": "41",
-            "section": "The Trial of Job",
-            "subsection": "The Divine Interrogation",
-            "title": "The Terror of Leviathan",
-            "subtitle": "The Sovereign Over the Sons of Pride",
-            "chronological": "",
-            "references": "",
-            "text": "[Job 41:1] <dq>\u201cWould you draw out Liviathan with a hook, or snare his tongue with a line which you lower?</dq>\n[2] <dq>Would you put a cord through his nose, or pierce his jaw with a hook?</dq>\n[3] <dq>Would he keep on pleading with you? Would he speak softly to you?</dq>\n[4] <dq>Would he make a covenant with you to be taken as a servant forever?</dq>\n[5] <dq>Would you play with him as with a bird? Or leash him for your young girls?</dq>\n[6] <dq>Would trading partners bargain over him? Would they divide him among the merchants?</dq>\n[7] <dq>Fill his skin with harpoons? Or his head with fishing spears?</dq>\n[8] <dq>Put your hand on him \u2013 think of the struggle! Do not do it again!</dq>\n[9] <dq>See, any expectation of him is disappointed \u2013 he is laid low even at the sight of him!</dq>\n[10] <dq>No one is so foolhardy to wake him up. Who then is able to stand against <dn>Me</dn>?</dq>\n[11] <dq>Who has given to <dn>Me</dn> first, that <dn>I</dn> should repay him \u2013 under all the heavens that is <dn>Mine</dn>?</dq>\n[12] <dq><dn>I</dn> would not keep silent concerning his limbs, or his mighty power, or his fair frame.</dq>\n[13] <dq>Who shall take off the surface of his skin? Who approaches him with a double bridle?</dq>\n[14] <dq>Who shall open the doors of his face, with his frightening teeth all around?</dq>\n[15] <dq>Rows of scales are his pride \u2013 closed up, a binding seal.</dq>\n[16] <dq>One to the other they fit closely, not even a breath enters between them.</dq>\n[17] <dq>They are joined one to another, they stick together and are not separated.</dq>\n[18] <dq>His sneezings flash forth light, and his eyes are like the eyelids of the morning.</dq>\n[19] <dq>Out of his mouth go firebrands \u2013 sparks of fire shoot out.</dq>\n[20] <dq>Out of his nostrils comes smoke, like a boiling pot or kettle.</dq>\n[21] <dq>His breath sets coals on fire, and a flame goes out of his mouth.</dq>\n[22] <dq>Strength dwells in his neck, and fear leaps before him.</dq>\n[23] <dq>The folds of his flesh cleave together. They are firm on him, immovable.</dq>\n[24] <dq>His heart is as hard as stone, even as hard as the lower millstone.</dq>\n[25] <dq>When he raises himself up, the mighty are afraid. Because of his crashings they are bewildered.</dq>\n[26] <dq>No sword that reaches him does prevail, neither spear, dart, or lance.</dq>\n[27] <dq>He reckons iron as straw, bronze as rotten wood.</dq>\n[28] <dq>The arrow does not make him flee, sling-stones become like stubble to him.</dq>\n[29] <dq>Clubs are reckoned as straw, he laughs at the rattle of a lance.</dq>\n[30] <dq>His undersides are like sharp potsherds. He sprawls on the mud like a threshing-sledge.</dq>\n[31] <dq>He makes the deep boil like a pot, he makes the sea like a pot of ointment.</dq>\n[32] <dq>He leaves a shining path behind him. One would think the deep to be grey-haired.</dq>\n[33] <dq>No one on earth is like him \u2013 one made without fear.</dq>\n[34] <dq>He sees all that is haughty. He is sovereign over all the sons of pride.\u201d</dq>",
-            "footnotes": {}
-        },
-        {
-            "book": "Job",
-            "chapter": "42",
-            "section": "The Trial of Job",
-            "subsection": "The Divine Interrogation",
-            "title": "Job's Repentance",
-            "subtitle": "Seeing the Creator and Despising Self",
-            "chronological": "",
-            "references": "",
-            "text": "[Job 42:1] And Iyo\u1e07 answered <dn>\u05d0\u05ea</dn> <dn>YeHoVaH</dn> and said,\n[2] \u201c<dn>You</dn> know that <dn>You</dn> are able to do all, and that no purpose is withheld from <dn>You</dn>.\n[3] Who is this that hides counsel without knowledge? Therefore I declared but I did not understand, matters too marvellous for me, which I did not know.\n[4] Listen, please, and let me speak. I ask <dn>You</dn>, then would <dn>You</dn> make it known to me?\u2019\n[5] I have heard of <dn>You</dn> by the hearing of the ear, but now my eye sees <dn>You</dn>.\n[6] Therefore I despise myself, and repent in dust and ashes.\u201d",
-            "footnotes": {}
-        },
-        {
-            "book": "Job",
-            "chapter": "42",
-            "section": "The Trial of Job",
-            "subsection": "The Divine Interrogation",
-            "title": "The Restoration of Job",
-            "subtitle": "The Premial Reward of the Righteous Sufferer",
-            "chronological": "",
-            "references": "",
-            "text": "[Job 42:7] And it came to be, after <dn>YeHoVaH</dn> had spoken <dn>\u05d0\u05ea</dn> these words to Iyo\u1e07, that <dn>YeHoVaH</dn> said to Eliphaz the T\u011bmanite, <dq>\u201c<dn>My</dn> wrath has burned against you and your two friends, for you have not spoken of <dn>Me</dn> what is right, as did <dn>My</dn> servant Iyo\u1e07.</dq>\n[8] <dq>And now, take seven bulls and seven rams, and go to <dn>My</dn> servant Iyo\u1e07, and offer up an ascending offering for yourselves. And let <dn>My</dn> servant Iyo\u1e07 pray for you \u2013 for <dn>I</dn> accept him \u2013 lest <dn>I</dn> punish you; because you have not spoken of <dn>Me</dn> what is right, as did <dn>My</dn> servant Iyo\u1e07.\u201d</dq>\n[9] So Eliphaz the T\u011bmanite and Bilda\u1e0f the Shu\u1e25ite, Tsophar the Na\u201bamathite went and did as <dn>YeHoVaH</dn> commanded them. And <dn>YeHoVaH</dn> accepted <dn>\u05d0\u05ea</dn> the face of Iyo\u1e07.\n[10] And <dn>YeHoVaH</dn> turned <dn>\u05d0\u05ea</dn> the captivity of Iyo\u1e07 when he prayed for his friends. And <dn>YeHoVaH</dn> gave <dn>\u05d0\u05ea</dn> Iyo\u1e07 twice as much as he had before.\n[11] And all his brothers, and all his sisters, and all those who had been his friends before, came to him and ate food with him in his house. And they sympathised with him and comforted him for <dn>\u05d0\u05ea</dn> all the evil that <dn>YeHoVaH</dn> had brought upon him. And they each gave him a qesitah and each one a ring of gold.\n[12] And <dn>YeHoVaH</dn> blessed <dn>\u05d0\u05ea</dn> the latter days of Iyo\u1e07 more than his beginning; for he had fourteen thousand sheep, and six thousand camels, and one thousand yoke of oxen, and one thousand female donkeys.\n[13] And he had seven sons and three daughters.\n[14] And he called the name of the first Yemimah, and the name of the second Qetsi\u201bah, and the name of the third Qeren-Happu\u1e35.\n[15] And in all the land were found no women so beautiful as the daughters of Iyo\u1e07. And their father gave them an inheritance among their brothers.\n[16] And after this Iyo\u1e07 lived one hundred and forty years, and saw <dn>\u05d0\u05ea</dn> his children and <dn>\u05d0\u05ea</dn> grandchildren for four generations.\n[17] And Iyo\u1e07 died, old and satisfied with days.",
-            "footnotes": {}
-        }
-    ]
+  "dayid": "80",
+  "plan": "Job 40:6-24; Job 41:1-34; Job 42:1-6, 7-17",
+  "readings": [
+    {
+      "book": "Job",
+      "chapter": "40",
+      "section": "The Divine Speeches",
+      "subsection": "YeHoVaH's Second Discourse",
+      "title": "A Challenge to Job's Power",
+      "subtitle": "Can You Govern the Proud?",
+      "chronological": "",
+      "references": "Job 40:6-14",
+      "text": "[Job 40:6] Then <dn>YeHoVaH</dn> answered <dn>את</dn> Iyoḇ out of the whirlwind, and said, [7] <dq>Now gird up <dn>your</dn> loins like a man; <dn>I</dn> ask <dn>you</dn>, and <dn>you</dn> answer <dn>Me</dn>.</dq> [8] <dq>Would <dn>you</dn> also set aside <dn>My</dn> judgment? Would <dn>you</dn> pronounce <dn>Me</dn> wrong, and <dn>you</dn> be declared righteous?</dq> [9] <dq>Or do <dn>you</dn> have an arm like <dn>Ěl</dn>? Or do <dn>you</dn> thunder with a voice like <dn>His</dn>?</dq> [10] <dq>Deck <dn>yourself</dn>, please, with excellency and grandeur, and put on esteem and splendour.</dq> [11] <dq>Scatter abroad the rage of <dn>your</dn> wrath, and look on everyone who is proud and bring him low.</dq> [12] <dq>Look on everyone who is proud, humble him. And tread down the wrong-doers in their place.</dq> [13] <dq>Hide them in the dust together, bind their faces in obscurity.</dq> [14] <dq>Then even <dn>I</dn> would confess to <dn>you</dn> that <dn>your</dn> own right hand does save <dn>you</dn>.</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "40",
+      "section": "The Divine Speeches",
+      "subsection": "YeHoVaH's Second Discourse",
+      "title": "Behold the Behemoth",
+      "subtitle": "A Creature of Immense Strength",
+      "chronological": "",
+      "references": "Job 40:15-24",
+      "text": "[Job 40:15] <dq>See now, Behěmoth, which <dn>I</dn> made along with <dn>you</dn> – he eats grass like an ox.</dq> [16] <dq>See now, his strength is in his loins, and his power is in his stomach muscles.</dq> [17] <dq>He bends his tail like a cedar; the sinews of his thighs are knit together.</dq> [18] <dq>His bones are like tubes of bronze, his ribs like bars of iron.</dq> [19] <dq>He is the beginning of the ways of <dn>Ěl</dn>. <dn>His</dn> Maker brings near <dn>His</dn> sword.</dq> [20] <dq>For the mountains yield food for him, and all the beasts of the field play there.</dq> [21] <dq>He lies under the slender trees, under cover of reed and swamp.</dq> [22] <dq>The slender trees cover him with their shade; the willows by the stream surround him.</dq> [23] <dq>See, if a river rages, he is not alarmed; he feels safe, even if the Yarděn gushes into his mouth,</dq> [24] <dq>Before his eyes, shall he be caught, with snares? Or his nose pierced?</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "41",
+      "section": "The Divine Speeches",
+      "subsection": "YeHoVaH's Second Discourse",
+      "title": "Consider the Leviathan",
+      "subtitle": "Can Any Man Tame Him?",
+      "chronological": "",
+      "references": "Job 41:1-11",
+      "text": "[Job 41:1] <dq>“Would <dn>you</dn> draw out Liviathan with a hook, or snare his tongue with a line which <dn>you</dn> lower?</dq> [2] <dq>Would <dn>you</dn> put a cord through his nose, or pierce his jaw with a hook?</dq> [3] <dq>Would he keep on pleading with <dn>you</dn>? Would he speak softly to <dn>you</dn>?</dq> [4] <dq>Would he make a covenant with <dn>you</dn> to be taken as a servant forever?</dq> [5] <dq>Would <dn>you</dn> play with him as with a bird? Or leash him for <dn>your</dn> young girls?</dq> [6] <dq>Would trading partners bargain over him? Would they divide him among the merchants?</dq> [7] <dq>Fill his skin with harpoons? Or his head with fishing spears?</dq> [8] <dq>Put <dn>your</dn> hand on him – think of the struggle! Do not do it again!</dq> [9] <dq>See, any expectation of him is disappointed – he is laid low even at the sight of him!</dq> [10] <dq>No one is so foolhardy to wake him up. Who then is able to stand against <dn>Me</dn>?</dq> [11] <dq>Who has given to <dn>Me</dn> first, that <dn>I</dn> should repay him – under all the heavens that is <dn>Mine</dn>?</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "41",
+      "section": "The Divine Speeches",
+      "subsection": "YeHoVaH's Second Discourse",
+      "title": "The Terror of Leviathan",
+      "subtitle": "His Impenetrable Armor and Fiery Breath",
+      "chronological": "",
+      "references": "Job 41:12-25",
+      "text": "[Job 41:12] <dq><dn>I</dn> would not keep silent concerning his limbs, or his mighty power, or his fair frame.</dq> [13] <dq>Who shall take off the surface of his skin? Who approaches him with a double bridle?</dq> [14] <dq>Who shall open the doors of his face, with his frightening teeth all around?</dq> [15] <dq>Rows of scales are his pride – closed up, a binding seal.</dq> [16] <dq>One to the other they fit closely, not even a breath enters between them.</dq> [17] <dq>They are joined one to another, they stick together and are not separated.</dq> [18] <dq>His sneezings flash forth light, and his eyes are like the eyelids of the morning.</dq> [19] <dq>Out of his mouth go firebrands – sparks of fire shoot out.</dq> [20] <dq>Out of his nostrils comes smoke, like a boiling pot or kettle.</dq> [21] <dq>His breath sets coals on fire, and a flame goes out of his mouth.</dq> [22] <dq>Strength dwells in his neck, and fear leaps before him.</dq> [23] <dq>The folds of his flesh cleave together. They are firm on him, immovable.</dq> [24] <dq>His heart is as hard as stone, even as hard as the lower millstone.</dq> [25] <dq>When he raises himself up, the mighty are afraid. Because of his crashings they are bewildered.</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "41",
+      "section": "The Divine Speeches",
+      "subsection": "YeHoVaH's Second Discourse",
+      "title": "Sovereign Over the Sons of Pride",
+      "subtitle": "Leviathan's Invincibility",
+      "chronological": "",
+      "references": "Job 41:26-34",
+      "text": "[Job 41:26] <dq>No sword that reaches him does prevail, neither spear, dart, or lance.</dq> [27] <dq>He reckons iron as straw, bronze as rotten wood.</dq> [28] <dq>The arrow does not make him flee, sling-stones become like stubble to him.</dq> [29] <dq>Clubs are reckoned as straw, he laughs at the rattle of a lance.</dq> [30] <dq>His undersides are like sharp potsherds. He sprawls on the mud like a threshing-sledge.</dq> [31] <dq>He makes the deep boil like a pot, he makes the sea like a pot of ointment.</dq> [32] <dq>He leaves a shining path behind him. One would think the deep to be grey-haired.</dq> [33] <dq>No one on earth is like him – one made without fear.</dq> [34] <dq>He sees all that is haughty. He is sovereign over all the sons of pride.”</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "42",
+      "section": "Job's Restoration",
+      "subsection": "Job's Repentance",
+      "title": "Job's Final Answer",
+      "subtitle": "I Repent in Dust and Ashes",
+      "chronological": "",
+      "references": "Job 42:1-6",
+      "text": "[Job 42:1] And Iyoḇ answered <dn>את</dn> <dn>YeHoVaH</dn> and said, [2] “<dn>You</dn> know that <dn>You</dn> are able to do all, and that no purpose is withheld from <dn>You</dn>. [3] Who is this that hides counsel without knowledge? Therefore <dn>I</dn> declared but <dn>I</dn> did not understand, matters too marvellous for <dn>me</dn>, which <dn>I</dn> did not know. [4] Listen, please, and let <dn>me</dn> speak. <dn>I</dn> ask <dn>You</dn>, then would <dn>You</dn> make it known to <dn>me</dn>?’ [5] <dn>I</dn> have heard of <dn>You</dn> by the hearing of the ear, but now <dn>my</dn> eye sees <dn>You</dn>. [6] Therefore <dn>I</dn> despise <dn>myself</dn>, and repent in dust and ashes.”",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "42",
+      "section": "Job's Restoration",
+      "subsection": "Vindication and Intercession",
+      "title": "YeHoVaH Rebukes the Friends",
+      "subtitle": "You Have Not Spoken What is Right",
+      "chronological": "",
+      "references": "Job 42:7-9",
+      "text": "[Job 42:7] And it came to be, after <dn>YeHoVaH</dn> had spoken <dn>את</dn> these words to Iyoḇ, that <dn>YeHoVaH</dn> said to Eliphaz the Těmanite, <dq>“<dn>My</dn> wrath has burned against you and your two friends, for you have not spoken of <dn>Me</dn> what is right, as did <dn>My</dn> servant Iyoḇ.</dq> [8] <dq>And now, take seven bulls and seven rams, and go to <dn>My</dn> servant Iyoḇ, and offer up an ascending offering for yourselves. And let <dn>My</dn> servant Iyoḇ pray for you – for <dn>I</dn> accept <dn>את</dn> him – lest <dn>I</dn> punish you; because you have not spoken of <dn>Me</dn> what is right, as did <dn>My</dn> servant Iyoḇ.”</dq> [9] So Eliphaz the Těmanite and Bildaḏ the Shuḥite, Tsophar the Na‛amathite went and did as <dn>YeHoVaH</dn> commanded them. And <dn>YeHoVaH</dn> accepted <dn>את</dn> the face of Iyoḇ.",
+      "footnotes": {}
+    },
+    {
+      "book": "Job",
+      "chapter": "42",
+      "section": "Job's Restoration",
+      "subsection": "Vindication and Intercession",
+      "title": "The Latter Days of Job",
+      "subtitle": "A Double Portion and a Long Life",
+      "chronological": "",
+      "references": "Job 42:10-17",
+      "text": "[Job 42:10] And <dn>YeHoVaH</dn> turned <dn>את</dn> the captivity of Iyoḇ when he prayed for his friends. And <dn>YeHoVaH</dn> gave Iyoḇ <dn>את</dn> twice as much as he had before. [11] And all his brothers, and all his sisters, and all those who had been his friends before, came to him and ate food with him in his house. And they sympathised with him and comforted him for all the evil that <dn>YeHoVaH</dn> had brought upon him. And they each gave him a qesitah and each one a ring of gold. [12] And <dn>YeHoVaH</dn> blessed <dn>את</dn> the latter days of Iyoḇ more than his beginning; for he had fourteen thousand sheep, and six thousand camels, and one thousand yoke of oxen, and one thousand female donkeys. [13] And he had seven sons and three daughters. [14] And he called the name of the first Yemimah, and the name of the second Qetsi‛ah, and the name of the third Qeren-Happuḵ. [15] And in all the land were found no women so beautiful as the daughters of Iyoḇ. And their father gave them an inheritance among their brothers. [16] And after this Iyoḇ lived one hundred and forty years, and saw <dn>את</dn> his children and <dn>את</dn> grandchildren for four generations. [17] And Iyoḇ died, old and satisfied with days.",
+      "footnotes": {}
+    }
+  ]
 }

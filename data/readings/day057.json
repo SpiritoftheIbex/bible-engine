@@ -1,66 +1,102 @@
 {
-    "dayid": "Day 57",
-    "plan": "Numbers 34:1-15, 16-29; Numbers 35:1-8, 9-34; Numbers 36:1-13",
-    "readings": [
-        {
-            "book": "Numbers",
-            "chapter": "34",
-            "section": "Preparation for the Promised Land",
-            "subsection": "The Architecture of Inheritance",
-            "title": "The Boundaries of Kena\u201ban",
-            "subtitle": "Defining the Borders of the Inheritance",
-            "chronological": "",
-            "references": "",
-            "text": "[Numbers 34:1] And <dn>YeHoVaH</dn> spoke to Mosheh, saying, [2] <dq>\"Command <dn>\u05d0\u05ea</dn> the children of Yisra\u2019\u011bl, and say to them, \u2018When you come into the land of Kena\u201ban, this is the land which falls to you as an inheritance, the land of Kena\u201ban to its boundaries:</dq> [3] <dq>Then your southern border shall be from the Wilderness of Tsin along the border of E\u1e0fom, and your southern border shall be eastward from the end of the Salt Sea.</dq> [4] <dq>Then your border shall turn from the southern side of the Ascent of Aqrabbim, continue to Tsin, and be on the south of Qa\u1e0f\u011bsh Barn\u011ba, and it shall go on to \u1e24atsar Addar, and continue to Atsmon.</dq> [5] <dq>And the border shall turn from Atsmon to the wadi of Mitsrayim, and it shall end at the Sea.</dq> [6] <dq>As for the western border, you shall have the Great Sea for a border, this is your western border.</dq> [7] <dq>And this is your northern border: From the Great Sea you mark out your borderline to Mount Hor,</dq> [8] <dq>from Mount Hor you mark out your border to the entrance of \u1e24amath, and the edge of the border shall be toward Tse\u1e0fa\u1e0f,</dq> [9] <dq>and the border shall proceed to Ziphron, and it shall end at \u1e24atsar \u011anan. This is your northern border.</dq> [10] <dq>And you shall mark out your eastern border from \u1e24atsar \u011anan to Shepham,</dq> [11] <dq>and the border shall go down from Shepham to Ri\u1e07lah on the east side of Ayin, and the border shall go down and reach to the eastern side of the Sea of Kinnereth.</dq> [12] <dq>And the border shall go down along the Yard\u011bn, and it shall end at the Salt Sea. This is your land with its surrounding boundaries.\u2019 \u201d</dq> [13] And Mosheh commanded <dn>\u05d0\u05ea</dn> the children of Yisra\u2019\u011bl, saying, \u201cThis is the land which you inherit by lot, which <dn>YeHoVaH</dn> has commanded to give to the nine tribes and to the half-tribe. [14] \u201cFor the tribe of the children of Re\u2019u\u1e07\u011bn according to the house of their fathers, and the tribe of the children of Ga\u1e0f according to the house of their fathers, have received their inheritance. And the half-tribe of Menashsheh has received its inheritance. [15] \u201cThe two tribes and the half-tribe have received their inheritance beyond the Yard\u011bn of Yeri\u1e25o eastward, toward the sunrise.\u201d",
-            "footnotes": {}
-        },
-        {
-            "book": "Numbers",
-            "chapter": "34",
-            "section": "Preparation for the Promised Land",
-            "subsection": "The Architecture of Inheritance",
-            "title": "The Appointed Leaders",
-            "subtitle": "Men Chosen to Divide the Land",
-            "chronological": "",
-            "references": "",
-            "text": "[Numbers 34:16] And <dn>YeHoVaH</dn> spoke to Mosheh, saying, [17] <dq>\u201cThese are the names of the men who divide <dn>\u05d0\u05ea</dn> the land among you as an inheritance: El\u201bazar the priest, and Yehoshua son of Nun.</dq> [18] <dq>\u201cAnd take one leader of every tribe to divide <dn>\u05d0\u05ea</dn> the land for the inheritance.</dq> [19] <dq>\u201cAnd these are the names of the men. From the tribe of Yehu\u1e0fah: Kal\u011b\u1e07 son of Yephunneh.</dq> [20] <dq>\u201cAnd from the tribe of the children of Shim\u201bon: Shemu\u2019\u011bl son of Ammihu\u1e0f.</dq> [21] <dq>\u201cFrom the tribe of Binyamin: Eli\u1e0fa\u1e0f son of Kislon.</dq> [22] <dq>\u201cAnd a leader from the tribe of the children of Dan: Buqqi son of Yo\u1e21li.</dq> [23] <dq>\u201cFrom the sons of Yos\u011bph: a leader from the tribe of the children of Menashsheh, \u1e24anni\u2019\u011bl son of \u011apho\u1e0f.</dq> [24] <dq>\u201cAnd a leader from the tribe of the children of Ephrayim: Qemu\u2019\u011bl son of Shiphtan.</dq> [25] <dq>\u201cAnd a leader from the tribe of the children of Ze\u1e07ulun: Elitsaphan son of Parna\u1e35.</dq> [26] <dq>\u201cAnd a leader from the tribe of the children of Yissas\u1e35ar: Palti\u2019\u011bl son of Azzan.</dq> [27] <dq>\u201cAnd a leader from the tribe of the children of Ash\u011br: A\u1e25ihu\u1e0f son of Shelomi.</dq> [28] <dq>\u201cAnd a leader from the tribe of the children of Naphtali: Pe\u1e0fah\u2019\u011bl son of Ammihu\u1e0f.\u201d</dq> [29] These are the ones <dn>YeHoVaH</dn> commanded to divide the inheritance among <dn>\u05d0\u05ea</dn> the children of Yisra\u2019\u011bl in the land of Kena\u201ban.",
-            "footnotes": {}
-        },
-        {
-            "book": "Numbers",
-            "chapter": "35",
-            "section": "Preparation for the Promised Land",
-            "subsection": "The Architecture of Inheritance",
-            "title": "The Levitical Cities",
-            "subtitle": "Open Land for the Priestly Tribe",
-            "chronological": "",
-            "references": "",
-            "text": "[Numbers 35:1] And <dn>YeHoVaH</dn> spoke to Mosheh in the desert plains of Mo\u2019a\u1e07 by the Yard\u011bn of Yeri\u1e25o, saying, [2] <dq>\"Command <dn>\u05d0\u05ea</dn> the children of Yisra\u2019\u011bl that they shall give the L\u011bvites cities to dwell in from the inheritance of their possession. Also give the L\u011bvites open land around the cities.</dq> [3] <dq>\u201cAnd they shall have the cities to dwell in, and their open land for their cattle, and for their herds, and for all their livestock.</dq> [4] <dq>\u201cAnd the open land of the cities which you give the L\u011bvites are from the wall of the city outward a thousand cubits all around.</dq> [5] <dq>\u201cAnd you shall measure outside the city on the east side two thousand cubits, and on the south side two thousand cubits, and on the west side two thousand cubits, and on the north side two thousand cubits. And the city is in the middle. This is to them the open land for the cities.</dq> [6] <dq>\u201cAnd <dn>\u05d0\u05ea</dn> the cities which you give to the L\u011bvites are the six cities of refuge, which you give to the man-slayer to flee to, and to these you add forty-two cities.</dq> [7] <dq>\u201cAll the cities which you give to the L\u011bvites are forty-eight, these with their open land.</dq> [8] <dq>\u201cAnd the cities which you give are from the possession of the children of Yisra\u2019\u011bl. From the larger tribe you give many, from the smaller you give few, each one gives some of its cities to the L\u011bvites, in proportion to the inheritance that each inherits.\u201d</dq>",
-            "footnotes": {}
-        },
-        {
-            "book": "Numbers",
-            "chapter": "35",
-            "section": "Preparation for the Promised Land",
-            "subsection": "The Architecture of Inheritance",
-            "title": "The Cities of Refuge",
-            "subtitle": "Right-Rulings for the Man-Slayer and the Revenger of Blood",
-            "chronological": "",
-            "references": "",
-            "text": "[Numbers 35:9] And <dn>YeHoVaH</dn> spoke to Mosheh, saying, [10] <dq>\u201cSpeak to the children of Yisra\u2019\u011bl, and say to them, \u2018When you pass over <dn>\u05d0\u05ea</dn> the Yard\u011bn into the land of Kena\u201ban,</dq> [11] <dq>then you shall choose cities to be cities of refuge for you, that the man-slayer who struck someone mistakenly shall flee there.</dq> [12] <dq>And they shall be cities of refuge for you from the revenger, and the man-slayer is not to die until he stands before the congregation for right-ruling.</dq> [13] <dq>And of the cities which you give, six are to be cities of refuge.</dq> [14] <dq>Give <dn>\u05d0\u05ea</dn> three cities beyond the Yard\u011bn, and give <dn>\u05d0\u05ea</dn> three cities in the land of Kena\u201ban, as cities of refuge.</dq> [15] <dq>These six cities are for refuge for the children of Yisra\u2019\u011bl, and for the sojourner, and for the settler in their midst, for anyone who mistakenly strikes someone to flee there.</dq> [16] <dq>But if he has stricken him with an instrument of iron, so that he dies, he is a murderer. The murderer shall certainly be put to death.</dq> [17] <dq>And if he has stricken him with a stone in the hand, by which one could die, and he does die, he is a murderer. The murderer shall certainly be put to death.</dq> [18] <dq>Or if he has stricken him with a wooden instrument that could kill, and he does die, he is a murderer. The murderer shall certainly be put to death.</dq> [19] <dq>The revenger of blood himself puts <dn>\u05d0\u05ea</dn> the murderer to death. When he meets him, he puts him to death.</dq> [20] <dq>And if he thrusts him through in hatred, or throws an object at him while lying in wait, so that he dies,</dq> [21] <dq>or in enmity he strikes him with his hand so that he dies, the one who struck him shall certainly be put to death, for he is a murderer. The revenger of blood puts <dn>\u05d0\u05ea</dn> the murderer to death when he meets him.</dq> [22] <dq>But if he pushes him suddenly without enmity, or throws an object at him without lying in wait,</dq> [23] <dq>or uses a stone, by which a man could die, throwing it at him without seeing him, so that he dies, while he was not his enemy or seeking his harm,</dq> [24] <dq>then the congregation shall judge between him who struck someone and the revenger of blood, according to these right-rulings.</dq> [25] <dq>And the congregation shall rescue <dn>\u05d0\u05ea</dn> the man-slayer from the hand of the revenger of blood, and the congregation shall return him to the city of refuge where he had fled, and he shall remain there until the death of the high priest who was anointed with the set-apart oil.</dq> [26] <dq>But if the man-slayer at any time goes outside <dn>\u05d0\u05ea</dn> the limits of the city of refuge where he fled,</dq> [27] <dq>and the revenger of blood finds him outside the limits of his city of refuge, and the revenger of blood executes <dn>\u05d0\u05ea</dn> the man-slayer, he is not guilty of blood,</dq> [28] <dq>because he should have remained in his city of refuge until the death of the high priest. But after the death of the high priest the man-slayer is to return to the land of his possession.</dq> [29] <dq>And these shall be for a law of right-ruling to you throughout your generations in all your dwellings.</dq> [30] <dq>Whoever strikes a being, the murderer shall be executed by the mouth of witnesses, but one witness does not bear witness against someone to die.</dq> [31] <dq>And take no ransom for the life of a murderer who is guilty of death, but he shall certainly be put to death.</dq> [32] <dq>And take no ransom for him who has fled to his city of refuge to return to dwell in the land before the death of the priest.</dq> [33] <dq>And do not profane <dn>\u05d0\u05ea</dn> the land where you are, for blood profanes <dn>\u05d0\u05ea</dn> the land, and the land is not pardoned for the blood that is shed on it, except by the blood of him who shed it.</dq> [34] <dq>And do not defile <dn>\u05d0\u05ea</dn> the land which you inhabit, in the midst of which <dn>I</dn> dwell, for <dn>I</dn>, <dn>YeHoVaH</dn>, am dwelling in the midst of the children of Yisra\u2019\u011bl.\u2019 \u201d</dq>",
-            "footnotes": {}
-        },
-        {
-            "book": "Numbers",
-            "chapter": "36",
-            "section": "Preparation for the Promised Land",
-            "subsection": "The Architecture of Inheritance",
-            "title": "The Daughters of Tseloph\u1e25a\u1e0f",
-            "subtitle": "Preserving the Tribal Inheritance",
-            "chronological": "",
-            "references": "",
-            "text": "[Numbers 36:1] And the heads of the fathers of the clans of the children of Gil\u201ba\u1e0f, son of Ma\u1e35ir, son of Menashsheh, of the clans of the sons of Yos\u011bph, came near and spoke before Mosheh and before the leaders, the heads of the fathers of the children of Yisra\u2019\u011bl, [2] and said, \u201c<dn>YeHoVaH</dn> commanded my master to give <dn>\u05d0\u05ea</dn> the land as an inheritance by lot to the children of Yisra\u2019\u011bl, and my master was commanded by <dn>YeHoVaH</dn> to give <dn>\u05d0\u05ea</dn> the inheritance of our brother Tseloph\u1e25a\u1e0f to his daughters. [3] \u201cNow if they are married to any of the sons of the other tribes of the children of Yisra\u2019\u011bl, then their inheritance shall be taken from the inheritance of our fathers, and shall be added to the inheritance of the tribe into which they marry, and taken from the lot of our inheritance. [4] \u201cAnd if the Yo\u1e07el of the children of Yisra\u2019\u011bl takes place, then their inheritance shall be added to the inheritance of the tribe into which they marry, and their inheritance taken away from the inheritance of the tribe of our fathers.\u201d [5] And Mosheh commanded <dn>\u05d0\u05ea</dn> the children of Yisra\u2019\u011bl according to the word of <dn>YeHoVaH</dn>, saying, \u201cWhat the tribe of the sons of Yos\u011bph speaks is right. [6] \u201cThis is the word which <dn>YeHoVaH</dn> has commanded, for the daughters of Tseloph\u1e25a\u1e0f, saying, <dq>\u2018Let them marry who is good in their eyes, but let them marry only within the clan of their father\u2019s tribe.\u2019</dq> [7] \u201cAnd the inheritance of the children of Yisra\u2019\u011bl is not to change hands from tribe to tribe, for every one of the children of Yisra\u2019\u011bl is to cling to the inheritance of the tribe of his fathers. [8] \u201cAnd every daughter possessing an inheritance in any tribe of the children of Yisra\u2019\u011bl is to be the wife of one of the clan of her father\u2019s tribe, so that the children of Yisra\u2019\u011bl possess each the inheritance of his fathers. [9] \u201cThus the inheritance is not to change hands from one tribe to another, but every tribe of the children of Yisra\u2019\u011bl is to cling to its own inheritance.\u201d [10] As <dn>YeHoVaH</dn> commanded <dn>\u05d0\u05ea</dn> Mosheh, so did the daughters of Tseloph\u1e25a\u1e0f. [11] For Ma\u1e25lah, Tirtsah, and \u1e24o\u1e21lah, and Milkah, and No\u201bah, the daughters of Tseloph\u1e25a\u1e0f, were married to the sons of their father\u2019s brothers. [12] And they were married into the clans of the children of Menashsheh, the son of Yos\u011bph, and their inheritance remained in the tribe of their father\u2019s clan. [13] These are the commands and the right-rulings which <dn>YeHoVaH</dn> commanded the children of Yisra\u2019\u011bl by the hand of Mosheh in the desert plains of Mo\u2019a\u1e07 by the Yard\u011bn of Yeri\u1e25o.",
-            "footnotes": {}
-        }
-    ]
+  "dayid": "57",
+  "plan": "Numbers 34:1-15, 16-29; Numbers 35:1-8, 9-34; Numbers 36:1-13",
+  "readings": [
+    {
+      "book": "Numbers",
+      "chapter": "34",
+      "section": "The Promised Inheritance",
+      "subsection": "Defining the Borders",
+      "title": "The Boundaries of Canaan",
+      "subtitle": "Instructions for the Land West of the Jordan",
+      "chronological": "",
+      "references": "Numbers 34:1-15",
+      "text": "[Numbers 34:1] And <dn>YeHoVaH</dn> spoke to Mosheh, saying, [2] <dq>\"Command <dn>את</dn> the children of Yisra’ěl, and say to them, ‘When you come into the land of Kena‛an, this is <dn>את</dn> the land which falls to you as an inheritance, the land of Kena‛an to its boundaries:</dq> [3] <dq>Then your southern border shall be from the Wilderness of Tsin along the border of Eḏom, and your southern border shall be eastward from the end of the Salt Sea.</dq> [4] <dq>Then your border shall turn from the southern side of the Ascent of Aqrabbim, continue to Tsin, and be on the south of Qaḏěsh Barněa, and it shall go on to Ḥatsar Addar, and continue to Atsmon.</dq> [5] <dq>And the border shall turn from Atsmon to the wadi of Mitsrayim, and it shall end at the Sea.</dq> [6] <dq>As for the western border, you shall have the Great Sea for a border, this is your western border.</dq> [7] <dq>And this is your northern border: From the Great Sea you mark out your borderline to Mount Hor,</dq> [8] <dq>from Mount Hor you mark out your border to the entrance of Ḥamath, and the edge of the border shall be toward Tseḏaḏ,</dq> [9] <dq>and the border shall proceed to Ziphron, and it shall end at Ḥatsar Ěnan. This is your northern border.</dq> [10] <dq>And you shall mark out your eastern border from Ḥatsar Ěnan to Shepham,</dq> [11] <dq>and the border shall go down from Shepham to Riḇlah on the east side of Ayin, and the border shall go down and reach to the eastern side of the Sea of Kinnereth.</dq> [12] <dq>And the border shall go down along the Yarděn, and it shall end at the Salt Sea. This is your land with its surrounding boundaries.’ ”</dq> [13] And Mosheh commanded the children of Yisra’ěl, saying, “This is <dn>את</dn> the land which you inherit by lot, which <dn>את</dn> <dn>YeHoVaH</dn> has commanded to give to the nine tribes and to the half-tribe. [14] “For the tribe of the children of Re’uḇěn according to the house of their fathers, and the tribe of the children of Gaḏ according to the house of their fathers, have received their inheritance. And the half-tribe of Menashsheh has received its inheritance. [15] “The two tribes and the half-tribe have received their inheritance beyond the Yarděn of Yeriḥo eastward, toward the sunrise.”",
+      "footnotes": {}
+    },
+    {
+      "book": "Numbers",
+      "chapter": "34",
+      "section": "The Promised Inheritance",
+      "subsection": "Appointing the Leadership",
+      "title": "Leaders Appointed for Land Division",
+      "subtitle": "One Representative from Each of the Nine and a Half Tribes",
+      "chronological": "",
+      "references": "Numbers 34:16-29",
+      "text": "[Numbers 34:16] And <dn>YeHoVaH</dn> spoke to Mosheh, saying, [17] <dq>“These are the names of the men who divide <dn>את</dn> the land among you as an inheritance: El‛azar the priest, and Yehoshua son of Nun.</dq> [18] <dq>“And take <dn>את</dn> one leader of every tribe to divide <dn>את</dn> the land for the inheritance.</dq> [19] <dq>“And these are the names of the men. From the tribe of Yehuḏah: <dn>את</dn> Kalěḇ son of Yephunneh.</dq> [20] <dq>“And from the tribe of the children of Shim‛on: <dn>את</dn> Shemu’ěl son of Ammihuḏ.</dq> [21] <dq>“From the tribe of Binyamin: <dn>את</dn> Eliḏaḏ son of Kislon.</dq> [22] <dq>“And a leader from the tribe of the children of Dan: <dn>את</dn> Buqqi son of Yoḡli.</dq> [23] <dq>“From the sons of Yosěph: a leader from the tribe of the children of Menashsheh, <dn>את</dn> Ḥanni’ěl son of Ěphoḏ.</dq> [24] <dq>“And a leader from the tribe of the children of Ephrayim: <dn>את</dn> Qemu’ěl son of Shiphtan.</dq> [25] <dq>“And a leader from the tribe of the children of Zeḇulun: <dn>את</dn> Elitsaphan son of Parnaḵ.</dq> [26] <dq>“And a leader from the tribe of the children of Yissasḵar: <dn>את</dn> Palti’ěl son of Azzan.</dq> [27] <dq>“And a leader from the tribe of the children of Ashěr: <dn>את</dn> Aḥihuḏ son of Shelomi.</dq> [28] <dq>“And a leader from the tribe of the children of Naphtali: <dn>את</dn> Peḏah’ěl son of Ammihuḏ.”</dq> [29] These are <dn>את</dn> the ones <dn>YeHoVaH</dn> commanded to divide the inheritance among the children of Yisra’ěl in the land of Kena‛an.",
+      "footnotes": {}
+    },
+    {
+      "book": "Numbers",
+      "chapter": "35",
+      "section": "Laws of the Land",
+      "subsection": "Provisions for the Priesthood",
+      "title": "Cities for the Levites",
+      "subtitle": "Forty-Eight Cities with Open Lands",
+      "chronological": "",
+      "references": "Numbers 35:1-8",
+      "text": "[Numbers 35:1] And <dn>YeHoVaH</dn> spoke to Mosheh in the desert plains of Mo’aḇ by the Yarděn of Yeriḥo, saying, [2] <dq>\"Command <dn>את</dn> the children of Yisra’ěl that they shall give <dn>את</dn> the Lěvites cities to dwell in from the inheritance of their possession. Also give <dn>את</dn> the Lěvites open land around the cities.</dq> [3] <dq>“And they shall have the cities to dwell in, and their open land for their cattle, and for their herds, and for all their livestock.</dq> [4] <dq>“And the open land of the cities which you give <dn>את</dn> the Lěvites are from the wall of the city outward a thousand cubits all around.</dq> [5] <dq>“And you shall measure <dn>את</dn> outside the city on the east side two thousand cubits, and on the south side two thousand cubits, and on the west side two thousand cubits, and on the north side two thousand cubits. And the city is in the middle. This is to them the open land for the cities.</dq> [6] <dq>“And <dn>את</dn> the cities which you give to the Lěvites are <dn>את</dn> the six cities of refuge, which you give to <dn>את</dn> the man-slayer to flee to, and to <dn>את</dn> these you add forty-two cities.</dq> [7] <dq>“All <dn>את</dn> the cities which you give to the Lěvites are forty-eight, these with their open land.</dq> [8] <dq>“And <dn>את</dn> the cities which you give are from the possession of the children of Yisra’ěl. From the larger tribe you give many, from the smaller you give few, each one gives some of its cities to the Lěvites, in proportion to the inheritance that each inherits.”</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Numbers",
+      "chapter": "35",
+      "section": "Laws of the Land",
+      "subsection": "Justice and Asylum",
+      "title": "The Cities of Refuge",
+      "subtitle": "A Haven for the Unintentional Manslayer",
+      "chronological": "",
+      "references": "Numbers 35:9-15",
+      "text": "[Numbers 35:9] And <dn>YeHoVaH</dn> spoke to Mosheh, saying, [10] <dq>“Speak to <dn>את</dn> the children of Yisra’ěl, and say to them, ‘When you pass over the Yarděn into the land of Kena‛an,</dq> [11] <dq>then you shall choose cities to be cities of refuge for you, that the man-slayer who struck <dn>את</dn> someone mistakenly shall flee there.</dq> [12] <dq>And they shall be cities of refuge for you from the revenger, and the man-slayer is not to die until he stands before the congregation for right-ruling.</dq> [13] <dq>And of the cities which you give, six are to be cities of refuge.</dq> [14] <dq>Give three cities beyond the Yarděn, and give three cities in the land of Kena‛an, as cities of refuge.</dq> [15] <dq>These six cities are for refuge for the children of Yisra’ěl, and for the sojourner, and for the settler in their midst, for anyone who mistakenly strikes <dn>את</dn> someone to flee there.</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Numbers",
+      "chapter": "35",
+      "section": "Laws of the Land",
+      "subsection": "Justice and Asylum",
+      "title": "Distinguishing Murder from Manslaughter",
+      "subtitle": "The Role of the Revenger of Blood",
+      "chronological": "",
+      "references": "Numbers 35:16-21",
+      "text": "[Numbers 35:16] <dq>But if he has stricken <dn>את</dn> him with an instrument of iron, so that he dies, he is a murderer. The murderer shall certainly be put to death.</dq> [17] <dq>And if he has stricken <dn>את</dn> him with a stone in the hand, by which one could die, and he does die, he is a murderer. The murderer shall certainly be put to death.</dq> [18] <dq>Or if he has stricken <dn>את</dn> him with a wooden instrument that could kill, and he does die, he is a murderer. The murderer shall certainly be put to death.</dq> [19] <dq>The revenger of blood himself puts <dn>את</dn> the murderer to death. When he meets him, he puts him to death.</dq> [20] <dq>And if he thrusts <dn>את</dn> him through in hatred, or throws an object at him while lying in wait, so that he dies,</dq> [21] <dq>or in enmity he strikes <dn>את</dn> him with his hand so that he dies, the one who struck him shall certainly be put to death, for he is a murderer. The revenger of blood puts <dn>את</dn> the murderer to death when he meets him.</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Numbers",
+      "chapter": "35",
+      "section": "Laws of the Land",
+      "subsection": "Justice and Asylum",
+      "title": "The Congregation's Judgment",
+      "subtitle": "Asylum Until the High Priest's Death",
+      "chronological": "",
+      "references": "Numbers 35:22-28",
+      "text": "[Numbers 35:22] <dq>But if he pushes <dn>את</dn> him suddenly without enmity, or throws an object at him without lying in wait,</dq> [23] <dq>or uses a stone, by which a man could die, throwing it at him without seeing him, so that he dies, while he was not his enemy or seeking his harm,</dq> [24] <dq>then the congregation shall judge between him who struck someone and the revenger of blood, according to these right-rulings.</dq> [25] <dq>And the congregation shall rescue <dn>את</dn> the man-slayer from the hand of the revenger of blood, and the congregation shall return him to the city of refuge where he had fled, and he shall remain there until the death of the high priest who was anointed with the set-apart oil.</dq> [26] <dq>But if the man-slayer at any time goes outside the limits of the city of refuge where he fled,</dq> [27] <dq>and the revenger of blood finds him outside the limits of his city of refuge, and the revenger of blood executes <dn>את</dn> the man-slayer, he is not guilty of blood,</dq> [28] <dq>because he should have remained in his city of refuge until the death of the high priest. But after the death of the high priest the man-slayer is to return to the land of his possession.</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Numbers",
+      "chapter": "35",
+      "section": "Laws of the Land",
+      "subsection": "Justice and Asylum",
+      "title": "Statutes on Blood-Guilt",
+      "subtitle": "No Ransom for Murder; Do Not Profane the Land",
+      "chronological": "",
+      "references": "Numbers 35:29-34",
+      "text": "[Numbers 35:29] <dq>And these shall be for a law of right-ruling to you throughout your generations in all your dwellings.</dq> [30] <dq>Whoever strikes <dn>את</dn> a being, the murderer shall be executed by the mouth of <dn>את</dn> witnesses, but one witness does not bear witness against someone to die.</dq> [31] <dq>And take no ransom for <dn>את</dn> the life of a murderer who is guilty of death, but he shall certainly be put to death.</dq> [32] <dq>And take no ransom for him who has fled to his city of refuge to return to dwell in the land before the death of the priest.</dq> [33] <dq>And do not profane <dn>את</dn> the land where you are, for blood profanes the land, and the land is not pardoned for the blood that is shed on it, except by the blood of him who shed it.</dq> [34] <dq>And do not defile <dn>את</dn> the land which you inhabit, in the midst of which <dn>I</dn> dwell, for <dn>I</dn>, <dn>YeHoVaH</dn>, am dwelling in the midst of the children of Yisra’ěl.’ ”</dq>",
+      "footnotes": {}
+    },
+    {
+      "book": "Numbers",
+      "chapter": "36",
+      "section": "Laws of the Land",
+      "subsection": "Preserving Tribal Inheritance",
+      "title": "The Case of Tselophḥaḏ's Daughters",
+      "subtitle": "Marriage Within the Tribe to Preserve Inheritance",
+      "chronological": "",
+      "references": "Numbers 36:1-13",
+      "text": "[Numbers 36:1] And the heads of the fathers of the clans of the children of Gil‛aḏ, son of Maḵir, son of Menashsheh, of the clans of the sons of Yosěph, came near and spoke before Mosheh and before the leaders, the heads of the fathers of the children of Yisra’ěl, [2] and said, “<dn>YeHoVaH</dn> commanded my master to give <dn>את</dn> the land as an inheritance by lot to the children of Yisra’ěl, and my master was commanded by <dn>YeHoVaH</dn> to give <dn>את</dn> the inheritance of our brother Tselophḥaḏ to his daughters. [3] “Now if they are married to any of the sons of the other tribes of the children of Yisra’ěl, then their inheritance shall be taken from the inheritance of our fathers, and shall be added to the inheritance of the tribe into which they marry, and taken from the lot of our inheritance. [4] “And if the Yoḇel of the children of Yisra’ěl takes place, then their inheritance shall be added to the inheritance of the tribe into which they marry, and their inheritance taken away from the inheritance of the tribe of our fathers.” [5] And Mosheh commanded <dn>את</dn> the children of Yisra’ěl according to the word of <dn>YeHoVaH</dn>, saying, “What <dn>את</dn> the tribe of the sons of Yosěph speaks is right. [6] “This is <dn>את</dn> the word which <dn>את</dn> <dn>YeHoVaH</dn> has commanded, for the daughters of Tselophḥaḏ, saying, <dq>‘Let them marry who is good in their eyes, but let them marry only within the clan of their father’s tribe.’</dq> [7] “And the inheritance of the children of Yisra’ěl is not to change hands from tribe to tribe, for every one of the children of Yisra’ěl is to cling to the inheritance of the tribe of his fathers. [8] “And every daughter possessing an inheritance in any tribe of the children of Yisra’ěl is to be the wife of one of the clan of her father’s tribe, so that the children of Yisra’ěl possess each the inheritance of his fathers. [9] “Thus the inheritance is not to change hands from one tribe to another, but every tribe of the children of Yisra’ěl is to cling to its own inheritance.” [10] As <dn>YeHoVaH</dn> commanded Mosheh, so did the daughters of Tselophḥaḏ. [11] For Maḥlah, Tirtsah, and Ḥoḡlah, and Milkah, and No‛ah, the daughters of Tselophḥaḏ, were married to the sons of their father’s brothers. [12] And they were married into the clans of the children of Menashsheh, the son of Yosěph, and their inheritance remained in the tribe of their father’s clan. [13] These are <dn>את</dn> the commands and <dn>את</dn> the right-rulings which <dn>YeHoVaH</dn> commanded <dn>את</dn> the children of Yisra’ěl by the hand of Mosheh in the desert plains of Mo’aḇ by the Yarděn of Yeriḥo.",
+      "footnotes": {}
+    }
+  ]
 }
