@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chronological Bible Engine v1.21 (Shekinah)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chronological Bible Engine v1.22 (Shekinah)</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -11,7 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root { --parchment-bg: #1a1a1a; }
-        .font-serif { font-family: 'Noto Serif', serif; }
+        .font-serif { font-family: 'Noto Serif', serif !important; }
+        .verdana-font { font-family: Verdana, Geneva, Tahoma, sans-serif; }
         body { overflow-x: hidden; width: 100%; background-color: #09090b; }
         .silver-table { background-color: #1a1a1a; background-image: radial-gradient(#333 1px, transparent 0); background-size: 20px 20px; transition: background 0.5s; max-width: 100vw; overflow-x: hidden; min-height: 100vh; }
         .parchment { background-color: var(--parchment-bg); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); position: relative; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); color: #f8fafc !important; }
@@ -55,12 +56,11 @@
         .rich-content th, .rich-content td { border: 1px solid #3f3f46; padding: 0.5rem; text-align: left; }
         .rich-content th { background-color: #27272a; color: #f8fafc !important; font-weight: 700; }
         .rich-content blockquote { border-left: 4px solid #60a5fa; padding-left: 1rem; font-style: italic; color: #94a3b8 !important; margin: 1rem 0; background: #27272a; padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; }
-        .atlas-modal { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .atlas-modal { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.9); display: flex; flex-direction: column; overflow: hidden; }
         .image-viewer { position: fixed; inset: 0; z-index: 210; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; }
         .video-viewer { position: fixed; inset: 0; z-index: 210; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: center; padding: 20px; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        /* Active Search Highlight */
         .search-result-active { background: #ec4899 !important; color: white !important; box-shadow: 0 0 10px #ec4899, 0 0 20px #ec4899; z-index: 20; position: relative; transition: all 0.3s; }
     </style>
 </head>
@@ -68,7 +68,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useContext, createContext, useRef, useMemo } = React;
+        const { useState, useEffect, useContext, createContext, useRef, useMemo, useCallback } = React;
 
         const AppContext = createContext();
 
@@ -79,7 +79,6 @@
             Right: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m9 18 6-6-6-6"/></svg>,
             Up: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m18 15-6-6-6 6"/></svg>,
             Down: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m6 9 6 6 6-6"/></svg>,
-            Power: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.77.04"/></svg>,
             Scroll: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg>,
             Search: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>,
             Image: ({className}) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className || "text-emerald-500 cursor-pointer hover:scale-110 transition-transform"}><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>,
@@ -91,11 +90,7 @@
             X: ({className}) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>,
             Spark: ({className}) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className || "text-amber-500"}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>,
             Home: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
-            Settings: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>,
-            Play: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="5 3 19 12 5 21 5 3"/></svg>,
-            Pause: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>,
-            Turtle: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 10 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a8 8 0 1 0-16 0v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3l2-4h4Z"/></svg>,
-            Rabbit: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M13 16a3 3 0 0 1 2.24-5"/><path d="M18 12h.01"/><path d="M18 21h-8a4 4 0 0 1-4-4 7 7 0 0 1 7-7h.2L9.6 6.4a1 1 0 1 1 2.8-2.8L15.8 7h.2c3.3 0 6 2.7 6 6v1a2 2 0 0 1-2 2h-1a3 3 0 0 0-3 3"/><path d="M20 8.54V4a2 2 0 1 0-4 0v3"/><path d="M7.612 12.524a3 3 0 1 0-1.6 4.3"/></svg>
+            Settings: ({className}) => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
         };
 
         const smartFetch = async (url, type, updateStatus) => {
@@ -127,9 +122,7 @@
                     if (!map || !mode) return key;
                     const val = map[key]?.[mode];
                     return (typeof val === 'string') ? val : key;
-                } catch (e) {
-                    return key;
-                }
+                } catch (e) { return key; }
             };
 
             const highlightSearch = (text) => {
@@ -137,45 +130,26 @@
                 if (!searchQuery || searchQuery.length < 2) return text;
                 try {
                     const parts = text.split(new RegExp(`(${searchQuery})`, 'gi'));
-                    return parts.map((part, i) => 
-                        part.toLowerCase() === searchQuery.toLowerCase() ? 
-                        <span key={i} className="bg-yellow-800 text-white rounded px-0.5 search-result">{part}</span> : part
-                    );
-                } catch (e) {
-                    return text;
-                }
+                    return parts.map((part, i) => part.toLowerCase() === searchQuery.toLowerCase() ? <span key={i} className="bg-yellow-800 text-white rounded px-0.5 search-result">{part}</span> : part);
+                } catch (e) { return text; }
             };
 
             const tokenize = (str, footnotes) => {
                 if (typeof str !== 'string') return null;
-                
                 const regex = /<(dn\d*|dq|chr|pn\d+|kw\d+)>([\s\S]*?)<\/\1>|<([hg]\d+)>([\s\S]*?)<\/\3>|(\[.*?\])|\{([\w:.]+)\}|<img:([^>]+)>|<vid:([^>]+)>|<(i|b|u|sup|sub)>(.*?)<\/\9>/g;
                 const pieces = str.split(regex);
                 const elements = [];
 
                 for (let i = 0; i < pieces.length; i += 11) {
                     const textSegment = pieces[i];
-                    if (textSegment) {
-                        elements.push(highlightSearch(textSegment));
-                    }
+                    if (textSegment) elements.push(highlightSearch(textSegment));
                     
                     if (pieces[i+1]) {
-                        const rawTag = pieces[i+1];
-                        const inner = pieces[i+2];
-                        let label = inner;
-                        let tagType = rawTag.substring(0, 2); 
+                        const rawTag = pieces[i+1], inner = pieces[i+2];
+                        let label = inner, tagType = rawTag.substring(0, 2); 
                         if (rawTag === 'chr') tagType = 'chr';
-                        
-                        if (tagType === 'dn') {
-                            if (rawTag === 'dn') {
-                                label = inner;
-                            } else {
-                                label = substitute(tagType, rawTag);
-                            }
-                        } else if (tagType === 'pn' || tagType === 'kw') {
-                             label = substitute(tagType, rawTag);
-                        }
-
+                        if (tagType === 'dn') { if (rawTag === 'dn') { label = inner; } else { label = substitute(tagType, rawTag); } } 
+                        else if (tagType === 'pn' || tagType === 'kw') { label = substitute(tagType, rawTag); }
                         const cls = { dn: settings.power.shekinah ? 'divine-name-styled' : '', dq: settings.power.divineQuote ? 'divine-quote-styled' : '', chr: 'char-tag text-emerald-600 font-bold', pn: 'pn-tag text-blue-400 font-bold', kw: 'font-bold' };
                         const safeLabel = typeof label === 'string' ? label : "";
                         elements.push(<span key={`tag-${i}`} className={cls[tagType] || ''}>{tokenize(safeLabel, footnotes)}</span>);
@@ -183,18 +157,14 @@
                     if (pieces[i+3]) {
                         const sid = pieces[i+3].toUpperCase(), inner = pieces[i+4];
                         const safeInner = typeof inner === 'string' ? inner : "";
-                        elements.push(<span key={`str-${i}`} className={`lexical-token ${hoveredStrong === sid ? 'lexical-active' : ''}`} onMouseEnter={() => settings.power.lexical && setHoveredStrong(sid)} onMouseLeave={() => setHoveredStrong(null)} onClick={async (e) => { 
-                            e.stopPropagation();
-                            try { const data = await smartFetch(`data/strongs/${sid}.json`, `Lexicon Data`, setNetworkStatus); setDetail({ type: 'strongs', data }); } catch(e) { setDetail({ type: 'strongs', data: { lemma: sid, transliteration: "---", definition: "Definition pending...", usage: "This lexical entry has not yet been digitized." } }); } 
-                        }}>{tokenize(safeInner, footnotes)}</span>);
+                        elements.push(<span key={`str-${i}`} className={`lexical-token ${hoveredStrong === sid ? 'lexical-active' : ''}`} onMouseEnter={() => settings.power.lexical && setHoveredStrong(sid)} onMouseLeave={() => setHoveredStrong(null)} onClick={async (e) => { e.stopPropagation(); try { const data = await smartFetch(`data/strongs/${sid}.json`, `Lexicon Data`, setNetworkStatus); setDetail({ type: 'strongs', data }); } catch(e) { setDetail({ type: 'strongs', data: { lemma: sid, transliteration: "---", definition: "Definition pending...", usage: "This lexical entry has not yet been digitized." } }); } }}>{tokenize(safeInner, footnotes)}</span>);
                     }
                     if (pieces[i+5]) { if (settings.power.verseMarkers) elements.push(<span key={`v-${i}`} className="verse-marker">{pieces[i+5]}</span>); }
                     if (pieces[i+6]) { const fid = pieces[i+6]; if (settings.power.footnoteMarkers) elements.push(<span key={`fn-${i}`} className="footnote-marker" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'footnote', data: footnotes ? footnotes[fid] : fid }) }}>{"{" + fid + "}"}</span>); }
                     if (pieces[i+7]) { if (settings.power.imageMarkers) { const imgFile = pieces[i+7]; elements.push(<button key={`img-${i}`} className="inline-flex mx-1 align-text-bottom" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'image', data: imgFile }) }}><Icons.Image /></button>); } }
                     if (pieces[i+8]) { if (settings.power.videoMarkers) { const vidId = pieces[i+8]; elements.push(<button key={`vid-${i}`} className="inline-flex mx-1 align-text-bottom" onClick={(e) => { e.stopPropagation(); setDetail({ type: 'video', data: vidId }) }}><Icons.Film /></button>); } }
                     if (pieces[i+9]) {
-                        const tag = pieces[i+9], content = pieces[i+10], key = `ed-${i}`;
-                        const safeContent = typeof content === 'string' ? content : "";
+                        const tag = pieces[i+9], content = pieces[i+10], key = `ed-${i}`, safeContent = typeof content === 'string' ? content : "";
                         switch(tag) {
                             case 'i': elements.push(<span key={key} className="italic text-gray-400">{highlightSearch(safeContent)}</span>); break;
                             case 'b': elements.push(<b key={key} className="font-bold">{highlightSearch(safeContent)}</b>); break;
@@ -215,18 +185,14 @@
             const { tokenize } = useTokenization();
             const isSelected = selectedVerses.has(id);
             const handleClick = (e) => { if (selectionMode) { e.stopPropagation(); toggleVerseSelection(id); } };
-            
-            // Memoize the expensive tokenization result
-            // Added searchQuery to dependencies so highlighting updates on search
             const renderedContent = useMemo(() => tokenize(content, footnotes), [content, footnotes, settings.lang, settings.power, searchQuery]);
-
             return <span className={`verse-wrapper ${settings.power.verseHighlight && !selectionMode ? 'verse-highlight-active' : ''} ${isSelected ? 'verse-selected' : ''}`} onClick={handleClick}>{renderedContent}</span>;
         };
 
         const Toast = ({ message, isVisible }) => {
             if (!isVisible) return null;
             return (
-                <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[200] pointer-events-none transition-all duration-500 animate-in slide-in-from-bottom-4 fade-in">
+                <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[300] pointer-events-none transition-all duration-500 animate-in slide-in-from-bottom-4 fade-in">
                     <div className="bg-zinc-900/95 backdrop-blur-xl text-slate-100 px-6 py-4 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] border border-white/10 flex items-center gap-4">
                         <div className="bg-emerald-500/20 p-2 rounded-full text-emerald-400"><Icons.CheckList className="w-4 h-4" /></div>
                         <span className="font-bold text-sm tracking-wide">{message}</span>
@@ -235,146 +201,54 @@
             );
         };
 
-        // Replaced Dropdown with SettingsModal
         const SettingsModal = ({ isOpen, onClose }) => {
             const { settings, setSettings, networkStatus } = useContext(AppContext);
             if (!isOpen) return null;
 
             const updatePower = (key) => setSettings(s => ({...s, power: {...s.power, [key]: !s.power[key]}}));
             const cycleLang = (key, opts) => setSettings(s => { const cur = s.lang[key]; const next = opts[(opts.indexOf(cur) + 1) % opts.length]; return {...s, lang: {...s.lang, [key]: next}}; });
-            
-            const adjustFontSize = (delta) => {
-                setSettings(prev => ({
-                    ...prev,
-                    fontSize: Math.min(2.0, Math.max(0.9, parseFloat((prev.fontSize + delta).toFixed(1))))
-                }));
-            };
-
+            const adjustFontSize = (delta) => setSettings(prev => ({ ...prev, fontSize: Math.min(2.0, Math.max(0.9, parseFloat((prev.fontSize + delta).toFixed(1)))) }));
             const filteredNetworkStatus = Object.entries(networkStatus).filter(([k]) => ['Divine Names', 'Proper Names', 'Key Words', 'Book Index', 'Chapter Map', 'Calendar'].includes(k) || k.startsWith('Day') || k.startsWith('Scroll') || k.startsWith('Image') || k.startsWith('Video'));
 
             return (
-                <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex justify-end transition-opacity duration-300 animate-in fade-in" onClick={onClose}>
+                <div className="fixed inset-0 z-[300] bg-black/60 backdrop-blur-sm flex justify-end transition-opacity duration-300 animate-in fade-in" onClick={onClose}>
                     <div className="w-full max-w-sm bg-zinc-900 h-full shadow-2xl border-l border-white/10 flex flex-col animate-in slide-in-from-right duration-300" onClick={e => e.stopPropagation()}>
                         <div className="flex items-center justify-between p-6 border-b border-white/10">
                             <h2 className="text-xl font-black text-white uppercase tracking-widest flex items-center gap-3"><Icons.Settings className="text-blue-500" /> Settings</h2>
                             <button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full text-zinc-400 hover:text-white transition-colors"><Icons.X /></button>
                         </div>
-                        
                         <div className="flex-grow overflow-y-auto p-6 space-y-8">
-                            
-                            {/* Display Settings */}
                             <section className="space-y-4">
                                 <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Display & Reading</h3>
                                 <div className="bg-zinc-800/50 rounded-2xl p-4 border border-white/5 space-y-4">
-                                    <div className="flex justify-between items-center">
-                                        <span className="font-bold text-sm text-zinc-300">Text Size</span>
-                                        <div className="flex items-center gap-2 bg-black/40 rounded-lg p-1 border border-white/5">
-                                            <button onClick={() => adjustFontSize(-0.1)} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded text-xs text-zinc-400 hover:text-white font-serif">A-</button>
-                                            <span className="w-10 text-center text-xs font-black tracking-widest text-blue-400">{settings.fontSize.toFixed(1)}</span>
-                                            <button onClick={() => adjustFontSize(0.1)} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded text-lg text-zinc-400 hover:text-white font-serif">A+</button>
-                                        </div>
-                                    </div>
+                                    <div className="flex justify-between items-center"><span className="font-bold text-sm text-zinc-300">Text Size</span><div className="flex items-center gap-2 bg-black/40 rounded-lg p-1 border border-white/5"><button onClick={() => adjustFontSize(-0.1)} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded text-xs text-zinc-400 hover:text-white font-serif">A-</button><span className="w-10 text-center text-xs font-black tracking-widest text-blue-400">{settings.fontSize.toFixed(1)}</span><button onClick={() => adjustFontSize(0.1)} className="w-8 h-8 flex items-center justify-center hover:bg-white/10 rounded text-lg text-zinc-400 hover:text-white font-serif">A+</button></div></div>
                                 </div>
                             </section>
-
-                            {/* Power Toggles */}
                             <section className="space-y-4">
                                 <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Enhanced Features</h3>
                                 <div className="bg-zinc-800/50 rounded-2xl p-4 border border-white/5 space-y-2">
-                                    <div className="flex justify-between items-center py-2">
-                                        <div className="flex items-center gap-3"><div className="p-2 rounded-lg bg-amber-500/10 text-amber-500"><Icons.Spark /></div><span className="font-bold text-sm">Divine Names</span></div>
-                                        <button onClick={() => updatePower('shekinah')} className={`w-11 h-6 rounded-full relative transition-colors ${settings.power.shekinah ? 'bg-amber-500' : 'bg-zinc-700'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-transform duration-200 ${settings.power.shekinah ? 'translate-x-[22px]' : 'translate-x-[4px]'}`}></div></button>
-                                    </div>
+                                    <div className="flex justify-between items-center py-2"><div className="flex items-center gap-3"><div className="p-2 rounded-lg bg-amber-500/10 text-amber-500"><Icons.Spark /></div><span className="font-bold text-sm">Divine Names</span></div><button onClick={() => updatePower('shekinah')} className={`w-11 h-6 rounded-full relative transition-colors ${settings.power.shekinah ? 'bg-amber-500' : 'bg-zinc-700'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-transform duration-200 ${settings.power.shekinah ? 'translate-x-[22px]' : 'translate-x-[4px]'}`}></div></button></div>
                                     <div className="w-full h-px bg-white/5"></div>
-                                    <div className="flex justify-between items-center py-2">
-                                        <div className="flex items-center gap-3"><div className="p-2 rounded-lg bg-rose-500/10 text-rose-500"><Icons.Spark /></div><span className="font-bold text-sm">Divine Quotes</span></div>
-                                        <button onClick={() => updatePower('divineQuote')} className={`w-11 h-6 rounded-full relative transition-colors ${settings.power.divineQuote ? 'bg-rose-500' : 'bg-zinc-700'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-transform duration-200 ${settings.power.divineQuote ? 'translate-x-[22px]' : 'translate-x-[4px]'}`}></div></button>
-                                    </div>
+                                    <div className="flex justify-between items-center py-2"><div className="flex items-center gap-3"><div className="p-2 rounded-lg bg-rose-500/10 text-rose-500"><Icons.Spark /></div><span className="font-bold text-sm">Divine Quotes</span></div><button onClick={() => updatePower('divineQuote')} className={`w-11 h-6 rounded-full relative transition-colors ${settings.power.divineQuote ? 'bg-rose-500' : 'bg-zinc-700'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-transform duration-200 ${settings.power.divineQuote ? 'translate-x-[22px]' : 'translate-x-[4px]'}`}></div></button></div>
                                     <div className="w-full h-px bg-white/5"></div>
-                                    <div className="flex justify-between items-center py-2">
-                                        <span className="font-bold text-sm text-zinc-300 ml-11">Lexical Highlighting</span>
-                                        <button onClick={() => updatePower('lexical')} className={`w-11 h-6 rounded-full relative transition-colors ${settings.power.lexical ? 'bg-blue-600' : 'bg-zinc-700'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-transform duration-200 ${settings.power.lexical ? 'translate-x-[22px]' : 'translate-x-[4px]'}`}></div></button>
-                                    </div>
+                                    <div className="flex justify-between items-center py-2"><span className="font-bold text-sm text-zinc-300 ml-11">Lexical Highlighting</span><button onClick={() => updatePower('lexical')} className={`w-11 h-6 rounded-full relative transition-colors ${settings.power.lexical ? 'bg-blue-600' : 'bg-zinc-700'}`}><div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-transform duration-200 ${settings.power.lexical ? 'translate-x-[22px]' : 'translate-x-[4px]'}`}></div></button></div>
                                 </div>
                             </section>
-
-                            {/* Language & Markers */}
                             <section className="space-y-4">
                                 <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Language & Markers</h3>
                                 <div className="bg-zinc-800/50 rounded-2xl p-4 border border-white/5 space-y-4">
-                                    <div className="flex justify-between items-center">
-                                        <span className="font-bold text-xs uppercase tracking-wider text-zinc-400">Proper Names</span>
-                                        <button onClick={() => cycleLang('pn', ['transliterated', 'anglicized'])} className="bg-zinc-700 hover:bg-zinc-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors">{settings.lang.pn}</button>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="font-bold text-xs uppercase tracking-wider text-zinc-400">Key Words</span>
-                                        <button onClick={() => cycleLang('kw', ['traditional', 'modernized'])} className="bg-zinc-700 hover:bg-zinc-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors">{settings.lang.kw}</button>
-                                    </div>
+                                    <div className="flex justify-between items-center"><span className="font-bold text-xs uppercase tracking-wider text-zinc-400">Proper Names</span><button onClick={() => cycleLang('pn', ['transliterated', 'anglicized'])} className="bg-zinc-700 hover:bg-zinc-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors">{settings.lang.pn}</button></div>
+                                    <div className="flex justify-between items-center"><span className="font-bold text-xs uppercase tracking-wider text-zinc-400">Key Words</span><button onClick={() => cycleLang('kw', ['traditional', 'modernized'])} className="bg-zinc-700 hover:bg-zinc-600 text-white px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors">{settings.lang.kw}</button></div>
                                     <div className="w-full h-px bg-white/5 my-2"></div>
-                                    <div className="grid grid-cols-2 gap-3">
-                                        {['verseMarkers', 'footnoteMarkers', 'imageMarkers', 'videoMarkers'].map(k => (
-                                            <button key={k} onClick={() => updatePower(k)} className={`p-2 rounded-lg text-xs font-bold text-center border transition-all ${settings.power[k] ? 'bg-blue-600/20 border-blue-500/50 text-blue-300' : 'bg-zinc-800 border-zinc-700 text-zinc-500'}`}>
-                                                {k.replace(/([A-Z])/g, ' $1').trim()}
-                                            </button>
-                                        ))}
-                                    </div>
+                                    <div className="grid grid-cols-2 gap-3">{['verseMarkers', 'footnoteMarkers', 'imageMarkers', 'videoMarkers'].map(k => (<button key={k} onClick={() => updatePower(k)} className={`p-2 rounded-lg text-xs font-bold text-center border transition-all ${settings.power[k] ? 'bg-blue-600/20 border-blue-500/50 text-blue-300' : 'bg-zinc-800 border-zinc-700 text-zinc-500'}`}>{k.replace(/([A-Z])/g, ' $1').trim()}</button>))}</div>
                                 </div>
                             </section>
-
-                            {/* Data Stream Status */}
                             <section className="space-y-4">
                                 <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest">System Status</h3>
                                 <div className="bg-zinc-800/50 rounded-2xl p-4 border border-white/5 space-y-2">
-                                    {filteredNetworkStatus.map(([key, val]) => (
-                                        <div key={key} className="flex justify-between items-center text-xs">
-                                            <span className="font-medium text-zinc-400">{key}</span>
-                                            <div className="flex items-center gap-2">
-                                                <div className={`w-2 h-2 rounded-full ${val === 'LIVE' ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]' : 'bg-rose-500'}`}></div>
-                                                <span className={`font-bold ${val === 'LIVE' ? 'text-emerald-500' : 'text-rose-500'}`}>{val}</span>
-                                            </div>
-                                        </div>
-                                    ))}
+                                    {filteredNetworkStatus.map(([key, val]) => (<div key={key} className="flex justify-between items-center text-xs"><span className="font-medium text-zinc-400">{key}</span><div className="flex items-center gap-2"><div className={`w-2 h-2 rounded-full ${val === 'LIVE' ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]' : 'bg-rose-500'}`}></div><span className={`font-bold ${val === 'LIVE' ? 'text-emerald-500' : 'text-rose-500'}`}>{val}</span></div></div>))}
                                 </div>
                             </section>
-
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
-        const NetworkStatusLight = ({ status }) => {
-            const values = Object.values(status);
-            const isAllLive = values.every(v => v === 'LIVE');
-            const hasError = values.includes('ERROR');
-            const color = hasError ? 'bg-amber-500' : isAllLive ? 'bg-emerald-500' : 'bg-rose-500';
-            const pulse = isAllLive ? '' : 'animate-pulse';
-            return <div className={`w-3 h-3 rounded-full ${color} ${pulse} shadow-[0_0_8px_currentColor] transition-colors duration-500`}></div>;
-        };
-
-        const BibleAtlasModal = ({ isOpen, onClose, books, chapters, calendar, setDay, setScrollTarget }) => {
-            const [selBook, setSelBook] = useState(null);
-            const [selChapter, setSelChapter] = useState(null);
-            const [search, setSearch] = useState("");
-            const inputRef = useRef(null);
-            useEffect(() => { if (isOpen && inputRef.current) inputRef.current.focus(); if (!isOpen) { setSearch(""); setSelBook(null); setSelChapter(null); } }, [isOpen]);
-            if (!isOpen) return null;
-            const filteredBooks = books.filter(b => b.bookName.toLowerCase().includes(search.toLowerCase()) || b.abbreviation.toLowerCase().includes(search.toLowerCase()));
-            const currentBook = books.find(b => b.bookId === selBook);
-            const bookChapters = chapters.filter(c => c.bookId === selBook);
-            return (
-                <div className="atlas-modal" onClick={onClose}>
-                    <div className="bg-zinc-900 text-white rounded-[2rem] shadow-2xl p-8 w-full max-w-2xl overflow-y-auto max-h-[80vh] flex flex-col" onClick={e => e.stopPropagation()}>
-                        <div className="flex justify-between items-center mb-6"><h2 className="text-2xl font-black text-amber-400 uppercase tracking-widest">Bible Atlas</h2><button onClick={onClose} className="p-2 text-white hover:text-amber-400">✕</button></div>
-                        {!selBook && <div className="relative mb-6"><div className="absolute left-4 top-3.5 text-zinc-400"><Icons.Search /></div><input ref={inputRef} type="text" placeholder="Search Books..." className="w-full bg-zinc-800 text-white placeholder-zinc-500 rounded-xl py-3 pl-12 pr-4 font-bold outline-none focus:ring-2 ring-amber-600" value={search} onChange={e => setSearch(e.target.value)} /></div>}
-                        <div className="flex-grow overflow-y-auto">
-                            {!selBook ? (
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">{filteredBooks.length > 0 ? filteredBooks.map(b => <button key={b.bookId} onClick={() => setSelBook(b.bookId)} className="p-3 text-left bg-zinc-800 rounded-xl font-bold hover:bg-amber-600 hover:text-white transition-colors">{b.bookName}</button>) : <div className="col-span-full text-center opacity-40 py-8 italic">No books found matching "{search}"</div>}</div>
-                            ) : !selChapter ? (
-                                <div><button onClick={() => setSelBook(null)} className="mb-4 text-xs font-black text-amber-400 uppercase flex items-center gap-2"><Icons.Left /> Back to Books</button><h3 className="text-xl font-bold mb-4">{currentBook?.bookName}</h3><div className="grid grid-cols-5 gap-2">{bookChapters.map(c => <button key={c.chapterNum} onClick={() => setSelChapter(c.chapterNum)} className="p-3 bg-zinc-800 rounded-xl font-bold hover:bg-amber-600 hover:text-white">{c.chapterNum}</button>)}</div></div>
-                            ) : (
-                                <div><button onClick={() => setSelChapter(null)} className="mb-4 text-xs font-black text-amber-400 uppercase flex items-center gap-2"><Icons.Left /> Back to Chapters</button><h3 className="text-xl font-bold mb-4">{currentBook?.bookName} {selChapter}</h3><div className="space-y-2">{chapters.find(c => c.bookId === selBook && c.chapterNum === selChapter)?.dayIds.map(d => { const planReading = calendar.find(c => c.dayId === d)?.reading; return <button key={d} onClick={() => { setScrollTarget({ book: currentBook.bookName, chapter: selChapter }); setDay(parseInt(d)); onClose(); }} className="w-full p-4 text-left bg-zinc-800 rounded-xl font-bold hover:bg-amber-600 hover:text-white flex justify-between items-center group"><span>{planReading ? `Day ${d}: ${planReading}` : `Read on Day ${d}`}</span><span className="opacity-0 group-hover:opacity-100 transition-opacity"><Icons.Right /></span></button>; })}</div></div>
-                            )}
                         </div>
                     </div>
                 </div>
@@ -386,7 +260,7 @@
             return (
                 <div className={`details-panel ${data ? 'translate-x-0' : 'translate-x-full'}`}>
                     <div className="details-content">
-                        <div className="flex justify-between items-start mb-8"><div className={`text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${type === 'strongs' ? 'bg-blue-600 shadow-blue-500/30' : 'bg-emerald-600 shadow-emerald-500/30'}`}>{type === 'strongs' ? "Strong's Lexicon" : "Deep Dive Note"}</div><button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors">✕</button></div>
+                        <div className="flex justify-between items-start mb-8"><div className={`text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg ${type === 'strongs' ? 'bg-blue-600 shadow-blue-500/30' : 'bg-emerald-600 shadow-emerald-500/30'}`}>{type === 'strongs' ? "Strong's Lexicon" : "Deep Dive Note"}</div><button onClick={onClose} className="p-2 hover:bg-white/10 rounded-full transition-colors"><Icons.X /></button></div>
                         {type === 'strongs' ? (
                             <div className="space-y-8"><div><h1 className="text-4xl font-black text-blue-400 mb-2">{data.lemma}</h1><div className="text-xl opacity-50 font-serif italic">{data.transliteration}</div></div><div className="w-full h-px bg-zinc-800"></div><div><h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Definition</h3><p className="text-lg leading-relaxed">{tokenize(data.definition, null)}</p></div>{data.usage && (<div className="bg-zinc-800/50 p-6 rounded-2xl border border-zinc-800"><h3 className="text-xs font-black uppercase tracking-widest opacity-40 mb-3">Contextual Usage</h3><p className="text-sm leading-relaxed opacity-80 italic">{tokenize(data.usage, null)}</p></div>)}</div>
                         ) : (<div className="rich-content space-y-6 text-slate-200 leading-relaxed"><div dangerouslySetInnerHTML={{ __html: data }} /></div>)}
@@ -398,95 +272,35 @@
         const ImageViewer = ({ file, onClose }) => {
             const [scale, setScale] = useState(1);
             const [currentIndex, setCurrentIndex] = useState(0);
-            
-            const images = useMemo(() => {
-                if (!file) return [];
-                return file.split(',').map(s => s.trim());
-            }, [file]);
-
-            useEffect(() => {
-                setScale(1);
-                setCurrentIndex(0);
-            }, [file]);
-
+            const images = useMemo(() => { if (!file) return []; return file.split(',').map(s => s.trim()); }, [file]);
+            useEffect(() => { setScale(1); setCurrentIndex(0); }, [file]);
             useEffect(() => {
                 const handleKey = (e) => {
                     if (images.length > 1) {
-                        if (e.key === 'ArrowLeft') {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
-                        } else if (e.key === 'ArrowRight') {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
-                        }
+                        if (e.key === 'ArrowLeft') { e.preventDefault(); e.stopPropagation(); setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1)); } 
+                        else if (e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1)); }
                     }
                 };
-                window.addEventListener('keydown', handleKey);
-                return () => window.removeEventListener('keydown', handleKey);
+                window.addEventListener('keydown', handleKey); return () => window.removeEventListener('keydown', handleKey);
             }, [images.length]);
-
             if (!images.length) return null;
-
             return (
                 <div className="image-viewer" onClick={onClose}>
                     <div className="relative max-w-[90vw] max-h-[95vh] w-full flex flex-col items-center justify-center pointer-events-auto" onClick={e => e.stopPropagation()}>
-                        
                         <div className="relative flex flex-col items-center w-full">
                             <div className="relative group">
-                                <img 
-                                    src={`data/images/${images[currentIndex]}`} 
-                                    alt={`Artifact ${currentIndex + 1}`} 
-                                    className="max-h-[75vh] w-auto object-contain rounded-xl shadow-2xl transition-all duration-300 ease-out mx-auto" 
-                                    style={{ transform: `scale(${scale})`, opacity: 1 }} 
-                                />
-                                
+                                <img src={`data/images/${images[currentIndex]}`} alt={`Artifact ${currentIndex + 1}`} className="max-h-[75vh] w-auto object-contain rounded-xl shadow-2xl transition-all duration-300 ease-out mx-auto" style={{ transform: `scale(${scale})`, opacity: 1 }} />
                                 {images.length > 1 && (
-                                    <>
-                                        <button 
-                                            onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1)); }}
-                                            className="absolute left-[-3rem] top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-3 rounded-full opacity-50 hover:opacity-100 transition-opacity backdrop-blur-sm"
-                                        >
-                                            <Icons.Left />
-                                        </button>
-                                        <button 
-                                            onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1)); }}
-                                            className="absolute right-[-3rem] top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-3 rounded-full opacity-50 hover:opacity-100 transition-opacity backdrop-blur-sm"
-                                        >
-                                            <Icons.Right />
-                                        </button>
-                                    </>
+                                    <><button onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1)); }} className="absolute left-[-3rem] top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-3 rounded-full opacity-50 hover:opacity-100 transition-opacity backdrop-blur-sm"><Icons.Left /></button><button onClick={(e) => { e.stopPropagation(); setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1)); }} className="absolute right-[-3rem] top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-3 rounded-full opacity-50 hover:opacity-100 transition-opacity backdrop-blur-sm"><Icons.Right /></button></>
                                 )}
                             </div>
-
                             <div className="mt-6 flex flex-col items-center gap-3 w-full max-w-2xl">
-                                <div className="text-sm font-bold text-white/90 bg-black/60 px-6 py-2 rounded-full backdrop-blur border border-white/10 text-center truncate w-full">
-                                    {images[currentIndex]}
-                                </div>
-                                
-                                {images.length > 1 && (
-                                    <div className="flex gap-2 mt-2">
-                                        {images.map((_, idx) => (
-                                            <div 
-                                                key={idx} 
-                                                className={`w-2 h-2 rounded-full transition-colors ${idx === currentIndex ? 'bg-white' : 'bg-white/20'}`}
-                                            />
-                                        ))}
-                                    </div>
-                                )}
+                                <div className="text-sm font-bold text-white/90 bg-black/60 px-6 py-2 rounded-full backdrop-blur border border-white/10 text-center truncate w-full">{images[currentIndex]}</div>
+                                {images.length > 1 && (<div className="flex gap-2 mt-2">{images.map((_, idx) => (<div key={idx} className={`w-2 h-2 rounded-full transition-colors ${idx === currentIndex ? 'bg-white' : 'bg-white/20'}`} />))}</div>)}
                             </div>
                         </div>
-
-                        <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/50 backdrop-blur rounded-full p-2 border border-white/10 mt-4">
-                            <button onClick={() => setScale(s => Math.max(0.5, s - 0.25))} className="p-2 text-white hover:bg-white/20 rounded-full"><Icons.ZoomOut /></button>
-                            <span className="text-xs font-bold text-white w-12 text-center">{Math.round(scale * 100)}%</span>
-                            <button onClick={() => setScale(s => Math.min(3, s + 0.25))} className="p-2 text-white hover:bg-white/20 rounded-full"><Icons.ZoomIn /></button>
-                        </div>
-                        
-                        <button onClick={onClose} className="absolute top-4 right-4 text-white p-2 bg-black/50 hover:bg-white/20 rounded-full flex items-center gap-2 font-bold text-xs uppercase tracking-widest backdrop-blur border border-white/10">
-                            <Icons.X /> CLOSE
-                        </button>
+                        <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/50 backdrop-blur rounded-full p-2 border border-white/10 mt-4"><button onClick={() => setScale(s => Math.max(0.5, s - 0.25))} className="p-2 text-white hover:bg-white/20 rounded-full"><Icons.ZoomOut /></button><span className="text-xs font-bold text-white w-12 text-center">{Math.round(scale * 100)}%</span><button onClick={() => setScale(s => Math.min(3, s + 0.25))} className="p-2 text-white hover:bg-white/20 rounded-full"><Icons.ZoomIn /></button></div>
+                        <button onClick={onClose} className="absolute top-4 right-4 text-white p-2 bg-black/50 hover:bg-white/20 rounded-full flex items-center gap-2 font-bold text-xs uppercase tracking-widest backdrop-blur border border-white/10"><Icons.X /> CLOSE</button>
                     </div>
                 </div>
             );
@@ -504,6 +318,392 @@
             );
         };
 
+        // --- Ed Echad Atlas Modal ---
+        const EdEchadAtlasModal = ({ isOpen, onClose, books, chapters, calendar, setDay, setScrollTarget }) => {
+            const [atlasView, setAtlasView] = useState('wheel'); // 'wheel' | 'chapters'
+            
+            // Camera Physics State
+            const [cam, setCam] = useState({ x: 0, y: 0, scale: 1 });
+            const [rotationDeg, setRotationDeg] = useState(0);
+            
+            // Selection State
+            const [selectedIndex, setSelectedIndex] = useState(0); // 0-21
+            const [activeDepth, setActiveDepth] = useState(2); // 2: Outer, 1: Mid, 0: Inner
+            
+            // Interaction Tracking Refs
+            const isDragging = useRef(false);
+            const hasDragged = useRef(false); // Disambiguate drag from click
+            const lastPos = useRef({ x: 0, y: 0 });
+            const initialPinchDist = useRef(null);
+            const initialScale = useRef(1);
+            const lastTap = useRef(0);
+            const touchStartPos = useRef({ x: 0, y: 0, time: 0 });
+
+            // Ensure resets when modal opens/closes
+            useEffect(() => {
+                if (isOpen) {
+                    setAtlasView('wheel');
+                    setSelectedIndex(0);
+                    setActiveDepth(2);
+                    setRotationDeg(0); // Snap to Due East
+                    setCam({ x: 0, y: 0, scale: 1 });
+                    hasDragged.current = false;
+                }
+            }, [isOpen]);
+
+            const totalSegments = 22;
+            const degreeStep = 360 / totalSegments;
+            const offset = degreeStep / 2;
+
+            const cycle1 = ["1. Gen 🌍", "2. Exo 🌊", "3. Lev 🧠", "4. Num 🌴", "5. Deu 📜", "6. Jos ⚔️", "7. Jdg ⚖️", "8. Rth 🏛️", "9. 1Sam 🏛️", "10. 2Sam 🏛️", "11. 1Kng 👑", "12. 2Kng 👑", "13. 1Chr 🏛️", "14. 2Chr 🏛️", "15. Ezr 🏛️", "16. Neh 🏛️", "17. Est 👸", "18. Job 🌪️", "19. Psa 🪕", "20. Pro 🦉", "21. Ecc 📚", "22. Son 🎶"];
+            const cycle2 = ["23. Isa 🔥", "24. Jer 🔥", "25. Lam 😭", "26. Eze 🔥", "27. Dan 🔥", "28. Hos 🔥", "29. Joe 🔥", "30. Amo 🔥", "31. Oba 🔥", "32. Jon 🔥", "33. Mic 🔥", "34. Nah 🔥", "35. Hab 🔥", "36. Zep 🔥", "37. Hag 🔥", "38. Zec 🔥", "39. Mal 🔥", "40. Mat 🦁", "41. Mar 🐂", "42. Luk 🧔", "43. Joh 🦅", "44. Act 🏃"];
+            const cycle3 = ["45. Rom 💪", "46. 1Cor 💪", "47. 2Cor 💪", "48. Gal 💪", "49. Eph 💪", "50. Php 💪", "51. Col 💪", "52. 1Ths 💪", "53. 2Ths 💪", "54. 1Tim 💪", "55. 2Tim 💪", "56. Tit 💪", "57. Phm 💪", "58. Heb ⚓", "59. Jas 💪", "60. 1Pet 💪", "61. 2Pet 💪", "62. 1Jhn 💪", "63. 2Jhn 💪", "64. 3Jhn 💪", "65. Jud 💪", "66. Rev 🎺"];
+
+            const fullEnglishNames = {
+                2: ["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles","Ezra", "Nehemiah", "Esther", "Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Songs"],
+                1: ["Isaiah", "Jeremiah", "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi", "Matthew", "Mark", "Luke", "John", "Acts"],
+                0: ["Romans", "1 Corinthians", "2 Corinthians","Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews", "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John", "Jude", "Revelation"]
+            };
+
+            const transliterations = {
+                2: ["Bereshith", "Shemoth", "Vayiqra", "Bemidbar", "Devarim", "Yehoshua", "Shophetim", "Ruth", "Shemu'el Aleph", "Shemu'el Bet", "Melachim Aleph", "Melachim Bet", "Divrei haYamim Aleph", "Divrei haYamim Bet", "Ezra", "Neḥemyah", "Ester", "Iyov", "Tehillim", "Mishlei", "Qoheleth", "Shir haShirim"],
+                1: ["Yeshayahu", "Yirmeyahu", "Eichah", "Yeḥezqel", "Daniyel", "Hoshea", "Yo'el", "Amos", "Ovadyah", "Yonah", "Michah", "Naḥum", "Ḥavaqquq", "Tsephanyah", "Ḥaggai", "Zecharyah", "Mal'achi", "Mattithyahu", "Marqos", "Luqas", "Yoḥanan", "Ma'asei"],
+                0: ["Romiyim", "Qorintiyim Aleph", "Qorintiyim Bet", "Galatiyim", "Ephsiyim", "Pilipiyim", "Qolasiyim", "Thessalonikim Aleph", "Thessalonikim Bet", "Timotiyos Aleph", "Timotiyos Bet", "Titos", "Pilemon", "Ivrim", "Ya'aqov", "Kepha Aleph", "Kepha Bet", "Yoḥanan Aleph", "Yoḥanan Bet", "Yoḥanan Gimel", "Yehudah", "Ḥazon"]
+            };
+
+            const hebrewAlphabet = [
+                { char: 'א', name: 'Aleph' }, { char: 'ב', name: 'Bet' }, { char: 'ג', name: 'Gimel' },
+                { char: 'ד', name: 'Dalet' }, { char: 'ה', name: 'Hey' }, { char: 'ו', name: 'Vav' },
+                { char: 'ז', name: 'Zain' }, { char: 'ח', name: 'Ḥet' }, { char: 'ט', name: 'Tet' },
+                { char: 'י', name: 'Yod' }, { char: 'כ ך', name: 'Kaph' }, { char: 'ל', name: 'Lamed' },
+                { char: 'מ ם', name: 'Mem' }, { char: 'נ ן', name: 'Nun' }, { char: 'ס', name: 'Samek' },
+                { char: 'ע', name: 'Ayin' }, { char: 'פ ף', name: 'Pey' }, { char: 'צ ץ', name: 'Tzaddi' },
+                { char: 'ק', name: 'Quph' }, { char: 'ר', name: 'Resh' }, { char: 'ש', name: 'Shin' },
+                { char: 'ת', name: 'Tav' }
+            ];
+
+            const rings = [
+                { id: 'ring-inner', radiusInner: 65, radiusOuter: 105, fill: 'url(#gold-inner)', data: cycle3 },
+                { id: 'ring-mid', radiusInner: 110, radiusOuter: 150, fill: 'url(#gold-mid1)', data: cycle2 },
+                { id: 'ring-outer-book', radiusInner: 155, radiusOuter: 195, fill: 'url(#gold-mid2)', data: cycle1 },
+                { id: 'alphabet', radiusInner: 200, radiusOuter: 240, fill: 'url(#gold-outer)', data: hebrewAlphabet }
+            ];
+
+            const sections = [
+                { id: 'sec-a', name: '1. The Beginning of Yisrael', ring: 'ring-outer-book', start: 0, end: 4 },
+                { id: 'sec-b', name: '2. The Kingdom of Yisrael', ring:'ring-outer-book', start: 5, end: 16 },
+                { id: 'sec-c', name: '3. Assembled Wisdom of Yisrael', ring: 'ring-outer-book', start: 17, end: 21 },
+                { id: 'sec-d', name: '4. The Greater Prophets of Yisrael', ring: 'ring-mid', start: 0, end: 4 },
+                { id: 'sec-e', name: '5. The Lesser Prophets of Yisrael', ring: 'ring-mid', start: 5, end: 16 },
+                { id: 'sec-f', name: '6. THE Prophet of Yisrael Like Moshe', ring: 'ring-mid', start: 17, end: 21 },
+                { id: 'sec-g', name: '7. Encouragement to Yisrael', ring: 'ring-inner', start: 0, end: 21 }
+            ];
+
+            const globalIdx = (activeDepth === 2 ? selectedIndex : activeDepth === 1 ? 22 + selectedIndex : 44 + selectedIndex);
+            const selectedBookId = (globalIdx + 1).toString();
+
+            // Shortest Path Accumulation Math
+            const snapToApex = useCallback((spoke) => {
+                setRotationDeg(prev => {
+                    const targetAngle = -(spoke * degreeStep);
+                    let diff = (targetAngle - prev) % 360;
+                    // Fix negative modulo logic in JS to guarantee positive domain before clamping
+                    diff = ((diff % 360) + 360) % 360;
+                    // Clamp to shortest path [-180, 180]
+                    if (diff > 180) diff -= 360;
+                    return prev + diff;
+                });
+            }, [degreeStep]);
+
+            const handleManualSelect = useCallback((spokeIdx, depthIdx) => {
+                setSelectedIndex(spokeIdx);
+                setActiveDepth(depthIdx);
+                setCam({ x: 0, y: 0, scale: 1 });
+                snapToApex(spokeIdx);
+            }, [snapToApex]);
+
+            const handlePrevSpoke = useCallback(() => {
+                setSelectedIndex(prev => { const n = (prev - 1 + 22) % 22; snapToApex(n); return n; });
+            }, [snapToApex]);
+
+            const handleNextSpoke = useCallback(() => {
+                setSelectedIndex(prev => { const n = (prev + 1) % 22; snapToApex(n); return n; });
+            }, [snapToApex]);
+
+            const handlePrevSection = useCallback(() => {
+                setActiveDepth(prev => (prev - 1 + 3) % 3);
+            }, []);
+            
+            const handleNextSection = useCallback(() => {
+                setActiveDepth(prev => (prev + 1) % 3);
+            }, []);
+
+            // Keyboard Hooks
+            useEffect(() => {
+                if (!isOpen || atlasView !== 'wheel') return;
+                const handleKeyDown = (e) => {
+                    if (e.key === 'ArrowUp') { e.preventDefault(); handlePrevSpoke(); }
+                    if (e.key === 'ArrowDown') { e.preventDefault(); handleNextSpoke(); }
+                    if (e.key === 'ArrowLeft') { e.preventDefault(); handlePrevSection(); }
+                    if (e.key === 'ArrowRight') { e.preventDefault(); handleNextSection(); }
+                };
+                window.addEventListener('keydown', handleKeyDown);
+                return () => window.removeEventListener('keydown', handleKeyDown);
+            }, [isOpen, atlasView, handlePrevSpoke, handleNextSpoke, handlePrevSection, handleNextSection]);
+
+            // Desktop Mouse Physics
+            const onMouseDown = (e) => { 
+                isDragging.current = true; 
+                hasDragged.current = false;
+                lastPos.current = { x: e.clientX, y: e.clientY }; 
+                touchStartPos.current = { x: e.clientX, y: e.clientY, time: Date.now() };
+            };
+            const onMouseMove = (e) => {
+                if (!isDragging.current) return;
+                const dx = e.clientX - lastPos.current.x;
+                const dy = e.clientY - lastPos.current.y;
+                if (Math.hypot(e.clientX - touchStartPos.current.x, e.clientY - touchStartPos.current.y) > 5) {
+                    hasDragged.current = true;
+                }
+                setCam(prev => ({ ...prev, x: prev.x + dx, y: prev.y + dy }));
+                lastPos.current = { x: e.clientX, y: e.clientY };
+            };
+            const onMouseUp = () => { isDragging.current = false; };
+            const onWheel = (e) => {
+                setCam(prev => ({ ...prev, scale: Math.min(Math.max(0.3, prev.scale - e.deltaY * 0.002), 4) }));
+            };
+
+            // Mobile Touch Physics & Swipes
+            const onTouchStart = (e) => {
+                if (e.touches.length === 1) {
+                    isDragging.current = true;
+                    hasDragged.current = false;
+                    const tp = { x: e.touches[0].clientX, y: e.touches[0].clientY, time: Date.now() };
+                    lastPos.current = tp;
+                    touchStartPos.current = tp;
+                } else if (e.touches.length === 2) {
+                    isDragging.current = false;
+                    hasDragged.current = true; // Pinching counts as dragging
+                    initialPinchDist.current = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                    initialScale.current = cam.scale;
+                }
+            };
+            const onTouchMove = (e) => {
+                if (e.touches.length === 1 && isDragging.current) {
+                    const dx = e.touches[0].clientX - lastPos.current.x;
+                    const dy = e.touches[0].clientY - lastPos.current.y;
+                    if (Math.hypot(e.touches[0].clientX - touchStartPos.current.x, e.touches[0].clientY - touchStartPos.current.y) > 5) {
+                        hasDragged.current = true;
+                    }
+                    setCam(prev => ({ ...prev, x: prev.x + dx, y: prev.y + dy }));
+                    lastPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, time: lastPos.current.time };
+                } else if (e.touches.length === 2 && initialPinchDist.current) {
+                    const dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+                    setCam(prev => ({ ...prev, scale: Math.min(Math.max(0.3, initialScale.current * (dist / initialPinchDist.current)), 4) }));
+                }
+            };
+            const onTouchEnd = (e) => {
+                if (isDragging.current && e.changedTouches.length === 1) {
+                    const dx = e.changedTouches[0].clientX - touchStartPos.current.x;
+                    const dy = e.changedTouches[0].clientY - touchStartPos.current.y;
+                    const dt = Date.now() - touchStartPos.current.time;
+                    if (dt < 300) { // Fast flick = swipe
+                        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+                            if (dx > 0) handlePrevSection(); else handleNextSection();
+                        } else if (Math.abs(dy) > 50 && Math.abs(dy) > Math.abs(dx)) {
+                            if (dy > 0) handlePrevSpoke(); else handleNextSpoke();
+                        }
+                    }
+                }
+                isDragging.current = false;
+                initialPinchDist.current = null;
+            };
+
+            const getActiveSection = (spokeIdx, depth) => {
+                let ringId = depth === 2 ? 'ring-outer-book' : depth === 1 ? 'ring-mid' : 'ring-inner';
+                return sections.find(s => s.ring === ringId && spokeIdx >= s.start && spokeIdx <= s.end) || sections[0];
+            };
+
+            const activeSection = getActiveSection(selectedIndex, activeDepth);
+            const activeHebrewLetter = hebrewAlphabet[selectedIndex].name;
+            const activeBookNameRaw = (activeDepth === 2 ? cycle1 : activeDepth === 1 ? cycle2 : cycle3)[selectedIndex];
+            const activeHebrewTransliteration = transliterations[activeDepth]?.[selectedIndex] || "Alef-Bet";
+            const activeEnglishFull = fullEnglishNames[activeDepth]?.[selectedIndex] || "Alphabet";
+            
+            const activeBookNumMatch = activeBookNameRaw.match(/^(\d+)\./);
+            const activeBookNum = activeBookNumMatch ? activeBookNumMatch[1] : "";
+            const nameWithoutNum = activeBookNameRaw.replace(/^\d+\.\s/, ''); 
+            const activeEmojiMatch = nameWithoutNum.match(/[^\x00-\x7F]/);
+            const activeEmojiClean = activeEmojiMatch ? nameWithoutNum.substring(activeEmojiMatch.index) : "";
+
+            const polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
+                const angleInRadians = angleInDegrees * Math.PI / 180.0;
+                return { x: centerX + (radius * Math.cos(angleInRadians)), y: centerY + (radius * Math.sin(angleInRadians)) };
+            };
+
+            const generateSegmentPath = (x, y, rIn, rOut, start, end) => {
+                const p1 = polarToCartesian(x, y, rIn, start), p2 = polarToCartesian(x, y, rIn, end);
+                const p3 = polarToCartesian(x, y, rOut, end), p4 = polarToCartesian(x, y, rOut, start);
+                return `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y} L ${p3.x} ${p3.y} L ${p4.x} ${p4.y} Z`;
+            };
+
+            const allSegments = useMemo(() => {
+                const segs = [];
+                rings.forEach(ring => {
+                    for (let i = 0; i < totalSegments; i++) {
+                        const inSelectedSpoke = i === selectedIndex;
+                        const inSelectedSection = ring.id === activeSection.ring && i >= activeSection.start && i <= activeSection.end;
+                        const isIntersection = inSelectedSpoke && inSelectedSection;
+                        let zIndex = isIntersection ? 3 : inSelectedSpoke ? 2 : inSelectedSection ? 1 : 0;
+                        segs.push({ ring, i, inSelectedSpoke, inSelectedSection, isIntersection, zIndex });
+                    }
+                });
+                return segs.sort((a, b) => a.zIndex - b.zIndex);
+            }, [rings, selectedIndex, activeSection]);
+
+            const hebWords = activeHebrewTransliteration.split(' ');
+            const engWords = activeEnglishFull.split(' ');
+            const hebFontSize = activeHebrewTransliteration.length > 14 || hebWords.length > 2 ? 8.5 : 11;
+            const engFontSize = activeEnglishFull.length > 14 || engWords.length > 2 ? 8.5 : 11;
+            const hebLineHeight = hebFontSize * 1.2;
+            const engLineHeight = engFontSize * 1.2;
+
+            if (!isOpen) return null;
+
+            return (
+                <div className="atlas-modal verdana-font">
+                    {/* Glass Header */}
+                    <div className="absolute top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-xl border-b border-white/10 p-4 md:p-6 flex justify-between items-start pointer-events-none">
+                        <div>
+                            <h1 className="font-serif text-3xl md:text-5xl text-amber-500 font-black drop-shadow-md">עֵד אֶחָד</h1>
+                            <h2 className="text-xl md:text-2xl font-black uppercase text-amber-100 tracking-widest leading-none mt-1">Ed Echad</h2>
+                        </div>
+                        <div className="flex flex-col items-end text-right">
+                            <button onClick={onClose} className="pointer-events-auto p-2 hover:bg-white/10 rounded-full text-zinc-400 hover:text-white transition-colors mb-2"><Icons.X /></button>
+                            {atlasView === 'wheel' && (
+                                <>
+                                    <div className="text-[10px] text-amber-500/70 tracking-widest uppercase font-bold mb-1">Active Selection</div>
+                                    <div className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-blue-200">{activeSection.name}</div>
+                                    <div className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-rose-200">Spoke {selectedIndex + 1}. {activeHebrewLetter}</div>
+                                    <div className="text-xs md:text-sm font-black uppercase tracking-widest text-purple-200">{activeBookNum}. {activeEnglishFull} {activeEmojiClean}</div>
+                                </>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Views */}
+                    {atlasView === 'wheel' ? (
+                        <div 
+                            className="absolute inset-0 z-10 w-full h-full cursor-grab active:cursor-grabbing overflow-hidden pt-20"
+                            onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} onWheel={onWheel}
+                            onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
+                        >
+                            {/* SVG Container mapped to physics cam */}
+                            <div className="w-full h-full flex items-center justify-center transform-gpu" style={{ transform: `translate(${cam.x}px, ${cam.y}px) scale(${cam.scale})`, transition: isDragging.current ? 'none' : 'transform 0.1s ease-out' }}>
+                                <svg viewBox="0 0 600 600" className="w-[95vmin] h-[95vmin] overflow-visible drop-shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                                    <defs>
+                                        <linearGradient id="gold-inner" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#fef08a" /><stop offset="100%" stopColor="#fde047" /></linearGradient>
+                                        <linearGradient id="gold-mid1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#fde047" /><stop offset="100%" stopColor="#eab308" /></linearGradient>
+                                        <linearGradient id="gold-mid2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#eab308" /><stop offset="100%" stopColor="#ca8a04" /></linearGradient>
+                                        <linearGradient id="gold-outer" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#ca8a04" /><stop offset="100%" stopColor="#854d0e" /></linearGradient>
+                                        <linearGradient id="burgundy-gradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#4c0519" /><stop offset="100%" stopColor="#881337" /></linearGradient>
+                                        <linearGradient id="navy-gradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#0f172a" /><stop offset="100%" stopColor="#1e3a8a" /></linearGradient>
+                                        <linearGradient id="plum-gradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#4a044e" /><stop offset="100%" stopColor="#701a75" /></linearGradient>
+                                        <radialGradient id="core-grad" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stopColor="#ffffff" /><stop offset="30%" stopColor="#f1f5f9" /><stop offset="70%" stopColor="#94a3b8" /><stop offset="100%" stopColor="#475569" />
+                                        </radialGradient>
+                                        <filter id="fire-glow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#fca5a5" floodOpacity="1" /><feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="#ef4444" floodOpacity="0.8" /></filter>
+                                        <filter id="blue-glow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#93c5fd" floodOpacity="1" /><feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="#3b82f6" floodOpacity="0.8" /></filter>
+                                        <filter id="purple-glow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#e9d5ff" floodOpacity="1" /><feDropShadow dx="0" dy="0" stdDeviation="10" floodColor="#a855f7" floodOpacity="0.9" /></filter>
+                                    </defs>
+
+                                    <g style={{ transform: `rotate(${rotationDeg}deg)`, transformOrigin: '300px 300px', transition: 'transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)' }}>
+                                        {allSegments.map(({ ring, i, inSelectedSpoke, inSelectedSection, isIntersection }) => {
+                                            const startAngle = i * degreeStep, endAngle = (i + 1) * degreeStep, midAngle = i * degreeStep + offset;
+                                            const textPos = polarToCartesian(300, 300, (ring.radiusInner + ring.radiusOuter) / 2, midAngle);
+                                            let fill = ring.fill, stroke = 'rgba(0,0,0,0.5)', strokeWidth = "1", filter = 'none', textColor = "#451a03";
+
+                                            if (isIntersection) { fill = 'url(#plum-gradient)'; stroke = '#c084fc'; strokeWidth = "2"; filter = 'url(#purple-glow)'; textColor = "#f3e8ff"; } 
+                                            else if (inSelectedSpoke) { fill = 'url(#burgundy-gradient)'; stroke = '#ef4444'; strokeWidth = "1.5"; filter = 'url(#fire-glow)'; textColor = "#fca5a5"; } 
+                                            else if (inSelectedSection) { fill = 'url(#navy-gradient)'; stroke = '#3b82f6'; strokeWidth = "1.5"; filter = 'url(#blue-glow)'; textColor = "#bfdbfe"; }
+
+                                            if (ring.id === 'alphabet' && !inSelectedSpoke && !inSelectedSection) textColor = "#451a03";
+
+                                            let isNumberedSegment = false, numMatch = null, segmentContent = ring.data[i];
+                                            if (ring.id !== 'alphabet') { numMatch = ring.data[i].match(/^(\d+\.)\s+(.*)$/); if (numMatch) isNumberedSegment = true; }
+
+                                            return (
+                                                <g key={`${ring.id}-${i}`} className="cursor-pointer" onClick={(e) => { e.stopPropagation(); if (hasDragged.current) return; const d = ring.id === 'ring-outer-book' ? 2 : ring.id === 'ring-mid' ? 1 : ring.id === 'ring-inner' ? 0 : 2; handleManualSelect(i, d); }}>
+                                                    <path d={generateSegmentPath(300, 300, ring.radiusInner, ring.radiusOuter, startAngle + 0.5, endAngle - 0.5)} fill={fill} stroke={stroke} strokeWidth={strokeWidth} filter={filter} className="transition-all duration-300" />
+                                                    {ring.id === 'alphabet' ? (
+                                                        <g transform={`translate(${textPos.x}, ${textPos.y}) rotate(${midAngle})`} className="pointer-events-none">
+                                                            <text y="-4" fill={textColor} fontSize={ring.data[i].char.length > 1 ? "14" : "18"} fontWeight="bold" textAnchor="middle" className="font-serif transition-colors">{ring.data[i].char}</text>
+                                                            <text y="9" fill={textColor} opacity="0.8" fontSize="6" fontWeight="black" textAnchor="middle" className="uppercase tracking-widest transition-colors">{ring.data[i].name}</text>
+                                                        </g>
+                                                    ) : (
+                                                        <text x={textPos.x} y={textPos.y} transform={`rotate(${midAngle}, ${textPos.x}, ${textPos.y})`} fill={textColor} fontSize="6.5" fontWeight="black" textAnchor="middle" alignmentBaseline="middle" className="pointer-events-none tracking-tighter transition-colors">
+                                                            {isNumberedSegment ? (<><tspan fontSize="4.8">{numMatch[1]}</tspan><tspan fontSize="6.5"> {numMatch[2]}</tspan></>) : segmentContent}
+                                                        </text>
+                                                    )}
+                                                </g>
+                                            );
+                                        })}
+                                        {[ { angle: 0, innerR: 60, outerR: 250 }, { angle: 5 * degreeStep, innerR: 110, outerR: 250 }, { angle: 17 * degreeStep, innerR: 110, outerR: 250 }].map((div, idx) => {
+                                            const pInner = polarToCartesian(300, 300, div.innerR, div.angle), pOuter = polarToCartesian(300, 300, div.outerR, div.angle);
+                                            return (
+                                                <g key={`div-${idx}`} className="pointer-events-none">
+                                                    <line x1={pInner.x} y1={pInner.y} x2={pOuter.x} y2={pOuter.y} stroke="#fbbf24" strokeWidth="6" opacity="0.3" filter="blur(4px)" />
+                                                    <line x1={pInner.x} y1={pInner.y} x2={pOuter.x} y2={pOuter.y} stroke="#ffffff" strokeWidth="1.5" />
+                                                    <circle cx={pOuter.x} cy={pOuter.y} r="3" fill="#ffffff" stroke="#d97706" strokeWidth="2" />
+                                                    <circle cx={pInner.x} cy={pInner.y} r="3" fill="#ffffff" stroke="#d97706" strokeWidth="2" />
+                                                </g>
+                                            );
+                                        })}
+                                    </g>
+
+                                    <g className="pointer-events-auto cursor-pointer" onClick={(e) => { if (hasDragged.current) return; setAtlasView('chapters'); }} onTouchEnd={(e) => { if (hasDragged.current) return; const now = Date.now(); if (now - lastTap.current < 300) setAtlasView('chapters'); lastTap.current = now; e.preventDefault(); }}>
+                                        <circle cx="300" cy="300" r="58" fill="url(#core-grad)" stroke="#1e293b" strokeWidth="3" className="drop-shadow-2xl hover:brightness-110 transition-all" />
+                                        <text textAnchor="middle" fill="#020617" fontSize={hebFontSize} fontWeight="900" className="drop-shadow-sm uppercase tracking-wide pointer-events-none">
+                                            {hebWords.map((word, index) => (<tspan key={index} x="300" y={282 - ((hebWords.length - 1 - index) * hebLineHeight)}>{word}</tspan>))}
+                                        </text>
+                                        <text x="300" y="306" textAnchor="middle" fontSize="26" className="drop-shadow-md pointer-events-none">{activeEmojiClean || '✦'}</text>
+                                        <text textAnchor="middle" fill="#0f172a" fontSize={engFontSize} fontWeight="black" className="tracking-[0.1em] uppercase pointer-events-none">
+                                            {engWords.map((word, index) => (<tspan key={`en-${index}`} x="300" y={328 + (index * engLineHeight)}>{word}</tspan>))}
+                                        </text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="absolute inset-0 z-20 pt-32 p-8 overflow-y-auto w-full max-w-4xl mx-auto">
+                            <button onClick={() => setAtlasView('wheel')} className="mb-6 text-sm font-black text-amber-400 uppercase tracking-widest flex items-center gap-2 hover:text-white transition-colors"><Icons.Left /> Return to Ed Echad</button>
+                            <div className="bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+                                <h3 className="text-3xl font-black mb-8 text-slate-100 uppercase tracking-widest">{books.find(b => b.bookId === selectedBookId)?.bookName}</h3>
+                                <div className="space-y-6">
+                                    {chapters.filter(c => c.bookId === selectedBookId).map(c => (
+                                        <div key={c.chapterNum} className="space-y-3">
+                                            <div className="text-xs font-black uppercase text-zinc-500 tracking-widest border-b border-zinc-800 pb-1">Chapter {c.chapterNum}</div>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                                {c.dayIds.map(d => {
+                                                    const planReading = calendar.find(cal => cal.dayId === d)?.reading;
+                                                    return (
+                                                        <button key={d} onClick={() => { setScrollTarget({ book: books.find(b => b.bookId === selectedBookId)?.bookName, chapter: c.chapterNum }); setDay(parseInt(d)); onClose(); }} className="p-4 text-left bg-zinc-800/50 border border-white/5 rounded-xl hover:bg-amber-600 hover:border-amber-500 hover:text-white transition-all group flex flex-col justify-center">
+                                                            <span className="font-black text-sm mb-1 text-blue-300 group-hover:text-white transition-colors">Day {d}</span>
+                                                            <span className="text-xs font-serif opacity-70 group-hover:opacity-100 line-clamp-2">{planReading || "Reading block"}</span>
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
         const EntranceView = ({ onSelect, onOpenAtlas }) => {
             return (
                 <div className="flex flex-col items-center justify-center min-h-[80vh] animate-in fade-in duration-700">
@@ -511,29 +711,15 @@
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl w-full px-8">
                         <button onClick={() => onSelect('year')} className="group relative p-6 md:p-10 rounded-[2.5rem] bg-zinc-900/40 border border-white/5 hover:bg-zinc-800/60 hover:border-blue-500/30 transition-all duration-500 text-left overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <div className="relative z-10">
-                                <Icons.Calendar className="w-12 h-12 mb-6 text-blue-400 opacity-80" />
-                                <h2 className="text-2xl font-black text-slate-100 mb-2">Chronological Bible</h2>
-                                <p className="text-xs font-serif text-slate-400 opacity-70">The daily cycle of the 365-day journey.</p>
-                            </div>
+                            <div className="relative z-10"><Icons.Calendar className="w-12 h-12 mb-6 text-blue-400 opacity-80" /><h2 className="text-2xl font-black text-slate-100 mb-2">Chronological Bible</h2><p className="text-xs font-serif text-slate-400 opacity-70">The daily cycle of the 365-day journey.</p></div>
                         </button>
-                        
                         <button onClick={onOpenAtlas} className="group relative p-6 md:p-10 rounded-[2.5rem] bg-zinc-900/40 border border-white/5 hover:bg-zinc-800/60 hover:border-amber-500/30 transition-all duration-500 text-left overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <div className="relative z-10">
-                                <Icons.Compass className="w-12 h-12 mb-6 text-amber-400 opacity-80" />
-                                <h2 className="text-2xl font-black text-slate-100 mb-2">Bible Atlas</h2>
-                                <p className="text-xs font-serif text-slate-400 opacity-70">Navigate scriptures by Book and Chapter.</p>
-                            </div>
+                            <div className="relative z-10"><Icons.Compass className="w-12 h-12 mb-6 text-amber-400 opacity-80" /><h2 className="text-2xl font-black text-slate-100 mb-2">Bible Atlas</h2><p className="text-xs font-serif text-slate-400 opacity-70">Navigate scriptures via Ed Echad.</p></div>
                         </button>
-
                         <button onClick={() => onSelect('portico')} className="group relative p-6 md:p-10 rounded-[2.5rem] bg-zinc-900/40 border border-white/5 hover:bg-zinc-800/60 hover:border-emerald-500/30 transition-all duration-500 text-left overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <div className="relative z-10">
-                                <Icons.Scroll className="w-12 h-12 mb-6 text-emerald-400 opacity-80" />
-                                <h2 className="text-2xl font-black text-slate-100 mb-2">The Portico</h2>
-                                <p className="text-xs font-serif text-slate-400 opacity-70">The library of external scrolls and manuscripts.</p>
-                            </div>
+                            <div className="relative z-10"><Icons.Scroll className="w-12 h-12 mb-6 text-emerald-400 opacity-80" /><h2 className="text-2xl font-black text-slate-100 mb-2">The Portico</h2><p className="text-xs font-serif text-slate-400 opacity-70">The library of external scrolls.</p></div>
                         </button>
                     </div>
                 </div>
@@ -541,102 +727,46 @@
         };
 
         const PorticoView = ({ scrolls, onOpenScroll, onBack, searchQuery }) => {
-            const filteredScrolls = useMemo(() => {
-                if (!searchQuery || searchQuery.trim() === "") return scrolls;
-                return scrolls.filter(s => s.display.toLowerCase().includes(searchQuery.toLowerCase()));
-            }, [scrolls, searchQuery]);
-
+            const filteredScrolls = useMemo(() => { if (!searchQuery || searchQuery.trim() === "") return scrolls; return scrolls.filter(s => s.display.toLowerCase().includes(searchQuery.toLowerCase())); }, [scrolls, searchQuery]);
             return (
                 <div className="max-w-4xl mx-auto p-4 md:p-8 animate-in slide-in-from-bottom-8 duration-500">
                     <button onClick={onBack} className="mb-8 text-sm font-bold uppercase tracking-widest text-zinc-500 hover:text-white flex items-center gap-2 transition-colors"><Icons.Left /> Back to Entry Hall</button>
-                    <div className="flex items-center gap-4 mb-12">
-                         <div className="p-3 bg-zinc-900 rounded-xl"><Icons.Scroll className="text-emerald-500 w-8 h-8" /></div>
-                         <div><h1 className="text-5xl font-black text-slate-100">The Portico</h1><p className="text-slate-500 font-serif italic mt-1">Select a scroll to unseal.</p></div>
-                    </div>
-                    
+                    <div className="flex items-center gap-4 mb-12"><div className="p-3 bg-zinc-900 rounded-xl"><Icons.Scroll className="text-emerald-500 w-8 h-8" /></div><div><h1 className="text-5xl font-black text-slate-100">The Portico</h1><p className="text-slate-500 font-serif italic mt-1">Select a scroll to unseal.</p></div></div>
                     <div className="grid grid-cols-1 gap-4">
-                        {filteredScrolls && filteredScrolls.length > 0 ? (
-                            filteredScrolls.map((scroll, i) => (
-                                <button key={i} onClick={() => onOpenScroll(scroll.filename)} className="w-full text-left p-6 rounded-2xl flex items-center justify-between transition-all duration-300 bg-zinc-900/40 hover:bg-zinc-800 border border-white/5 group">
-                                    <div className="text-lg md:text-xl font-black text-slate-200 group-hover:text-emerald-400 transition-colors">{scroll.display}</div>
-                                    <Icons.Right className="text-zinc-600 group-hover:text-emerald-500 transition-colors" />
-                                </button>
-                            ))
-                        ) : (
-                            <div className="text-center py-20 text-zinc-500 italic">
-                                 {searchQuery ? `No scrolls found matching "${searchQuery}"` : "Searching the shelves..."}
-                            </div>
-                        )}
+                        {filteredScrolls && filteredScrolls.length > 0 ? (filteredScrolls.map((scroll, i) => (<button key={i} onClick={() => onOpenScroll(scroll.filename)} className="w-full text-left p-6 rounded-2xl flex items-center justify-between transition-all duration-300 bg-zinc-900/40 hover:bg-zinc-800 border border-white/5 group"><div className="text-lg md:text-xl font-black text-slate-200 group-hover:text-emerald-400 transition-colors">{scroll.display}</div><Icons.Right className="text-zinc-600 group-hover:text-emerald-500 transition-colors" /></button>))) : (<div className="text-center py-20 text-zinc-500 italic">{searchQuery ? `No scrolls found matching "${searchQuery}"` : "Searching the shelves..."}</div>)}
                     </div>
                 </div>
             );
         };
 
         const YearView = ({ onSelectMonth, onBack }) => {
-            const today = new Date();
-            const currentMonth = today.getMonth(); 
+            const today = new Date(), currentMonth = today.getMonth(); 
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            
-            useEffect(() => {
-                // Small timeout to ensure DOM is ready
-                const timer = setTimeout(() => {
-                    const monthEl = document.getElementById(`month-${currentMonth}`);
-                    if (monthEl) monthEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
-                return () => clearTimeout(timer);
-            }, [currentMonth]);
-
+            useEffect(() => { const timer = setTimeout(() => { const monthEl = document.getElementById(`month-${currentMonth}`); if (monthEl) monthEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100); return () => clearTimeout(timer); }, [currentMonth]);
             return (
                 <div className="max-w-6xl mx-auto p-4 md:p-12 animate-in fade-in duration-700">
                     <button onClick={onBack} className="mb-8 text-sm font-bold uppercase tracking-widest text-zinc-500 hover:text-white flex items-center gap-2 transition-colors"><Icons.Home /> Back to Entry Hall</button>
                     <h1 className="text-4xl md:text-6xl font-black text-center mb-12 tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-purple-600">2026 CHRONOLOGY</h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {months.map((m, i) => (
-                            <button key={m} id={`month-${i}`} onClick={() => onSelectMonth(i)} className={`p-8 rounded-3xl text-left transition-all duration-300 group relative overflow-hidden ${i === currentMonth ? 'bg-blue-600 shadow-[0_0_40px_rgba(37,99,235,0.5)] scale-105 ring-2 ring-white/20' : 'bg-zinc-900/50 hover:bg-zinc-800 border border-white/5 hover:border-white/10'}`}>
-                                <div className="text-xs font-black uppercase tracking-[0.3em] opacity-40 mb-4">Month {String(i+1).padStart(2,'0')}</div>
-                                <div className="text-3xl font-serif font-bold text-slate-100 group-hover:text-blue-400 transition-colors">{m}</div>
-                                {i === currentMonth && <div className="absolute top-4 right-4 w-2 h-2 bg-white rounded-full animate-pulse shadow-[0_0_10px_white]"></div>}
-                            </button>
-                        ))}
+                        {months.map((m, i) => (<button key={m} id={`month-${i}`} onClick={() => onSelectMonth(i)} className={`p-8 rounded-3xl text-left transition-all duration-300 group relative overflow-hidden ${i === currentMonth ? 'bg-blue-600 shadow-[0_0_40px_rgba(37,99,235,0.5)] scale-105 ring-2 ring-white/20' : 'bg-zinc-900/50 hover:bg-zinc-800 border border-white/5 hover:border-white/10'}`}><div className="text-xs font-black uppercase tracking-[0.3em] opacity-40 mb-4">Month {String(i+1).padStart(2,'0')}</div><div className="text-3xl font-serif font-bold text-slate-100 group-hover:text-blue-400 transition-colors">{m}</div>{i === currentMonth && <div className="absolute top-4 right-4 w-2 h-2 bg-white rounded-full animate-pulse shadow-[0_0_10px_white]"></div>}</button>))}
                     </div>
                 </div>
             );
         };
 
         const MonthView = ({ monthIndex, calendarData, onSelectDay, onBack }) => {
-            const listRef = useRef(null);
-            const today = new Date();
-            const isCurrentMonth = today.getMonth() === monthIndex;
-            const currentDay = today.getDate();
+            const today = new Date(), isCurrentMonth = today.getMonth() === monthIndex, currentDay = today.getDate();
             const daysInMonth = calendarData.filter(d => (parseInt(d.dateString.substring(4, 6)) - 1) === monthIndex);
-            
-            useEffect(() => {
-                if (isCurrentMonth) {
-                    // Small timeout to ensure DOM is ready
-                    const timer = setTimeout(() => {
-                        const row = document.getElementById(`day-row-${currentDay}`);
-                        if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 100);
-                    return () => clearTimeout(timer);
-                }
-            }, [isCurrentMonth, currentDay, monthIndex]); // Added monthIndex to dependencies
-
+            useEffect(() => { if (isCurrentMonth) { const timer = setTimeout(() => { const row = document.getElementById(`day-row-${currentDay}`); if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100); return () => clearTimeout(timer); } }, [isCurrentMonth, currentDay, monthIndex]);
             const monthName = new Date(2026, monthIndex, 1).toLocaleString('default', { month: 'long' });
-
             return (
                 <div className="max-w-4xl mx-auto p-4 md:p-8 animate-in slide-in-from-bottom-8 duration-500">
                     <button onClick={onBack} className="mb-8 text-sm font-bold uppercase tracking-widest text-zinc-500 hover:text-white flex items-center gap-2 transition-colors"><Icons.Left /> Back to Year</button>
                     <h1 className="text-5xl font-black mb-12 text-slate-100">{monthName}</h1>
-                    <div className="space-y-3" ref={listRef}>
+                    <div className="space-y-3">
                         {daysInMonth.map((d) => {
-                            const dayNum = parseInt(d.dateString.substring(6, 8));
-                            const isToday = isCurrentMonth && dayNum === currentDay;
-                            return (
-                                <button key={d.dayId} id={`day-row-${dayNum}`} onClick={() => onSelectDay(parseInt(d.dayId))} className={`w-full text-left p-6 rounded-2xl flex flex-col md:flex-row gap-4 md:items-center transition-all duration-300 ${isToday ? 'bg-blue-600 shadow-[0_0_30px_rgba(37,99,235,0.4)] border border-blue-400/50' : 'bg-zinc-900/40 hover:bg-zinc-800 border border-white/5'}`}>
-                                    <div className="flex items-center gap-4 min-w-[140px]"><div className={`text-2xl font-black ${isToday ? 'text-white' : 'text-zinc-600'}`}>{String(dayNum).padStart(2,'0')}</div><div className="h-8 w-px bg-white/10"></div><div className={`text-xs font-bold uppercase tracking-wider ${isToday ? 'text-blue-200' : 'text-zinc-500'}`}>Day {d.dayId}</div></div>
-                                    <div className={`font-serif text-lg ${isToday ? 'text-white' : 'text-slate-300'}`}>{d.reading || "Rest / Reflection"}</div>
-                                </button>
-                            );
+                            const dayNum = parseInt(d.dateString.substring(6, 8)), isToday = isCurrentMonth && dayNum === currentDay;
+                            return (<button key={d.dayId} id={`day-row-${dayNum}`} onClick={() => onSelectDay(parseInt(d.dayId))} className={`w-full text-left p-6 rounded-2xl flex flex-col md:flex-row gap-4 md:items-center transition-all duration-300 ${isToday ? 'bg-blue-600 shadow-[0_0_30px_rgba(37,99,235,0.4)] border border-blue-400/50' : 'bg-zinc-900/40 hover:bg-zinc-800 border border-white/5'}`}><div className="flex items-center gap-4 min-w-[140px]"><div className={`text-2xl font-black ${isToday ? 'text-white' : 'text-zinc-600'}`}>{String(dayNum).padStart(2,'0')}</div><div className="h-8 w-px bg-white/10"></div><div className={`text-xs font-bold uppercase tracking-wider ${isToday ? 'text-blue-200' : 'text-zinc-500'}`}>Day {d.dayId}</div></div><div className={`font-serif text-lg ${isToday ? 'text-white' : 'text-slate-300'}`}>{d.reading || "Rest / Reflection"}</div></button>);
                         })}
                     </div>
                 </div>
@@ -649,65 +779,38 @@
             const { tokenize } = useTokenization();
             const [atlasOpen, setAtlasOpen] = useState(false);
             const searchInputRef = useRef(null);
-            
-            // Search State
             const [searchMatches, setSearchMatches] = useState({ count: 0, current: 0 });
 
-            // Search Auto-scroll and Match Counting
             useEffect(() => {
                 const timer = setTimeout(() => {
-                    // Only run logic for reading or scroll views where content is rendered
-                    if ((appView !== 'reading' && appView !== 'scroll') || !searchQuery || searchQuery.length < 2) {
-                        setSearchMatches({ count: 0, current: 0 });
-                        return;
-                    }
-
+                    if ((appView !== 'reading' && appView !== 'scroll') || !searchQuery || searchQuery.length < 2) { setSearchMatches({ count: 0, current: 0 }); return; }
                     const matches = document.querySelectorAll('.search-result');
                     if (matches.length > 0) {
                         setSearchMatches({ count: matches.length, current: 0 });
-                        // Clean slate
                         matches.forEach(m => m.classList.remove('search-result-active'));
-                        // Highlight first
                         matches[0].classList.add('search-result-active');
                         matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    } else {
-                        setSearchMatches({ count: 0, current: 0 });
-                    }
-                }, 600); // 600ms debounce
+                    } else { setSearchMatches({ count: 0, current: 0 }); }
+                }, 600);
                 return () => clearTimeout(timer);
             }, [searchQuery, pageData, appView]);
 
             const navigateSearch = (direction) => {
                 const matches = document.querySelectorAll('.search-result');
                 if (!matches.length) return;
-
-                // Clear current active
-                if (matches[searchMatches.current]) {
-                    matches[searchMatches.current].classList.remove('search-result-active');
-                }
-
+                if (matches[searchMatches.current]) matches[searchMatches.current].classList.remove('search-result-active');
                 let nextIndex = searchMatches.current + direction;
-                if (nextIndex >= matches.length) nextIndex = 0; // Wrap around to start
-                if (nextIndex < 0) nextIndex = matches.length - 1; // Wrap around to end
-
+                if (nextIndex >= matches.length) nextIndex = 0; 
+                if (nextIndex < 0) nextIndex = matches.length - 1; 
                 setSearchMatches(prev => ({ ...prev, current: nextIndex }));
-                
-                // Set new active
                 const target = matches[nextIndex];
                 target.classList.add('search-result-active');
                 target.scrollIntoView({ behavior: 'smooth', block: 'center' });
             };
 
             const copyVerses = async () => {
-                const textToCopy = Array.from(selectedVerses).sort((a,b) => { const getNum = id => parseInt(id.split('-').pop()); return getNum(a) - getNum(b); }).map(id => { const el = document.getElementById(`verse-${id}`); return el ? el.innerText : ""; }).join('\n\n').replace(/\{.*?\}/g, '').replace(/\s+/g, ' ').replace(/\n\s*\n/g, '\n').trim();
-                try { 
-                    await navigator.clipboard.writeText(textToCopy); 
-                    setSelectionMode(false); 
-                    setSelectedVerses(new Set()); 
-                    showToast("Verses copied to clipboard");
-                } catch (err) { 
-                    showToast("Failed to copy. Try manual selection."); 
-                }
+                const textToCopy = Array.from(selectedVerses).sort((a,b) => parseInt(a.split('-').pop()) - parseInt(b.split('-').pop())).map(id => document.getElementById(`verse-${id}`)?.innerText || "").join('\n\n').replace(/\{.*?\}/g, '').replace(/\s+/g, ' ').replace(/\n\s*\n/g, '\n').trim();
+                try { await navigator.clipboard.writeText(textToCopy); setSelectionMode(false); setSelectedVerses(new Set()); showToast("Verses copied to clipboard"); } catch (err) { showToast("Failed to copy. Try manual selection."); }
             };
 
             const toggleSearch = () => { if (menu === 'search') { setMenu(null); setSearchQuery(""); } else { setMenu('search'); setTimeout(() => searchInputRef.current?.focus(), 100); } };
@@ -722,134 +825,56 @@
 
             useEffect(() => {
                 const handleKeyDown = (e) => {
-                    if (appView === 'reading' && !detail) {
+                    if (appView === 'reading' && !detail && !atlasOpen) {
                         if (e.key === 'ArrowLeft') setActiveDay(prev => Math.max(1, prev - 1));
                         if (e.key === 'ArrowRight') setActiveDay(prev => Math.min(365, prev + 1));
                     }
                     if (e.key === 'Escape') { setDetail(null); setAtlasOpen(false); setMenu(null); setSearchQuery(""); setSelectionMode(false); setSettingsOpen(false); }
                 };
                 window.addEventListener('keydown', handleKeyDown); return () => window.removeEventListener('keydown', handleKeyDown);
-            }, [appView, detail]);
+            }, [appView, detail, atlasOpen, setActiveDay, setDetail, setMenu, setSearchQuery, setSelectionMode, setSettingsOpen]);
 
-            // Scroll Reset and Atlas Target Scrolling
-            useEffect(() => { 
-                window.scrollTo(0, 0); 
-            }, [activeDay, appView, activeScroll]);
+            useEffect(() => { window.scrollTo(0, 0); }, [activeDay, appView, activeScroll]);
 
             useEffect(() => {
                 if (pageData && scrollTarget && appView === 'reading') {
-                    // Start an attempt cycle to find the element
                     const attemptScroll = (count = 0) => {
-                        const idx = pageData.readings.findIndex(r => {
-                            if (!r.references) return false;
-                            const b = scrollTarget.book; 
-                            const c = scrollTarget.chapter;
-                            return r.references.includes(`${b} ${c}:`) || r.references.includes(`${b} ${c} `) || r.references.endsWith(`${b} ${c}`);
-                        });
-
-                        if (idx >= 0) {
-                            const el = document.getElementById(`reading-block-${idx}`);
-                            if (el) {
-                                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                                setScrollTarget(null); // Success
-                            } else if (count < 15) {
-                                // Retry up to 15 times (1.5 seconds)
-                                setTimeout(() => attemptScroll(count + 1), 100);
-                            }
-                        } else {
-                            setScrollTarget(null); // Not found in data
-                        }
+                        const idx = pageData.readings.findIndex(r => r.references && (r.references.includes(`${scrollTarget.book} ${scrollTarget.chapter}:`) || r.references.includes(`${scrollTarget.book} ${scrollTarget.chapter} `) || r.references.endsWith(`${scrollTarget.book} ${scrollTarget.chapter}`)));
+                        if (idx >= 0) { const el = document.getElementById(`reading-block-${idx}`); if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); setScrollTarget(null); } else if (count < 15) { setTimeout(() => attemptScroll(count + 1), 100); } } else { setScrollTarget(null); }
                     };
-                    
-                    // Initial Kickoff
                     setTimeout(() => attemptScroll(0), 100);
                 }
-            }, [pageData, scrollTarget, appView]);
+            }, [pageData, scrollTarget, appView, setScrollTarget]);
 
             return (
                 <div className={`min-h-screen flex flex-col transition-colors duration-500 bg-zinc-950 text-white dark-mode ${settings.power.shekinah ? 'shekinah-mode' : ''}`}>
                     <header className="sticky top-0 z-[110] glass-header px-2 md:px-6 py-2 md:py-4 flex justify-between items-center shadow-sm">
                         <div className="flex items-center gap-1 md:gap-3 flex-shrink-0">
                             <button onClick={() => setAppView('entrance')} className={`p-2 rounded-lg ${appView === 'entrance' ? 'bg-white/10' : 'hover:bg-white/10'}`} title="Return to Entry Hall"><Icons.Home /></button>
-                            
-                            {/* Navigation Logic for Header */}
                             {appView === 'year' && <button onClick={() => setAppView('year')} className="p-2 bg-white/10 rounded-lg"><Icons.Calendar /></button>}
-                            
                             {appView === 'reading' && (
                                 <>
-                                    <button onClick={() => {
-                                        // Update month based on current activeDay before switching
-                                        if (dicts.calendar) {
-                                            const dayData = dicts.calendar.find(d => parseInt(d.dayId) === activeDay);
-                                            if (dayData && dayData.dateString) {
-                                                const monthIdx = parseInt(dayData.dateString.substring(4, 6)) - 1;
-                                                setSelectedMonth(monthIdx);
-                                            }
-                                        }
-                                        setAppView('month');
-                                    }} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Calendar /></button>
+                                    <button onClick={() => { if (dicts.calendar) { const dayData = dicts.calendar.find(d => parseInt(d.dayId) === activeDay); if (dayData && dayData.dateString) setSelectedMonth(parseInt(dayData.dateString.substring(4, 6)) - 1); } setAppView('month'); }} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Calendar /></button>
                                     <button onClick={() => setAtlasOpen(true)} className="p-2 hover:bg-white/10 rounded-lg"><Icons.Compass /></button>
                                     <div className="h-5 w-px bg-zinc-800 mx-1 md:mx-2"></div>
-                                    <button 
-                                        onClick={() => setActiveDay(Math.max(1, activeDay-1))} 
-                                        disabled={activeDay === 1}
-                                        className={`p-2 rounded-lg transition-colors ${activeDay === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/10'}`}
-                                    >
-                                        <Icons.Left />
-                                    </button>
-                                    <button 
-                                        onClick={() => setActiveDay(Math.min(365, activeDay+1))} 
-                                        disabled={activeDay === 365}
-                                        className={`p-2 rounded-lg transition-colors ${activeDay === 365 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/10'}`}
-                                    >
-                                        <Icons.Right />
-                                    </button>
+                                    <button onClick={() => setActiveDay(Math.max(1, activeDay-1))} disabled={activeDay === 1} className={`p-2 rounded-lg transition-colors ${activeDay === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/10'}`}><Icons.Left /></button>
+                                    <button onClick={() => setActiveDay(Math.min(365, activeDay+1))} disabled={activeDay === 365} className={`p-2 rounded-lg transition-colors ${activeDay === 365 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-white/10'}`}><Icons.Right /></button>
                                 </>
                             )}
-                            {appView === 'scroll' && (
-                                <>
-                                    <button onClick={() => setAppView('portico')} className="p-2 hover:bg-white/10 rounded-lg flex items-center gap-2 text-xs font-bold uppercase tracking-widest" title="Return to Portico">
-                                        <Icons.Left /> 
-                                        <span className="hidden md:inline">Return to Portico</span>
-                                    </button>
-                                </>
-                            )}
+                            {appView === 'scroll' && <button onClick={() => setAppView('portico')} className="p-2 hover:bg-white/10 rounded-lg flex items-center gap-2 text-xs font-bold uppercase tracking-widest" title="Return to Portico"><Icons.Left /> <span className="hidden md:inline">Return to Portico</span></button>}
                         </div>
                         <div className="flex items-center gap-1 md:gap-2 flex-shrink-0">
-                            {(appView === 'portico' || appView === 'reading' || appView === 'scroll') && (
-                                <button onClick={toggleSearch} className={`p-2 rounded-lg ${menu === 'search' ? 'bg-blue-900/40 text-blue-400' : 'hover:bg-white/10'}`}><Icons.Search /></button>
-                            )}
+                            {(appView === 'portico' || appView === 'reading' || appView === 'scroll') && <button onClick={toggleSearch} className={`p-2 rounded-lg ${menu === 'search' ? 'bg-blue-900/40 text-blue-400' : 'hover:bg-white/10'}`}><Icons.Search /></button>}
                             {(appView === 'reading' || appView === 'scroll') && <button onClick={toggleSelectionMode} className={`p-2 rounded-lg ${selectionMode ? 'bg-amber-900/40 text-amber-400' : 'hover:bg-white/10'}`}><Icons.CheckList /></button>}
-                            
-                            {(appView === 'reading' || appView === 'scroll') && (
-                                <button onClick={() => setSettingsOpen(true)} className="p-2 hover:bg-white/10 rounded-lg text-zinc-300 hover:text-white transition-colors">
-                                    <Icons.Settings />
-                                </button>
-                            )}
+                            {(appView === 'reading' || appView === 'scroll') && <button onClick={() => setSettingsOpen(true)} className="p-2 hover:bg-white/10 rounded-lg text-zinc-300 hover:text-white transition-colors"><Icons.Settings /></button>}
                         </div>
                     </header>
 
                     <main className="flex-grow silver-table p-4 md:p-12">
-                        {appView === 'entrance' && (
-                            <EntranceView onSelect={(view) => setAppView(view)} onOpenAtlas={() => setAtlasOpen(true)} />
-                        )}
-
-                        {appView === 'year' && (
-                            <YearView onSelectMonth={(idx) => { setSelectedMonth(idx); setAppView('month'); }} onBack={() => setAppView('entrance')} />
-                        )}
-                        
-                        {appView === 'month' && (
-                            <MonthView 
-                                monthIndex={selectedMonth} 
-                                calendarData={dicts.calendar} 
-                                onSelectDay={(day) => { setActiveDay(day); setAppView('reading'); }} 
-                                onBack={() => setAppView('year')} 
-                            />
-                        )}
-
-                        {appView === 'portico' && (
-                            <PorticoView scrolls={scrolls} onOpenScroll={(file) => { setActiveScroll(file); setAppView('scroll'); }} onBack={() => setAppView('entrance')} searchQuery={searchQuery} />
-                        )}
+                        {appView === 'entrance' && <EntranceView onSelect={(view) => setAppView(view)} onOpenAtlas={() => setAtlasOpen(true)} />}
+                        {appView === 'year' && <YearView onSelectMonth={(idx) => { setSelectedMonth(idx); setAppView('month'); }} onBack={() => setAppView('entrance')} />}
+                        {appView === 'month' && <MonthView monthIndex={selectedMonth} calendarData={dicts.calendar} onSelectDay={(day) => { setActiveDay(day); setAppView('reading'); }} onBack={() => setAppView('year')} />}
+                        {appView === 'portico' && <PorticoView scrolls={scrolls} onOpenScroll={(file) => { setActiveScroll(file); setAppView('scroll'); }} onBack={() => setAppView('entrance')} searchQuery={searchQuery} />}
 
                         {(appView === 'reading' || appView === 'scroll') && (
                             <div className="parchment max-w-4xl mx-auto rounded-[3rem] p-8 md:p-20 font-serif min-h-[85vh]" style={{ '--text-scale': settings.fontSize / 1.2 }}>
@@ -857,7 +882,6 @@
                                     <>
                                         {appView === 'reading' && <div className="text-center mb-16 opacity-80 text-blue-200 text-[10px] font-black uppercase tracking-[0.4em]">{formattedDate}</div>}
                                         {appView === 'scroll' && <div className="text-center mb-16 opacity-80 text-blue-200 text-[10px] font-black uppercase tracking-[0.4em]">SCROLL: {activeScroll}</div>}
-                                        
                                         {pageData.readings.map((r, i) => (
                                             <div key={i} className="space-y-10 mb-20">
                                                 <div id={`reading-block-${i}`} className="space-y-10">
@@ -882,7 +906,7 @@
                                         ))}
                                     </>
                                 ) : (
-                                    <div className="h-full flex flex-col items-center justify-center py-40 gap-4"><div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div><div className="max-w-md text-center"><div className="font-black uppercase tracking-widest opacity-30 mb-4">{error ? "Connection Snag" : "Synchronizing Library..."}</div>{error && <div className="text-red-500 text-sm font-sans bg-red-950/20 p-6 rounded-2xl border border-red-100"><p className="font-bold mb-2">Browser Security block detected.</p><p className="opacity-80 leading-relaxed italic">The engine cannot fetch files directly from your hard drive due to CORS security. <br/><br/>To fix this, please run this project using a local web server (e.g., VS Code's "Live Server" extension).</p></div>}</div></div>
+                                    <div className="h-full flex flex-col items-center justify-center py-40 gap-4"><div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div><div className="max-w-md text-center"><div className="font-black uppercase tracking-widest opacity-30 mb-4">{error ? "Connection Snag" : "Synchronizing Library..."}</div>{error && <div className="text-red-500 text-sm font-sans bg-red-950/20 p-6 rounded-2xl border border-red-100"><p className="font-bold mb-2">Browser Security block detected.</p><p className="opacity-80 leading-relaxed italic">The engine cannot fetch files directly from your hard drive due to CORS security. <br/><br/>To fix this, please run this project using a local web server.</p></div>}</div></div>
                                 )}
                             </div>
                         )}
@@ -891,19 +915,10 @@
                     <div className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-[180] transition-all duration-300 ${menu === 'search' ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'}`}>
                         <div className="bg-zinc-900/90 backdrop-blur-xl border border-zinc-700 shadow-2xl rounded-full p-2 pl-3 md:pl-6 flex items-center gap-2 md:gap-4 w-[95vw] md:w-[90vw] max-w-lg">
                             <div className="hidden sm:block"><Icons.Search /></div>
-                            <input 
-                                ref={searchInputRef} 
-                                type="text" 
-                                placeholder={appView === 'portico' ? "Filter scrolls..." : "Find in text..."}
-                                className="flex-grow bg-transparent outline-none text-slate-100 placeholder-slate-400 font-medium min-w-0" 
-                                value={searchQuery} 
-                                onChange={(e) => setSearchQuery(e.target.value)} 
-                            />
+                            <input ref={searchInputRef} type="text" placeholder={appView === 'portico' ? "Filter scrolls..." : "Find in text..."} className="flex-grow bg-transparent outline-none text-slate-100 placeholder-slate-400 font-medium min-w-0" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
                             {searchMatches.count > 0 && (
                                 <div className="flex items-center gap-1 md:gap-2 border-l border-white/10 pl-2 ml-1 md:pl-4 md:ml-2 animate-in fade-in slide-in-from-right-2 flex-shrink-0">
-                                    <span className="text-[10px] md:text-xs font-mono text-slate-400 min-w-[2.5rem] md:min-w-[3rem] text-center whitespace-nowrap">
-                                        {searchMatches.current + 1}/{searchMatches.count}
-                                    </span>
+                                    <span className="text-[10px] md:text-xs font-mono text-slate-400 min-w-[2.5rem] md:min-w-[3rem] text-center whitespace-nowrap">{searchMatches.current + 1}/{searchMatches.count}</span>
                                     <button onClick={() => navigateSearch(-1)} className="p-1 hover:text-white text-slate-400 hover:bg-white/10 rounded"><Icons.Up /></button>
                                     <button onClick={() => navigateSearch(1)} className="p-1 hover:text-white text-slate-400 hover:bg-white/10 rounded"><Icons.Down /></button>
                                 </div>
@@ -919,7 +934,7 @@
                         </div>
                     )}
 
-                    <BibleAtlasModal isOpen={atlasOpen} onClose={() => setAtlasOpen(false)} books={dicts.books || []} chapters={dicts.chapters || []} calendar={dicts.calendar || []} setDay={(d) => { setActiveDay(d); setAppView('reading'); }} setScrollTarget={setScrollTarget} />
+                    <EdEchadAtlasModal isOpen={atlasOpen} onClose={() => setAtlasOpen(false)} books={dicts.books || []} chapters={dicts.chapters || []} calendar={dicts.calendar || []} setDay={(d) => { setActiveDay(d); setAppView('reading'); }} setScrollTarget={setScrollTarget} />
                     <SettingsModal isOpen={settingsOpen} onClose={() => setSettingsOpen(false)} />
                     <DetailsPanel type={detail?.type} data={detail?.data} onClose={() => setDetail(null)} tokenize={tokenize} />
                     {detail && detail.type === 'image' && (<ImageViewer file={detail.data} onClose={() => setDetail(null)} />)}
@@ -929,33 +944,15 @@
         };
 
         const App = () => {
-            // Load settings from localStorage or use defaults
             const [settings, setSettings] = useState(() => {
                 try {
                     const saved = localStorage.getItem('bible-engine-settings');
-                    const defaults = { 
-                        dark: true, 
-                        fontSize: 1.2, 
-                        power: { verseHighlight: true, lexical: true, shekinah: true, divineQuote: true, verseMarkers: true, footnoteMarkers: true, imageMarkers: true, videoMarkers: true }, 
-                        lang: { dn: 'transliterated', pn: 'transliterated', kw: 'modernized' } 
-                    };
+                    const defaults = { dark: true, fontSize: 1.2, power: { verseHighlight: true, lexical: true, shekinah: true, divineQuote: true, verseMarkers: true, footnoteMarkers: true, imageMarkers: true, videoMarkers: true }, lang: { dn: 'transliterated', pn: 'transliterated', kw: 'modernized' } };
                     return saved ? { ...defaults, ...JSON.parse(saved) } : defaults;
-                } catch (e) {
-                    return { 
-                        dark: true, 
-                        fontSize: 1.2, 
-                        power: { verseHighlight: true, lexical: true, shekinah: true, divineQuote: true, verseMarkers: true, footnoteMarkers: true, imageMarkers: true, videoMarkers: true }, 
-                        lang: { dn: 'transliterated', pn: 'transliterated', kw: 'modernized' } 
-                    };
-                }
+                } catch (e) { return { dark: true, fontSize: 1.2, power: { verseHighlight: true, lexical: true, shekinah: true, divineQuote: true, verseMarkers: true, footnoteMarkers: true, imageMarkers: true, videoMarkers: true }, lang: { dn: 'transliterated', pn: 'transliterated', kw: 'modernized' } }; }
             });
-
             const [settingsOpen, setSettingsOpen] = useState(false);
-
-            // Persist settings whenever they change
-            useEffect(() => {
-                localStorage.setItem('bible-engine-settings', JSON.stringify(settings));
-            }, [settings]);
+            useEffect(() => { localStorage.setItem('bible-engine-settings', JSON.stringify(settings)); }, [settings]);
 
             const [dicts, setDicts] = useState({ dn: {}, pn: {}, kw: {}, books: [], chapters: [], calendar: [] });
             const [activeDay, setActiveDay] = useState(1);
@@ -969,22 +966,15 @@
             const [selectionMode, setSelectionMode] = useState(false);
             const [selectedVerses, setSelectedVerses] = useState(new Set());
             const [toast, setToast] = useState({ show: false, message: '' });
-            
-            // VIEW STATE
-            const [appView, setAppView] = useState('entrance'); // 'entrance' | 'year' | 'month' | 'reading' | 'portico' | 'scroll'
+            const [appView, setAppView] = useState('entrance');
             const [selectedMonth, setSelectedMonth] = useState(0); 
             const [scrolls, setScrolls] = useState([]);
             const [activeScroll, setActiveScroll] = useState(null);
-            const [scrollTarget, setScrollTarget] = useState(null); // { book: string, chapter: string }
+            const [scrollTarget, setScrollTarget] = useState(null);
 
             const toggleVerseSelection = (id) => { setSelectedVerses(prev => { const next = new Set(prev); if (next.has(id)) next.delete(id); else next.add(id); return next; }); };
+            const showToast = (msg) => { setToast({ show: true, message: msg }); setTimeout(() => setToast(prev => ({ ...prev, show: false })), 3000); };
 
-            const showToast = (msg) => {
-                setToast({ show: true, message: msg });
-                setTimeout(() => setToast(prev => ({ ...prev, show: false })), 3000);
-            };
-
-            // Fetch Global Dictionaries
             useEffect(() => {
                 const init = async () => {
                     try {
@@ -1006,24 +996,18 @@
                 init();
             }, []);
 
-            // Fetch Portico Scroll List
             useEffect(() => {
                 const initPortico = async () => {
                     if (appView === 'portico' && scrolls.length === 0) {
-                        try {
-                            const list = await smartFetch('data/portico/scrolls.json', 'Scrolls Index', setNetworkStatus);
-                            setScrolls(list);
-                        } catch (e) { console.error("Portico empty or unreachable"); }
+                        try { const list = await smartFetch('data/portico/scrolls.json', 'Scrolls Index', setNetworkStatus); setScrolls(list); } catch (e) {}
                     }
                 };
                 initPortico();
             }, [appView]);
 
-            // Load Content (Day or Scroll)
             useEffect(() => {
                 const load = async () => {
-                    setError(null);
-                    setPageData(null);
+                    setError(null); setPageData(null);
                     try {
                         if (appView === 'reading') {
                             const dayFile = `data/readings/day${String(activeDay).padStart(3, '0')}.json`;
