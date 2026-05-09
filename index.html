@@ -338,14 +338,31 @@
             const lastTap = useRef(0);
             const touchStartPos = useRef({ x: 0, y: 0, time: 0 });
 
+            // Dynamic Matrix Calibration function
+            const getInitialCam = () => {
+                if (typeof window === 'undefined') return { x: 0, y: 0, scale: 1 };
+                const w = window.innerWidth;
+                const h = window.innerHeight;
+                const vmin = Math.min(w, h);
+                const svgPixelSize = vmin * 0.95; // SVG matches w-[95vmin] container
+                const baseRadiusPx = (240 / 600) * svgPixelSize; // Outer radius of alphabet ring is 240
+                
+                // Target radius in pixels to reach from 15vw (orb center) to 95vw (right edge)
+                const targetRadiusPx = w * 0.80;
+                const calculatedScale = Math.min(Math.max(targetRadiusPx / baseRadiusPx, 0.5), 4);
+                
+                // Offset orb to 15% from the left edge (-35% from center)
+                return { x: -(w * 0.35), y: 0, scale: calculatedScale };
+            };
+
             // Ensure resets when modal opens/closes
             useEffect(() => {
                 if (isOpen) {
                     setAtlasView('wheel');
                     setSelectedIndex(0);
                     setActiveDepth(2);
-                    setRotationDeg(0); // Snap to Due East
-                    setCam({ x: 0, y: 0, scale: 1 });
+                    setRotationDeg(0); // Snap to Due East (Aleph/Tav Strut centered)
+                    setCam(getInitialCam()); // Calibrate bounding box to screen matrix
                     hasDragged.current = false;
                 }
             }, [isOpen]);
@@ -417,7 +434,7 @@
             const handleManualSelect = useCallback((spokeIdx, depthIdx) => {
                 setSelectedIndex(spokeIdx);
                 setActiveDepth(depthIdx);
-                setCam({ x: 0, y: 0, scale: 1 });
+                setCam(getInitialCam());
                 snapToApex(spokeIdx);
             }, [snapToApex]);
 
@@ -663,8 +680,8 @@
                                 </svg>
                             </div>
 
-                            {/* Edge Navigation Controls */}
-                            <div className="absolute inset-0 z-20 pointer-events-none">
+                            {/* Edge Navigation Controls - Z-Index Elevated */}
+                            <div className="absolute inset-0 z-[60] pointer-events-none">
                                 <button onClick={(e) => { e.preventDefault(); handlePrevSpoke(); }} className="pointer-events-auto absolute top-28 left-1/2 -translate-x-1/2 p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Up /></button>
                                 <button onClick={(e) => { e.preventDefault(); handleNextSpoke(); }} className="pointer-events-auto absolute bottom-8 left-1/2 -translate-x-1/2 p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Down /></button>
                                 <button onClick={(e) => { e.preventDefault(); handlePrevSection(); }} className="pointer-events-auto absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Left /></button>
