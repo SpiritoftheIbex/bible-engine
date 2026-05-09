@@ -680,12 +680,12 @@
                                 </svg>
                             </div>
 
-                            {/* Edge Navigation Controls - Z-Index Elevated */}
-                            <div className="absolute inset-0 z-[60] pointer-events-none">
-                                <button onClick={(e) => { e.preventDefault(); handlePrevSpoke(); }} className="pointer-events-auto absolute top-28 left-1/2 -translate-x-1/2 p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Up /></button>
-                                <button onClick={(e) => { e.preventDefault(); handleNextSpoke(); }} className="pointer-events-auto absolute bottom-8 left-1/2 -translate-x-1/2 p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Down /></button>
-                                <button onClick={(e) => { e.preventDefault(); handlePrevSection(); }} className="pointer-events-auto absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Left /></button>
-                                <button onClick={(e) => { e.preventDefault(); handleNextSection(); }} className="pointer-events-auto absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Right /></button>
+                            {/* Bottom Row Navigation Controls */}
+                            <div className="absolute bottom-8 left-0 right-0 z-[60] flex justify-center items-center gap-3 md:gap-6 pointer-events-none">
+                                <button onClick={(e) => { e.preventDefault(); handlePrevSection(); }} className="pointer-events-auto p-3 md:p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Left /></button>
+                                <button onClick={(e) => { e.preventDefault(); handlePrevSpoke(); }} className="pointer-events-auto p-3 md:p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Up /></button>
+                                <button onClick={(e) => { e.preventDefault(); handleNextSpoke(); }} className="pointer-events-auto p-3 md:p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Down /></button>
+                                <button onClick={(e) => { e.preventDefault(); handleNextSection(); }} className="pointer-events-auto p-3 md:p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/50 hover:text-white hover:bg-black/60 transition-all active:scale-95 shadow-lg"><Icons.Right /></button>
                             </div>
                         </div>
                     ) : (
